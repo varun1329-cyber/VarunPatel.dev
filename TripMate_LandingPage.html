@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripMate — Travel Expense Tracking & Multi-Currency Analytics for iOS</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        appleBg: '#f5f5f7',
+                        appleDarkBg: '#000000',
+                        appleCardBg: '#ffffff',
+                        appleAccent: '#0071e3',
+                        appleAccentHover: '#0077ed',
+                        appleText: '#1d1d1f',
+                        appleSecText: '#86868b',
+                        appleBorder: '#e5e5ea',
+                        blueLight: '#eef4ff',
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'apple-card': '0 4px 20px 0 rgba(0, 0, 0, 0.05)',
+                        'apple-hover': '0 10px 30px 0 rgba(0, 0, 0, 0.08)',
+                        'phone-shadow': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Glassmorphism & Modern Styling */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .phone-bezel {
+            border: 12px solid #2d2d2d;
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 0 2px 2px rgba(255,255,255,0.2);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* App Icon Header Styling */
+        .app-icon-header {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: #eef4ff;
+            color: #0071e3;
+        }
+
+        .app-icon-header svg,
+        .app-icon-header i {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2.1;
+        }
+    </style>
+</head>
+<body class="bg-appleBg text-appleText font-sans antialiased selection:bg-appleAccent selection:text-white">
+
+    <!-- Header / Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-gray-200/60 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+            <!-- App Icon & Title -->
+            <div class="flex items-center space-x-3 font-semibold text-lg sm:text-xl tracking-tight">
+                <div class="app-icon-header" aria-hidden="true">
+                    <i data-lucide="receipt-text" class="w-5 h-5"></i>
+                </div>
+                <span class="text-appleText font-bold">TripMate</span>
+            </div>
+
+            <!-- Header Link -->
+            <a href="./index.html" class="text-sm font-medium text-appleAccent hover:underline underline-offset-4 transition-all">
+                Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-28 sm:pt-36 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
+        <span class="text-appleAccent font-semibold text-xs sm:text-sm tracking-wide uppercase bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">
+            SwiftUI & SwiftData Architecture
+        </span>
+        <h1 class="mt-6 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-appleText max-w-4xl mx-auto leading-tight">
+            Travel expenses tracked.<br class="hidden sm:inline"/> Anywhere in the world.
+        </h1>
+        <p class="mt-6 text-lg sm:text-2xl text-appleSecText max-w-2xl mx-auto font-normal leading-relaxed">
+            Multi-currency tracking, home-currency budget locking, phase-based spending analytics, and real-time exchange rates for seamless trip budgeting.
+        </p>
+
+        <!-- App iPhone Mockup Preview -->
+        <div class="mt-14 sm:mt-16 relative max-w-sm mx-auto">
+            <div class="phone-bezel bg-white p-3 shadow-phone-shadow relative z-10 overflow-hidden">
+                <!-- Phone Dynamic Island -->
+                <div class="w-28 h-4 bg-black rounded-full mx-auto mb-3"></div>
+                
+                <!-- Mock iPhone Screen -->
+                <div class="bg-gray-50 rounded-[32px] p-4 text-left border border-gray-100 h-[530px] flex flex-col justify-between select-none">
+                    <div>
+                        <!-- Top Bar -->
+                        <div class="flex justify-between items-center mb-3 pt-1">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">Ongoing</span>
+                                <h3 class="text-lg font-bold text-appleText mt-1">Tokyo & Kyoto Trip</h3>
+                                <p class="text-[11px] text-appleSecText">Oct 12 - Oct 28 • JPY (¥)</p>
+                            </div>
+                            <div class="w-7 h-7 rounded-full bg-gray-200/80 flex items-center justify-center text-gray-600">
+                                <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- Combined Budget Card -->
+                        <div class="bg-white p-3.5 rounded-2xl border border-gray-200/80 mb-3 shadow-sm">
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-emerald-600 mb-1.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                <span>Budget Status: Good (38% used)</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-xs border-t border-gray-100 pt-2 mt-1">
+                                <div>
+                                    <span class="text-[10px] text-gray-400 uppercase">Expenses</span>
+                                    <p class="font-bold text-gray-800">$ 950.00</p>
+                                    <span class="text-[9px] text-gray-400">¥ 142,500.00</span>
+                                </div>
+                                <div class="border-l border-gray-100 pl-2">
+                                    <span class="text-[10px] text-gray-400 uppercase">Total Budget</span>
+                                    <p class="font-bold text-gray-800">$ 2,500.00</p>
+                                    <span class="text-[9px] text-gray-400">¥ 375,000.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase Breakdown / Expense List -->
+                        <div class="space-y-2 text-xs">
+                            <div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider px-1">Recent Expenses</div>
+                             
+                            <!-- Expense Row 1 -->
+                            <div class="p-2.5 bg-white rounded-xl border border-gray-200/80 flex items-center justify-between shadow-sm">
+                                <div class="flex items-center space-x-2.5">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></div>
+                                    <div>
+                                        <p class="font-semibold text-gray-800">Shinkansen Bullet Train</p>
+                                        <p class="text-[10px] text-gray-400">Oct 24 • During Trip</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium text-gray-900">¥ 14,050.00</p>
+                                    <p class="text-[9px] text-gray-400">$ 93.67</p>
+                                </div>
+                            </div>
+
+                            <!-- Expense Row 2 -->
+                            <div class="p-2.5 bg-white rounded-xl border border-gray-200/80 flex items-center justify-between shadow-sm">
+                                <div class="flex items-center space-x-2.5">
+                                    <div class="w-2 h-2 rounded-full bg-indigo-500 shrink-0"></div>
+                                    <div>
+                                        <p class="font-semibold text-gray-800">Flight Booking (Pre-Trip)</p>
+                                        <p class="text-[10px] text-gray-400">Sep 05 • Pre-Trip</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium text-gray-900">$ 720.00</p>
+                                    <p class="text-[9px] text-gray-400">Home Currency</p>
+                                </div>
+                            </div>
+
+                            <!-- Expense Row 3 -->
+                            <div class="p-2.5 bg-white rounded-xl border border-gray-200/80 flex items-center justify-between shadow-sm">
+                                <div class="flex items-center space-x-2.5">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></div>
+                                    <div>
+                                        <p class="font-semibold text-gray-800">Sushi Dinner in Ginza</p>
+                                        <p class="text-[10px] text-gray-400">Oct 22 • During Trip</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-medium text-gray-900">¥ 12,500.00</p>
+                                    <p class="text-[9px] text-gray-400">$ 83.33</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Bar CTA Mock -->
+                    <div class="pt-2 border-t border-gray-200/60 flex items-center justify-between">
+                        <span class="text-[10px] text-gray-400">Updating conversions...</span>
+                        <div class="px-3 py-1 bg-appleAccent text-white text-xs font-semibold rounded-full shadow-sm flex items-center space-x-1">
+                            <i data-lucide="plus" class="w-3 h-3"></i>
+                            <span>Add Expense</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ambient background glow -->
+            <div class="absolute -inset-4 bg-gradient-to-tr from-blue-400 to-indigo-200 rounded-full blur-3xl opacity-30 -z-10"></div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="overview" class="py-16 bg-white border-y border-gray-200/70">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-appleAccent bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                    Overview & Capabilities
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-appleText mt-3">
+                    Core Features
+                </h2>
+                <p class="text-appleSecText text-sm sm:text-base mt-2">
+                    Everything you need to plan, track, and evaluate travel spending with confidence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Feature 1 -->
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-appleAccent shrink-0">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-appleText">Multi-Currency & Resilient FX</h3>
+                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
+                            Track in local currencies with automatic conversion back to your home currency via fallback APIs (`frankfurter.app`, `open.er-api.com`).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
+                        <i data-lucide="lock" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-appleText">Per-Expense Conversion Snapshots</h3>
+                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
+                            Prevents historic budget drift. Rates are locked at transaction time and stored securely inside encoded SwiftData Blobs.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
+                        <i data-lucide="pie-chart" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-appleText">Phase-Based Analytics</h3>
+                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
+                            Automatically categorizes expenses by timeline into <code>Pre-Trip</code>, <code>During-Trip</code>, and <code>Post-Trip</code> visual phase charts.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+                        <i data-lucide="sliders" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-appleText">Home-First Budget Management</h3>
+                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
+                            Set overall and daily budgets in your home currency. Toggle budget tracking on or off anytime without deleting underlying expense data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Management Section -->
+    <section class="py-20 bg-appleBg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-wider text-appleAccent bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                    Control & Storage
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-appleText mt-3">
+                    Data Management & Breakdown
+                </h2>
+                <p class="mt-4 text-appleSecText text-base sm:text-lg">
+                    Comprehensive expense summaries, full local storage estimation, and total user data governance in Settings.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Usage Stats -->
+                <div class="p-8 bg-white rounded-3xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
+                    <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-appleAccent mb-6">
+                        <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-appleText mb-2">Spending So Far Breakdown</h3>
+                    <p class="text-appleSecText text-sm leading-relaxed">
+                        Interactive breakdown detailing home-paid amounts combined with converted foreign expenses alongside directly paid currency totals across all trips.
+                    </p>
+                </div>
+
+                <!-- Clear Data -->
+                <div class="p-8 bg-white rounded-3xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
+                    <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 mb-6">
+                        <i data-lucide="trash-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-appleText mb-2">Destructive Reset Controls</h3>
+                    <p class="text-appleSecText text-sm leading-relaxed">
+                        Reset all application state securely. Confirmation dialogs detail exact counts of trips, expenses, and refund logs prior to execution.
+                    </p>
+                </div>
+
+                <!-- Metrics & Estimator -->
+                <div class="p-8 bg-white rounded-3xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
+                        <i data-lucide="hard-drive" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-appleText mb-2">On-Device Footprint</h3>
+                    <p class="text-appleSecText text-sm leading-relaxed">
+                        Built-in data usage estimator calculating real-time SwiftData model counts (Trips, Expenses, Refunds) and physical storage footprint on iOS.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="py-20 bg-white border-t border-gray-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 text-appleAccent px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-appleAccent"></i>
+                        <span>Privacy Policy & Local Storage</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-appleText mb-6 leading-tight">
+                        Your travel financial data remains private.
+                    </h2>
+                    <p class="text-appleSecText text-base sm:text-lg leading-relaxed mb-6">
+                        TripMate persists all trips, expenses, and budget records directly on your device using Apple's SwiftData framework. No mandatory cloud sign-ins or user tracking.
+                    </p>
+
+                    <div class="bg-appleBg p-6 rounded-2xl border border-gray-200/80 space-y-3">
+                        <h4 class="font-bold text-appleText text-sm uppercase tracking-wider">Stored Locally On Device:</h4>
+                        <ul class="space-y-2 text-sm text-appleSecText">
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>1. Trip details (Name, destination, dates, budget snapshots)</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>2. Expense entries (Title, amount, date, currency)</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>3. Encoded per-expense conversion rate snapshots</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>4. User preferences (Home currency, country profile)</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>5. In-app feedback & rating logs (RatingFeedback.json)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p class="text-xs text-appleSecText mt-4 leading-relaxed">
+                        External network access is strictly limited to fetching publicly available exchange rate tables (`api.frankfurter.app` / `open.er-api.com`). No trip names or financial amounts are uploaded to a server without explicit user action.
+                    </p>
+                </div>
+
+                <!-- Visual Privacy Card -->
+                <div class="bg-gradient-to-br from-blue-500/10 via-appleBg to-indigo-50/50 p-8 sm:p-10 rounded-3xl border border-gray-200/80 shadow-apple-card relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-2xl bg-appleAccent text-white flex items-center justify-center mb-6 shadow-md">
+                        <i data-lucide="server-off" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-appleText mb-3">On-Device SwiftData Persistence</h3>
+                    <p class="text-appleSecText text-sm leading-relaxed mb-6">
+                        Zero server side databases. All relational records (`Trip` and `Expense`) are safely managed locally with native SQLite encryption support.
+                    </p>
+
+                    <div class="p-4 bg-white/90 backdrop-blur rounded-2xl border border-gray-200 text-xs text-gray-600 font-mono space-y-2">
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-gray-400">Persistence Stack</span>
+                            <span class="font-semibold text-appleText">SwiftData Container</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-gray-400">FX Rate Requests</span>
+                            <span class="font-semibold text-emerald-600">Anonymous GET Only</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Financial Telemetry</span>
+                            <span class="font-semibold text-appleAccent">0% (Zero Collection)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture / Code Section -->
+    <section class="py-20 bg-appleDarkBg text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-blue-400 font-semibold">SwiftUI & SwiftData Architecture</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight mt-2 mb-6">
+                        Built natively for modern iOS.
+                    </h2>
+                    <p class="text-gray-400 text-base leading-relaxed mb-6">
+                        TripMate relies on SwiftUI, SwiftData model containers, MapKit location autocomplete, and Swift 6 concurrency safety for smooth performance.
+                    </p>
+
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="cpu" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                            <span><strong>Thread-Safe FX Actor:</strong> <code>actor CurrencyConversionService</code> guarantees serialized cache access and network fallbacks.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="database" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                            <span><strong>Cascade Delete Rules:</strong> <code>Trip</code> models maintain standard cascade delete relationships to child <code>Expense</code> entities.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                            <span><strong>Location Search Integration:</strong> Debounced query searching using <code>MKLocalSearchCompleter</code> and <code>CoreLocation</code>.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Code Preview Card -->
+                <div class="bg-gray-900 border border-gray-800 rounded-3xl p-6 font-mono text-xs text-gray-300 shadow-2xl overflow-x-auto">
+                    <div class="flex items-center space-x-2 mb-4 pb-3 border-b border-gray-800">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-gray-500 ml-2 text-[11px]">ExpenseModel.swift (Phase Logic & Rate Locking)</span>
+                    </div>
+                    <pre class="text-blue-300"><code><span class="text-purple-400">@Model</span>
+<span class="text-purple-400">final class</span> <span class="text-yellow-300">Expense</span> {
+    <span class="text-purple-400">var</span> id: UUID
+    <span class="text-purple-400">var</span> title: String
+    <span class="text-purple-400">var</span> amount: Double
+    <span class="text-purple-400">var</span> date: Date
+    <span class="text-purple-400">var</span> currency: String
+    <span class="text-purple-400">var</span> conversionSnapshotStore: Data
+
+    <span class="text-purple-400">var</span> phase: ExpensePhase {
+        <span class="text-purple-400">guard let</span> trip = trip <span class="text-purple-400">else</span> { <span class="text-purple-400">return</span> .duringTrip }
+        <span class="text-purple-400">if</span> date &lt; trip.startDate { <span class="text-purple-400">return</span> .preTrip }
+        <span class="text-purple-400">else if</span> date &gt; trip.endDate { <span class="text-purple-400">return</span> .postTrip }
+        <span class="text-purple-400">return</span> .duringTrip
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-appleBg border-t border-gray-200/80 py-12 text-xs text-appleSecText">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-2">
+                    <div class="app-icon-header" style="width: 26px; height: 26px; border-radius: 7px;" aria-hidden="true">
+                        <i data-lucide="receipt-text" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <span class="font-semibold text-appleText">TripMate</span>
+                    <span>— Smart iOS Travel Expense Tracker.</span>
+                </div>
+
+                <div class="flex items-center space-x-6 text-gray-500">
+                    <span class="hover:text-appleText transition-colors">SwiftUI & SwiftData</span>
+                    <span class="hover:text-appleText transition-colors">On-Device Privacy</span>
+                    <span class="hover:text-appleText transition-colors">Version 1.0</span>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200/60 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-400">
+                <p>&copy; 2026 TripMate App. Built with Swift, SwiftUI, SwiftData, and MapKit.</p>
+                <p class="mt-2 sm:mt-0">Apple-inspired Landing Page</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Safely initialize Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
