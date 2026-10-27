@@ -2,46 +2,54 @@
 <html lang="en" class="h-full scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Varun Patel | Self-Taught iOS Developer</title>
-  
-  <!-- Tailwind CSS -->
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Inter & SF Pro style Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
+        screens: {
+          'xs': '380px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+          '2xl': '1536px',
+        },
         extend: {
           fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', 'monospace'],
           },
           colors: {
             apple: {
-              bg: '#f5f5f7',
-              darkBg: '#0b0c0e',
-              cardLight: 'rgba(255, 255, 255, 0.75)',
-              cardDark: 'rgba(22, 24, 29, 0.75)',
+              bgLight: '#f5f5f7',
+              bgDark: '#0a0b0d',
               accent: '#0071e3',
               accentHover: '#0077ed',
-              glassBorderLight: 'rgba(255, 255, 255, 0.8)',
-              glassBorderDark: 'rgba(255, 255, 255, 0.12)'
+              glassLight: 'rgba(255, 255, 255, 0.72)',
+              glassDark: 'rgba(20, 22, 28, 0.75)',
+              borderLight: 'rgba(255, 255, 255, 0.85)',
+              borderDark: 'rgba(255, 255, 255, 0.12)'
             }
           },
           boxShadow: {
-            'apple-glass': '0 20px 40px -15px rgba(0, 0, 0, 0.07), 0 0 15px rgba(255, 255, 255, 0.5) inset',
-            'apple-glass-dark': '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 1px 1px rgba(255, 255, 255, 0.1) inset',
-            'glow': '0 0 25px -5px rgba(0, 113, 227, 0.4)',
-            'macbook': '0 30px 60px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(0, 113, 227, 0.15)'
+            'apple-glass': '0 20px 40px -15px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.8) inset',
+            'apple-glass-dark': '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12) inset',
+            'macbook': '0 25px 60px -15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 113, 227, 0.12)',
+            'glow-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.4)',
           }
         }
       }
@@ -49,150 +57,723 @@
   </script>
 
   <style>
-    /* Custom Backdrop Blur and Apple Glass Effects */
-    .glass-panel {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-    }
-    .dark .glass-panel {
-      background: rgba(20, 22, 27, 0.65);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Fluid Typography using clamp() */
+    :root {
+      --hero-title: clamp(1.85rem, 4vw + 1rem, 3.75rem);
+      --hero-sub: clamp(0.95rem, 1.5vw + 0.5rem, 1.35rem);
+      --section-heading: clamp(1.15rem, 2vw + 0.5rem, 1.75rem);
     }
 
-    .macbook-glass {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 245, 255, 0.5) 100%);
+    .text-fluid-hero {
+      font-size: var(--hero-title);
+      line-height: 1.1;
+    }
+
+    .text-fluid-sub {
+      font-size: var(--hero-sub);
+    }
+
+    .text-fluid-heading {
+      font-size: var(--section-heading);
+    }
+
+    /* Prevent horizontal page overflow */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Glassmorphism Styles */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+    .dark .glass-card {
+      background: rgba(20, 22, 28, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* MacBook M5 Glass Screen Effect */
+    .macbook-screen {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 244, 255, 0.75) 100%);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
-      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
     }
-    .dark .macbook-glass {
-      background: linear-gradient(135deg, rgba(30, 34, 45, 0.85) 0%, rgba(15, 18, 25, 0.6) 100%);
+    .dark .macbook-screen {
+      background: linear-gradient(145deg, rgba(26, 30, 40, 0.92) 0%, rgba(12, 15, 22, 0.8) 100%);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       border: 1.5px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* Subtle grid background */
+    /* Apple Grid Pattern */
     .bg-apple-grid {
       background-size: 32px 32px;
       background-image: 
-        linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
     }
     .dark .bg-apple-grid {
       background-size: 32px 32px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
     }
 
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    /* Custom Scrollbar for IDE & overflow divs */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
     }
-    ::-webkit-scrollbar-track {
+    .custom-scroll::-webkit-scrollbar-track {
       background: transparent;
     }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(150, 150, 150, 0.3);
-      border-radius: 999px;
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(140, 140, 140, 0.3);
+      border-radius: 99px;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(150, 150, 150, 0.5);
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(140, 140, 140, 0.6);
     }
 
-    /* Shimmer Effect */
-    @keyframes shine {
-      100% { transform: translateX(100%); }
-    }
-    .shimmer {
-      position: relative;
-      overflow: hidden;
-    }
-    .shimmer::after {
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
-      transform: translateX(-100%);
-      background-image: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0,
-        rgba(255, 255, 255, 0.2) 20%,
-        rgba(255, 255, 255, 0.5) 60%,
-        rgba(255, 255, 255, 0)
-      );
-      animation: shine 3.5s infinite;
-      content: '';
+    /* Touch target min dimensions */
+    .touch-target {
+      min-width: 44px;
+      min-height: 44px;
     }
   </style>
 </head>
-<body class="bg-apple-bg dark:bg-apple-darkBg text-slate-800 dark:text-slate-100 transition-colors duration-300 min-h-full font-sans bg-apple-grid flex flex-col justify-between">
+<body class="bg-apple-bgLight dark:bg-apple-bgDark text-slate-800 dark:text-slate-100 min-h-screen font-sans bg-apple-grid flex flex-col justify-between antialiased transition-colors duration-300">
 
-  <!-- Top Navigation / Pill Bar -->
-  <header class="sticky top-0 z-50 pt-4 px-4 sm:px-8">
-    <div class="max-w-7xl mx-auto flex items-center justify-between glass-panel rounded-full px-5 py-3 shadow-apple-glass dark:shadow-apple-glass-dark">
+  <!-- TOP NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 pt-3 sm:pt-5 px-3 sm:px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 shadow-apple-glass dark:shadow-apple-glass-dark flex items-center justify-between transition-all">
       
-      <!-- Brand Logo / Name -->
-      <a href="#" onclick="event.preventDefault();" class="flex items-center gap-3 group">
-        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-semibold text-sm shadow-sm group-hover:scale-105 transition-transform duration-200">
+      <!-- Brand Logo / Identity -->
+      <a href="#" class="flex items-center gap-3 group touch-target focus:outline-none" aria-label="Varun Patel Portfolio">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm tracking-wider shadow-md group-hover:scale-105 transition-transform">
           VP
         </div>
-        <span class="font-semibold text-sm tracking-tight text-slate-900 dark:text-white">Varun Patel</span>
+        <div class="flex flex-col">
+          <span class="font-bold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white leading-tight">Varun Patel</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden xs:inline">iOS Dev & Creator</span>
+        </div>
       </a>
 
-      <!-- Quick Project Links (Right Top Pill Items) -->
-      <div class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium">
-        <a href="#" onclick="event.preventDefault();" class="px-3 py-1.5 rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition flex items-center gap-2 text-slate-700 dark:text-slate-200">
-          <span class="font-semibold">EasyList</span>
+      <!-- Desktop Social Nav & Theme Switcher -->
+      <div class="hidden md:flex items-center gap-2 lg:gap-3 text-xs sm:text-sm font-medium">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="touch-target px-3.5 py-2 rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-all flex items-center gap-2 text-slate-800 dark:text-slate-200">
+          <i class="fa-brands fa-github text-base"></i>
+          <span>GitHub</span>
         </a>
-        <a href="#" onclick="event.preventDefault();" class="px-3 py-1.5 rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition flex items-center gap-2 text-slate-700 dark:text-slate-200">
-          <span class="font-semibold">TripMate</span>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="touch-target px-3.5 py-2 rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-all flex items-center gap-2 text-slate-800 dark:text-slate-200">
+          <i class="fa-brands fa-linkedin text-blue-500 text-base"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="touch-target px-3.5 py-2 rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-all flex items-center gap-2 text-slate-800 dark:text-slate-200">
+          <i class="fa-brands fa-x-twitter text-base"></i>
+          <span>Twitter / X</span>
         </a>
 
-        <!-- Dark / Light Mode Switcher -->
-        <button id="themeToggle" class="w-8 h-8 rounded-full bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 transition flex items-center justify-center ml-1 text-slate-700 dark:text-slate-200" aria-label="Toggle color mode">
+        <div class="h-5 w-px bg-slate-300 dark:bg-slate-700 mx-1"></div>
+
+        <!-- Theme Toggle Button -->
+        <button id="themeToggle" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 transition flex items-center justify-center text-slate-700 dark:text-amber-400" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon text-base dark:hidden"></i>
+          <i class="fa-solid fa-sun text-base hidden dark:inline"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Controls (Hamburger & Theme Toggle) -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button id="mobileThemeToggle" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 transition flex items-center justify-center text-slate-700 dark:text-amber-400" aria-label="Toggle Theme">
           <i class="fa-solid fa-moon dark:hidden"></i>
           <i class="fa-solid fa-sun hidden dark:inline"></i>
         </button>
+        <button id="mobileMenuBtn" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 transition flex items-center justify-center text-slate-800 dark:text-slate-100" aria-label="Open Navigation Drawer">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Slide-out Drawer Navigation -->
+    <div id="mobileDrawer" class="hidden md:hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-md transition-opacity">
+      <div class="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm glass-card p-6 flex flex-col justify-between shadow-2xl">
+        <div class="space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+            <span class="font-bold text-lg">Navigation</span>
+            <button id="closeDrawerBtn" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 flex items-center justify-center" aria-label="Close Menu">
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </div>
+
+          <div class="space-y-3 font-medium">
+            <a href="https://github.com" target="_blank" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800">
+              <i class="fa-brands fa-github text-xl w-6"></i> GitHub Profile
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800">
+              <i class="fa-brands fa-linkedin text-xl text-blue-500 w-6"></i> LinkedIn
+            </a>
+            <a href="https://x.com" target="_blank" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800">
+              <i class="fa-brands fa-x-twitter text-xl w-6"></i> Twitter / X
+            </a>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 text-center">
+          Varun Patel Portfolio &copy; 2026
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Content Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-8 py-8 w-full space-y-8">
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-10 py-6 sm:py-10 space-y-8 w-full flex-grow">
 
-    <!-- Header / Hero Section -->
-    <section class="text-center space-y-2 pt-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/50 text-apple-accent dark:text-blue-400 border border-blue-200 dark:border-blue-800/50 text-xs font-medium tracking-wide uppercase">
-        <i class="fa-solid fa-sparkles text-xs"></i> Portfolio 2026 Showcase
+    <!-- HERO TITLE SECTION -->
+    <section class="text-center space-y-3 pt-2 sm:pt-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-apple-accent dark:text-blue-400 border border-blue-200 dark:border-blue-800/60 text-xs font-semibold tracking-wide uppercase shadow-sm">
+        <i class="fa-solid fa-sparkles text-xs"></i> Portfolio 2026 • Scalable Architecture
       </div>
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
-        Varun Patel: The Craft of Self-Taught Development
+      
+      <h1 class="text-fluid-hero font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto">
+        Varun Patel
       </h1>
-      <p class="text-base sm:text-xl font-medium text-slate-500 dark:text-slate-400 tracking-tight">
-        iOS Developer <span class="mx-1.5 opacity-40">•</span> Since 2025
+      
+      <p class="text-fluid-sub font-medium text-slate-600 dark:text-slate-300 tracking-tight max-w-2xl mx-auto">
+        Self-taught iOS developer <span class="mx-1.5 text-apple-accent">•</span> Since 2025
       </p>
     </section>
 
-    <!-- Main Central Showcase Layout (Grid with Avatar & Glass MacBook M5) -->
+    <!-- BENTO GRID SHOWCASE (3 COLUMNS DESKTOP, RESPONSIVE COLLAPSE) -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
       
-      <!-- Left Panel: Technical Capabilities & Stack -->
-      <div class="lg:col-span-3 glass-panel rounded-3xl p-6 flex flex-col justify-between shadow-apple-glass dark:shadow-apple-glass-dark">
-        <div class="space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-            <h2 class="text-base font-semibold tracking-tight flex items-center gap-2">
-              <i class="fa-solid fa-layer-group text-apple-accent"></i> Technical Stack
-            </h2>
-            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono">5 Core</span>
+      <!-- LEFT COLUMN: Profile Card & Technical Stack (Lg: 3 cols) -->
+      <div class="lg:col-span-3 flex flex-col gap-6">
+        
+        <!-- DEVELOPER PROFILE CARD (White T-shirt Persona) -->
+        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex flex-col items-center text-center relative overflow-hidden group">
+          <div class="relative mb-3">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-sky-400 via-blue-600 to-purple-600 shadow-md">
+              <div class="w-full h-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden flex items-center justify-center">
+                <!-- SVG Avatar wearing White T-Shirt -->
+                <svg class="w-full h-full object-cover" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="120" height="120" fill="#F1F5F9" class="dark:fill-slate-800"/>
+                  <!-- Hair -->
+                  <path d="M35 48C35 30 45 22 60 22C75 22 85 30 85 48C85 50 84 55 84 55C84 55 80 40 60 40C40 40 36 55 36 55C36 55 35 50 35 48Z" fill="#1E293B"/>
+                  <!-- Head/Face -->
+                  <ellipse cx="60" cy="55" rx="22" ry="25" fill="#C58D66"/>
+                  <!-- Glasses -->
+                  <circle cx="50" cy="52" r="7" stroke="#0F172A" stroke-width="2.5" fill="none"/>
+                  <circle cx="70" cy="52" r="7" stroke="#0F172A" stroke-width="2.5" fill="none"/>
+                  <line x1="57" y1="52" x2="63" y2="52" stroke="#0F172A" stroke-width="2.5"/>
+                  <!-- Eyes -->
+                  <circle cx="50" cy="52" r="2.5" fill="#0F172A"/>
+                  <circle cx="70" cy="52" r="2.5" fill="#0F172A"/>
+                  <!-- Smile -->
+                  <path d="M52 66C52 66 56 71 60 71C64 71 68 66 68 66" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
+                  <!-- White T-Shirt Body -->
+                  <path d="M25 110C25 90 40 85 45 84L60 90L75 84C80 85 95 90 95 110V120H25V110Z" fill="#FFFFFF"/>
+                  <path d="M45 84C45 84 52 92 60 92C68 92 75 84 75 84" stroke="#E2E8F0" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+            <span class="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-900 shadow-sm" title="Online Developer"></span>
+          </div>
+
+          <h2 class="text-base font-bold text-slate-900 dark:text-white">Varun Patel</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">iOS Application Architect</p>
+          
+          <div class="mt-3 w-full pt-3 border-t border-slate-200/80 dark:border-slate-800/80 flex justify-around text-center text-xs">
+            <div>
+              <div class="font-bold text-slate-900 dark:text-white">SwiftUI</div>
+              <div class="text-[10px] text-slate-500">Native</div>
+            </div>
+            <div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
+            <div>
+              <div class="font-bold text-slate-900 dark:text-white">Xcode</div>
+              <div class="text-[10px] text-slate-500">Expert</div>
+            </div>
           </div>
         </div>
+
+        <!-- CORE TECH CAPABILITIES STACK -->
+        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex-grow flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-3 mb-3">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-code text-apple-accent"></i> Core Capabilities
+              </h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-200/70 dark:bg-slate-800/70 text-slate-600 dark:text-slate-400">5 Stack</span>
+            </div>
+
+            <div class="space-y-2.5">
+              <!-- Swift / SwiftUI -->
+              <div class="p-2.5 sm:p-3 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-apple-accent transition-all group">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-base font-bold">
+                    <i class="fa-brands fa-swift"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">SwiftUI & Swift</div>
+                    <div class="text-[10px] text-slate-500">iOS, macOS, watchOS</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Xcode -->
+              <div class="p-2.5 sm:p-3 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-apple-accent transition-all group">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-base font-bold">
+                    <i class="fa-solid fa-hammer"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">Xcode IDE</div>
+                    <div class="text-[10px] text-slate-500">Builds & Simulators</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Web Technologies Block (HTML / CSS / JS) -->
+              <div class="p-2.5 sm:p-3 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
+                <div class="text-xs font-semibold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <i class="fa-solid fa-globe text-sky-500"></i> Web Technologies
+                </div>
+                <div class="grid grid-cols-3 gap-1.5 text-center text-[11px] font-bold">
+                  <span class="py-1 px-1.5 rounded-lg bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">HTML5</span>
+                  <span class="py-1 px-1.5 rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">CSS3</span>
+                  <span class="py-1 px-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">JS (ES6)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 text-center font-medium pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
+            Self-Taught Engineering Mindset
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CENTER COLUMN: Glass MacBook M5 Interactive Showcase (Lg: 6 cols) -->
+      <div class="lg:col-span-6 glass-card rounded-3xl p-4 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex flex-col justify-between relative overflow-hidden min-h-[520px]">
+        
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200/80 dark:border-slate-800/80">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-laptop text-apple-accent text-sm"></i>
+            <h2 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white tracking-tight">Interactive Glass MacBook Pro M5</h2>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold">Xcode 17 Live</span>
+        </div>
+
+        <!-- MACBOOK M5 HARDWARE CONTAINER -->
+        <div class="my-auto w-full py-2">
+          
+          <!-- Screen Frame -->
+          <div class="macbook-screen rounded-2xl p-3 sm:p-4 shadow-macbook border border-white/80 dark:border-white/10 relative transition-all">
+            
+            <!-- Window Control Header -->
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200/70 dark:border-slate-800/80">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                <span class="ml-2 text-[11px] font-mono text-slate-600 dark:text-slate-300 font-semibold truncate max-w-[150px] sm:max-w-none">
+                  VarunApp — ContentView.swift
+                </span>
+              </div>
+
+              <!-- Action Controls -->
+              <div class="flex items-center gap-2">
+                <button id="runXcodeBtn" onclick="runXcodeSimulation()" class="touch-target px-3 py-1 rounded-lg bg-apple-accent hover:bg-apple-accentHover text-white text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+                  <i id="runIcon" class="fa-solid fa-play text-[10px]"></i>
+                  <span id="runText">Build & Run</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Editor Split Grid (Mobile Stacked, Desktop Side-by-Side) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 bg-slate-950 text-slate-100 rounded-xl p-3 font-mono text-xs shadow-inner min-h-[260px] sm:min-h-[290px]">
+              
+              <!-- Swift Code Editor Box -->
+              <div class="md:col-span-7 space-y-1.5 overflow-x-auto custom-scroll leading-relaxed border-b md:border-b-0 md:border-r border-slate-800 pb-3 md:pb-0 md:pr-3 text-[11px]">
+                <div class="text-slate-500 text-[10px] pb-1 border-b border-slate-800/80 flex items-center justify-between font-sans">
+                  <span>Xcode Swift Editor</span>
+                  <span class="text-amber-400">@State Active</span>
+                </div>
+                <div class="pt-1">
+                  <span class="text-purple-400">import</span> <span class="text-sky-300">SwiftUI</span><br><br>
+                  <span class="text-purple-400">struct</span> <span class="text-emerald-400">ContentView</span>: <span class="text-sky-300">View</span> {<br>
+                  &nbsp;&nbsp;<span class="text-pink-400">@State</span> <span class="text-purple-400">private var</span> goalCount = <span id="codeGoalVal" class="text-amber-300">4</span><br>
+                  &nbsp;&nbsp;<span class="text-purple-400">var</span> body: <span class="text-purple-400">some</span> <span class="text-sky-300">View</span> {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-300">VStack</span>(spacing: <span class="text-amber-300">12</span>) {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-300">Text</span>(<span class="text-emerald-300">"Hello, Varun!"</span>)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<span class="text-sky-300">font</span>(.<span class="text-blue-300">title2</span>)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-300">Button</span>(<span class="text-emerald-300">"Increment"</span>) {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;goalCount += <span class="text-amber-300">1</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                  &nbsp;&nbsp;}<br>
+                  }
+                </div>
+              </div>
+
+              <!-- Live Simulator Preview Box -->
+              <div class="md:col-span-5 flex flex-col justify-between bg-slate-900/90 rounded-lg p-3 border border-slate-800">
+                <div class="text-[10px] text-slate-400 uppercase tracking-wider flex items-center justify-between font-sans font-semibold">
+                  <span>iOS Canvas Preview</span>
+                  <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                </div>
+
+                <!-- Simulated App Canvas Screen -->
+                <div class="my-auto text-center space-y-2.5 py-2 font-sans">
+                  <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-apple-accent to-indigo-500 mx-auto flex items-center justify-center text-white text-lg shadow-sm">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-white">Hello, Varun!</h4>
+                    <p class="text-[10px] text-slate-400">iOS App Simulator</p>
+                  </div>
+
+                  <div class="bg-slate-950 border border-slate-800 rounded-xl p-2">
+                    <div class="text-[9px] text-slate-400 uppercase tracking-widest">Active Metric</div>
+                    <div id="simGoalCounter" class="text-xl sm:text-2xl font-extrabold text-sky-400">$04</div>
+                  </div>
+
+                  <button onclick="incrementGoalCounter()" class="touch-target w-full py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 text-xs font-medium transition active:scale-95">
+                    + Tap Increment
+                  </button>
+                </div>
+
+                <div class="text-[9px] text-slate-500 text-center font-sans">
+                  M5 Silicon Neural Engine
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Glass MacBook Keyboard Shelf / Base -->
+          <div class="w-11/12 mx-auto h-3 bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-700 dark:to-slate-800 rounded-b-xl border-x border-b border-slate-400/50 dark:border-slate-600/50 shadow-md flex justify-center">
+            <div class="w-16 h-1 bg-slate-500/40 dark:bg-slate-900/60 rounded-full mt-0.5"></div>
+          </div>
+        </div>
+
+        <div class="text-[11px] text-slate-500 dark:text-slate-400 text-center font-medium pt-2 border-t border-slate-200/80 dark:border-slate-800/80">
+          Integrated Xcode Development & SwiftUI State Management
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Dashboard & Live Analytics Cards (Lg: 3 cols) -->
+      <div class="lg:col-span-3 flex flex-col gap-6">
+        
+        <!-- LIVE GOAL METRICS CARD -->
+        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-3">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-pie text-emerald-500"></i> Project Goals
+            </h3>
+            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Live</span>
+          </div>
+
+          <div class="text-center py-2 bg-white/60 dark:bg-slate-900/50 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">Goal Counter</div>
+            <div id="dashGoalDisplay" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white my-0.5 tracking-tight">
+              $04
+            </div>
+            <div class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium flex items-center justify-center gap-1">
+              <i class="fa-solid fa-check-circle text-xs"></i> Synced with Xcode
+            </div>
+          </div>
+        </div>
+
+        <!-- CANVAS LIVE CHART CARD -->
+        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex-grow flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-3 mb-3">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-chart-line text-sky-500"></i> Activity Analytics
+              </h3>
+              <span class="text-[10px] text-slate-400 font-mono">Weekly</span>
+            </div>
+
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Build frequency & code commits</p>
+
+            <!-- Responsive HTML5 Canvas Chart -->
+            <div class="w-full h-32 relative">
+              <canvas id="analyticsChart" class="w-full h-full block"></canvas>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs flex items-center gap-3">
+            <i class="fa-solid fa-bolt text-sm text-indigo-500"></i>
+            <div>
+              <div class="font-bold">M5 Silicon Fast Compile</div>
+              <div class="text-[10px] opacity-80">Instant live reload</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BOTTOM BENTO SECTION: AI TOOLS & INTEGRATIONS GRID -->
+    <section class="glass-card rounded-3xl p-5 sm:p-8 shadow-apple-glass dark:shadow-apple-glass-dark space-y-6">
+      
+      <div class="text-center space-y-1.5 max-w-2xl mx-auto">
+        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+          Powered By Intelligence
+        </h3>
+        <p class="text-fluid-heading font-extrabold text-slate-900 dark:text-white tracking-tight">
+          My iOS apps, built with latest Xcode and powered by these AI tools:
+        </p>
+      </div>
+
+      <!-- Fluid AI Badges Flex Grid -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 max-w-5xl mx-auto pt-2">
+        
+        <!-- ChatGPT -->
+        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-emerald-500 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">ChatGPT</span>
+        </div>
+
+        <!-- Copilot -->
+        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-sky-500 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-sky-500/10 text-sky-500 flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Copilot</span>
+        </div>
+
+        <!-- Perplexity.ai -->
+        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-teal-500 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-teal-500/10 text-teal-500 flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Perplexity.ai</span>
+        </div>
+
+        <!-- Claude.ai -->
+        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-amber-600 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-amber-600/10 text-amber-600 flex items-center justify-center text-xs font-extrabold">
+            A
+          </div>
+          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Claude.ai</span>
+        </div>
+
+        <!-- Google Gemini -->
+        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-blue-500 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-sparkles"></i>
+          </div>
+          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Google Gemini</span>
+        </div>
+
+        <!-- Codex -->
+        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-purple-500 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Codex</span>
+        </div>
+
+        <!-- GitHub -->
+        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-slate-600 transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-slate-500/10 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs font-bold">
+            <i class="fa-brands fa-github"></i>
+          </div>
+          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">GitHub</span>
+        </div>
+
       </div>
     </section>
+
   </main>
+
+  <!-- FOOTER -->
+  <footer class="py-6 border-t border-slate-200/70 dark:border-slate-800/80 mt-10 text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      <div>
+        Varun Patel Portfolio &copy; 2026. Designed with Apple Aesthetics & Fluid Grid.
+      </div>
+      <div class="flex items-center gap-4 font-medium">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-apple-accent transition">GitHub</a>
+        <span>•</span>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-apple-accent transition">LinkedIn</a>
+        <span>•</span>
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="hover:text-apple-accent transition">Twitter / X</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT CONTROLLERS -->
+  <script>
+    // State Management
+    let currentGoalCount = 4;
+
+    function updateGoalDisplays() {
+      const formattedVal = currentGoalCount < 10 ? `$0${currentGoalCount}` : `$${currentGoalCount}`;
+      
+      const simCounter = document.getElementById('simGoalCounter');
+      const dashCounter = document.getElementById('dashGoalDisplay');
+      const codeVal = document.getElementById('codeGoalVal');
+
+      if (simCounter) simCounter.innerText = formattedVal;
+      if (dashCounter) dashCounter.innerText = formattedVal;
+      if (codeVal) codeVal.innerText = currentGoalCount;
+    }
+
+    function incrementGoalCounter() {
+      currentGoalCount++;
+      updateGoalDisplayWithAnimation();
+    }
+
+    function updateGoalDisplayWithAnimation() {
+      updateGoalDisplays();
+      drawChart(); // Redraw chart on update
+    }
+
+    function runXcodeSimulation() {
+      const runBtnText = document.getElementById('runText');
+      const runBtnIcon = document.getElementById('runIcon');
+
+      if (runBtnText) {
+        runBtnText.innerText = "Compiling...";
+        runBtnIcon.className = "fa-solid fa-spinner fa-spin text-[10px]";
+
+        setTimeout(() => {
+          runBtnText.innerText = "Running";
+          runBtnIcon.className = "fa-solid fa-check text-[10px]";
+          currentGoalCount++;
+          updateGoalDisplays();
+
+          setTimeout(() => {
+            runBtnText.innerText = "Build & Run";
+            runBtnIcon.className = "fa-solid fa-play text-[10px]";
+          }, 1200);
+        }, 500);
+      }
+    }
+
+    // Responsive Canvas Chart Renderer
+    function drawChart() {
+      const canvas = document.getElementById('analyticsChart');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const width = rect.width;
+      const height = rect.height;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Data points
+      const points = [20, 45, 30, 75, 55, 90, 80];
+      const stepX = width / (points.length - 1);
+
+      // Gradient Fill
+      const isDark = document.documentElement.classList.contains('dark');
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      gradient.addColorStop(0, isDark ? 'rgba(0, 113, 227, 0.4)' : 'rgba(0, 113, 227, 0.25)');
+      gradient.addColorStop(1, 'rgba(0, 113, 227, 0.0)');
+
+      // Draw Smooth Curve
+      ctx.beginPath();
+      ctx.moveTo(0, height - (points[0] / 100) * height);
+
+      for (let i = 0; i < points.length - 1; i++) {
+        const x1 = i * stepX;
+        const y1 = height - (points[i] / 100) * height;
+        const x2 = (i + 1) * stepX;
+        const y2 = height - (points[i + 1] / 100) * height;
+
+        const xc = (x1 + x2) / 2;
+        const yc = (y1 + y2) / 2;
+
+        ctx.quadraticCurveTo(x1, y1, xc, yc);
+      }
+
+      ctx.lineTo(width, height - (points[points.length - 1] / 100) * height);
+      ctx.lineTo(width, height);
+      ctx.lineTo(0, height);
+      ctx.closePath();
+
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Stroke Line
+      ctx.beginPath();
+      ctx.moveTo(0, height - (points[0] / 100) * height);
+      for (let i = 0; i < points.length - 1; i++) {
+        const x1 = i * stepX;
+        const y1 = height - (points[i] / 100) * height;
+        const x2 = (i + 1) * stepX;
+        const y2 = height - (points[i + 1] / 100) * height;
+
+        const xc = (x1 + x2) / 2;
+        const yc = (y1 + y2) / 2;
+
+        ctx.quadraticCurveTo(x1, y1, xc, yc);
+      }
+      ctx.strokeStyle = '#0071e3';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    }
+
+    // Theme Switcher & Mobile Navigation Handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('themeToggle');
+      const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+
+      function toggleTheme() {
+        document.documentElement.classList.toggle('dark');
+        drawChart();
+      }
+
+      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+      if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+
+      if (mobileMenuBtn && mobileDrawer) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileDrawer.classList.remove('hidden');
+        });
+      }
+
+      if (closeDrawerBtn && mobileDrawer) {
+        closeDrawerBtn.addEventListener('click', () => {
+          mobileDrawer.classList.add('hidden');
+        });
+      }
+
+      // Initial chart draw
+      drawChart();
+
+      // Window resize re-draw canvas
+      window.addEventListener('resize', drawChart);
+    });
+  </script>
 </body>
 </html>
