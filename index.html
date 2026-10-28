@@ -1,55 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Varun Patel | Self-Taught iOS Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Varun Patel — self-taught iOS app developer building practical apps with curiosity, code, and AI-powered tools.">
+  <title>Varun Patel — Independent iOS Developer</title>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- Inter Font -->
+  <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'media', // Automatic system preference dark mode
       theme: {
-        screens: {
-          'xs': '380px',
-          'sm': '640px',
-          'md': '768px',
-          'lg': '1024px',
-          'xl': '1280px',
-          '2xl': '1536px',
-        },
         extend: {
           fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'Roboto', 'sans-serif'],
-            mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', 'monospace'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
           },
-          colors: {
-            apple: {
-              bgLight: '#f5f5f7',
-              bgDark: '#0a0b0d',
-              accent: '#0071e3',
-              accentHover: '#0077ed',
-              glassLight: 'rgba(255, 255, 255, 0.72)',
-              glassDark: 'rgba(20, 22, 28, 0.75)',
-              borderLight: 'rgba(255, 255, 255, 0.85)',
-              borderDark: 'rgba(255, 255, 255, 0.12)'
-            }
-          },
-          boxShadow: {
-            'apple-glass': '0 20px 40px -15px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.8) inset',
-            'apple-glass-dark': '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12) inset',
-            'macbook': '0 25px 60px -15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 113, 227, 0.12)',
-            'glow-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.4)',
+          borderRadius: {
+            'apple-xl': '30px',
+            'apple-lg': '22px',
           }
         }
       }
@@ -57,618 +33,610 @@
   </script>
 
   <style>
-    /* Fluid Typography using clamp() */
+    /* Light Theme Tokens */
     :root {
-      --hero-title: clamp(1.85rem, 4vw + 1rem, 3.75rem);
-      --hero-sub: clamp(0.95rem, 1.5vw + 0.5rem, 1.35rem);
-      --section-heading: clamp(1.15rem, 2vw + 0.5rem, 1.75rem);
+      --bg: #f5f5f7;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-solid: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(29, 29, 31, 0.09);
+      --blue: #0071e3;
+      --blue-hover: #0077ed;
+      --tint: #e8f2ff;
+      --shadow: 0 18px 55px rgba(20, 30, 55, 0.07);
     }
 
-    .text-fluid-hero {
-      font-size: var(--hero-title);
-      line-height: 1.1;
+    /* Automatic Dark Theme via System Preference */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #08090b;
+        --surface: rgba(26, 28, 32, 0.78);
+        --surface-solid: #16181d;
+        --text: #f5f5f7;
+        --muted: #a1a1a6;
+        --line: rgba(255, 255, 255, 0.1);
+        --blue: #2997ff;
+        --blue-hover: #55aaff;
+        --tint: #14273b;
+        --shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+      }
     }
 
-    .text-fluid-sub {
-      font-size: var(--hero-sub);
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
-    .text-fluid-heading {
-      font-size: var(--section-heading);
-    }
-
-    /* Prevent horizontal page overflow */
-    html, body {
-      max-width: 100%;
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Glassmorphism Styles */
+    /* Gradient Background Accents */
+    .bg-ambient {
+      background: 
+        radial-gradient(ellipse at 10% 0%, rgba(0, 113, 227, 0.12), transparent 36rem),
+        radial-gradient(ellipse at 90% 25%, rgba(170, 100, 255, 0.11), transparent 32rem),
+        radial-gradient(ellipse at 50% 70%, rgba(244, 114, 182, 0.08), transparent 35rem);
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #0071e3 0%, #8b5cf6 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .glass-nav {
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+    }
+
     .glass-card {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-    }
-    .dark .glass-card {
-      background: rgba(20, 22, 28, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
-    /* MacBook M5 Glass Screen Effect */
-    .macbook-screen {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 244, 255, 0.75) 100%);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1.5px solid rgba(255, 255, 255, 0.95);
-    }
-    .dark .macbook-screen {
-      background: linear-gradient(145deg, rgba(26, 30, 40, 0.92) 0%, rgba(12, 15, 22, 0.8) 100%);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1.5px solid rgba(255, 255, 255, 0.15);
+    /* Phone Device Mockup Floating Animations */
+    .device-shadow {
+      box-shadow: 0 30px 70px rgba(0,0,0,0.22), inset 0 1px 1px rgba(255,255,255,0.4);
     }
 
-    /* Apple Grid Pattern */
-    .bg-apple-grid {
-      background-size: 32px 32px;
-      background-image: 
-        linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
-    }
-    .dark .bg-apple-grid {
-      background-size: 32px 32px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(-7deg); }
+      50% { transform: translateY(-10px) rotate(-5deg); }
     }
 
-    /* Custom Scrollbar for IDE & overflow divs */
-    .custom-scroll::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-    .custom-scroll::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: rgba(140, 140, 140, 0.3);
-      border-radius: 99px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb:hover {
-      background: rgba(140, 140, 140, 0.6);
+    @keyframes floatChip1 {
+      0%, 100% { transform: translateY(0px) rotate(-4deg); }
+      50% { transform: translateY(-8px) rotate(-2deg); }
     }
 
-    /* Touch target min dimensions */
-    .touch-target {
-      min-width: 44px;
-      min-height: 44px;
+    @keyframes floatChip2 {
+      0%, 100% { transform: translateY(0px) rotate(4deg); }
+      50% { transform: translateY(-9px) rotate(6deg); }
     }
 
-    /* Apple-style floating header */
-    .apple-header-shell {
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      border: 1px solid rgba(255, 255, 255, 0.65);
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    .animate-device {
+      animation: floatSlow 7s ease-in-out infinite;
     }
-    .dark .apple-header-shell {
-      background: rgba(15, 23, 42, 0.42);
-      border-color: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 12px 32px rgba(2, 6, 23, 0.32);
+
+    .animate-chip-1 {
+      animation: floatChip1 5s ease-in-out infinite;
+    }
+
+    .animate-chip-2 {
+      animation: floatChip2 6s ease-in-out infinite 0.5s;
+    }
+
+    /* Toast Notification */
+    .toast {
+      transform: translateY(100%);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Reduced Motion Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
-<body class="bg-apple-bgLight dark:bg-apple-bgDark text-slate-800 dark:text-slate-100 min-h-screen font-sans bg-apple-grid flex flex-col justify-between antialiased transition-colors duration-300">
+<body class="bg-ambient antialiased min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
 
-  <!-- TOP NAVIGATION HEADER -->
-  <header class="fixed left-0 right-0 top-0 z-50 pt-3 sm:pt-5 px-3 sm:px-6 lg:px-10">
-    <div class="apple-header-shell max-w-7xl mx-auto rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 flex items-center justify-between transition-all">
+  <!-- ========================================== -->
+  <!-- NAVIGATION BAR                               -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-40 w-full glass-nav border-b border-[var(--line)]">
+    <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between" aria-label="Main Navigation">
       
-      <!-- Brand Logo / Identity -->
-      <a href="#" class="flex items-center gap-3 group touch-target focus:outline-none" aria-label="Varun Patel Portfolio">
-        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm tracking-wider shadow-md">
-          VP
-        </div>
-        <div class="flex flex-col">
-          <span class="font-bold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white leading-tight">Varun Patel</span>
-          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden xs:inline">iOS Dev & Creator</span>
-        </div>
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl p-1">
+        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-gray-800 to-gray-950 dark:from-gray-200 dark:to-gray-400 text-white dark:text-gray-950 font-bold text-xs flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200">
+          VP.
+        </span>
+        <span class="font-semibold text-base tracking-tight group-hover:text-[var(--blue)] transition-colors">
+          Varun Patel
+        </span>
       </a>
 
-      <!-- Desktop App Nav & Theme Switcher -->
-      <div class="hidden md:flex items-center gap-2 lg:gap-3 text-xs sm:text-sm font-medium">
-        <a href="EasyListApp_LandingPage.html" class="touch-target px-3.5 py-2 rounded-full bg-emerald-500/10 hover:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 transition-all">
-          <span>EasyList</span>
+      <!-- Navigation Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--muted)]">
+        <a href="#about" class="hover:text-[var(--text)] transition-colors py-1">Story</a>
+        <a href="#toolbox" class="hover:text-[var(--text)] transition-colors py-1">Toolbox</a>
+        <a href="#projects" class="hover:text-[var(--text)] transition-colors py-1">Projects</a>
+      </div>
+
+      <!-- Contact CTA & Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-xs font-semibold shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5">
+          <span>Let's Connect</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
-        <a href="TripMate_LandingPage.html" class="touch-target px-3.5 py-2 rounded-full bg-sky-500/10 hover:bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/20 transition-all">
-          <span>TripMate</span>
-        </a>
 
-        <div class="h-5 w-px bg-slate-300 dark:bg-slate-700 mx-1"></div>
-
-        <!-- Theme Toggle Button -->
-        <button id="themeToggle" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 transition flex items-center justify-center text-slate-700 dark:text-amber-400" aria-label="Toggle theme">
-          <i class="fa-solid fa-moon text-base dark:hidden"></i>
-          <i class="fa-solid fa-sun text-base hidden dark:inline"></i>
+        <!-- Mobile Hamburger Menu Button -->
+        <button id="mobileMenuBtn" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-xl border border-[var(--line)] bg-[var(--surface)] text-[var(--text)] text-sm font-medium">
+          Menu
         </button>
       </div>
+    </nav>
 
-      <!-- Mobile Controls (Hamburger & Theme Toggle) -->
-      <div class="flex items-center gap-2 md:hidden">
-        <button id="mobileThemeToggle" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 transition flex items-center justify-center text-slate-700 dark:text-amber-400" aria-label="Toggle theme">
-          <i class="fa-solid fa-moon dark:hidden"></i>
-          <i class="fa-solid fa-sun hidden dark:inline"></i>
-        </button>
-        <button id="mobileMenuBtn" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 transition flex items-center justify-center text-slate-800 dark:text-slate-100" aria-label="Open menu">
-          <i class="fa-solid fa-bars text-lg"></i>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Slide-out Drawer Navigation -->
-    <div id="mobileDrawer" class="hidden md:hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-md transition-opacity">
-      <div class="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm glass-card p-6 flex flex-col justify-between shadow-2xl">
-        <div class="space-y-6">
-          <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
-            <span class="font-bold text-lg">Navigation</span>
-            <button id="closeDrawerBtn" class="touch-target w-10 h-10 rounded-full bg-slate-200/80 dark:bg-slate-800/80 flex items-center justify-center" aria-label="Close Menu">
-              <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-          </div>
-
-          <div class="space-y-3 font-medium">
-            <a href="EasyListApp_LandingPage.html" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800">
-              <span class="text-emerald-600 dark:text-emerald-400 font-bold">EasyList</span>
-            </a>
-            <a href="TripMate_LandingPage.html" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800">
-              <span class="text-sky-600 dark:text-sky-400 font-bold">TripMate</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 text-center">
-          Varun Patel Portfolio &copy; 2026
-        </div>
-      </div>
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-[var(--line)] bg-[var(--surface-solid)] px-6 py-4 flex flex-col gap-4 text-sm font-medium">
+      <a href="#about" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Story</a>
+      <a href="#toolbox" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Toolbox</a>
+      <a href="#projects" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Projects</a>
+      <a href="#contact" class="mobile-nav-link py-2 text-[var(--blue)] font-semibold">Let's Connect ↗</a>
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-10 py-6 sm:py-10 space-y-8 w-full flex-grow pt-24 sm:pt-28">
-
-    <!-- HERO TITLE SECTION -->
-    <section class="text-center space-y-3 pt-2 sm:pt-4">
+  <main class="flex-grow">
+    
+    <!-- ========================================== -->
+    <!-- SECTION 01: MODERN LANDING PAGE (HERO)    -->
+    <!-- ========================================== -->
+    <section id="home" class="pt-16 pb-16 md:pt-24 md:pb-24 max-w-6xl mx-auto px-5 text-center">
       
-      <h1 class="text-fluid-hero font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto">
-        Varun Patel
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-xs font-semibold tracking-wide uppercase mb-6">
+        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+        Independent Builder · Self-Taught iOS Developer
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] max-w-4xl mx-auto mb-6">
+        Hi, I’m Varun.<br>
+        <span class="gradient-text">I turn ideas into apps.</span>
       </h1>
-      
-      <p class="text-fluid-sub font-medium text-slate-600 dark:text-slate-300 tracking-tight max-w-2xl mx-auto">
-        Self-taught iOS developer <span class="mx-1.5 text-apple-accent">•</span> Since 2025
+
+      <!-- Copy Subtitle -->
+      <p class="text-lg sm:text-xl md:text-2xl text-[var(--muted)] max-w-2xl mx-auto font-normal leading-relaxed mb-6">
+        A curious mind, a Mac, and a growing love for building useful things. I’m learning by doing—using code and AI-powered tools to bring thoughtful app ideas to life.
       </p>
-    </section>
 
-    <!-- BENTO GRID SHOWCASE (3 COLUMNS DESKTOP, RESPONSIVE COLLAPSE) -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-      
-      <!-- LEFT COLUMN: Profile Card & Technical Stack (Lg: 3 cols) -->
-      <div class="lg:col-span-3 flex flex-col gap-6">
-        
-        <!-- DEVELOPER PROFILE CARD (White T-shirt Persona) -->
-        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex flex-col items-center text-center relative overflow-hidden group">
-          <div class="relative mb-3">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-sky-400 via-blue-600 to-purple-600 shadow-md">
-              <div class="w-full h-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden flex items-center justify-center">
-                <!-- SVG Avatar wearing White T-Shirt -->
-                <svg class="w-full h-full object-cover" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="120" height="120" fill="#F1F5F9" class="dark:fill-slate-800"/>
-                  <!-- Hair -->
-                  <path d="M35 48C35 30 45 22 60 22C75 22 85 30 85 48C85 50 84 55 84 55C84 55 80 40 60 40C40 40 36 55 36 55C36 55 35 50 35 48Z" fill="#1E293B"/>
-                  <!-- Head/Face -->
-                  <ellipse cx="60" cy="55" rx="22" ry="25" fill="#C58D66"/>
-                  <!-- Glasses -->
-                  <circle cx="50" cy="52" r="7" stroke="#0F172A" stroke-width="2.5" fill="none"/>
-                  <circle cx="70" cy="52" r="7" stroke="#0F172A" stroke-width="2.5" fill="none"/>
-                  <line x1="57" y1="52" x2="63" y2="52" stroke="#0F172A" stroke-width="2.5"/>
-                  <!-- Eyes -->
-                  <circle cx="50" cy="52" r="2.5" fill="#0F172A"/>
-                  <circle cx="70" cy="52" r="2.5" fill="#0F172A"/>
-                  <!-- Smile -->
-                  <path d="M52 66C52 66 56 71 60 71C64 71 68 66 68 66" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
-                  <!-- White T-Shirt Body -->
-                  <path d="M25 110C25 90 40 85 45 84L60 90L75 84C80 85 95 90 95 110V120H25V110Z" fill="#FFFFFF"/>
-                  <path d="M45 84C45 84 52 92 60 92C68 92 75 84 75 84" stroke="#E2E8F0" stroke-width="2"/>
-                </svg>
-              </div>
-            </div>
-            <span class="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-900 shadow-sm" title="Online Developer"></span>
-          </div>
+      <!-- Journey Note -->
+      <p class="text-xs text-[var(--muted)] tracking-wide font-medium">
+        Building independently in the USA · Started my coding journey in 2025
+      </p>
 
-          <h2 class="text-base font-bold text-slate-900 dark:text-white">Varun Patel</h2>
-          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">iOS Application Architect</p>
-          
-          <div class="mt-3 w-full pt-3 border-t border-slate-200/80 dark:border-slate-800/80 flex justify-around text-center text-xs">
-            <div>
-              <div class="font-bold text-slate-900 dark:text-white">SwiftUI</div>
-              <div class="text-[10px] text-slate-500">Native</div>
-            </div>
-            <div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
-            <div>
-              <div class="font-bold text-slate-900 dark:text-white">Xcode</div>
-              <div class="text-[10px] text-slate-500">Expert</div>
-            </div>
+      <!-- Interactive CSS App Illustration Mockup -->
+      <div class="relative max-w-lg mx-auto mt-12 pt-4 pb-4 flex justify-center items-center">
+        <!-- Ambient Orbit Glow -->
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl rounded-full transform scale-90 -z-10"></div>
+
+        <!-- Floating Chip Left -->
+        <div class="absolute left-0 sm:-left-6 top-1/4 z-20 animate-chip-1 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/20">
+          <span class="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center text-sm font-bold">✓</span>
+          <div>
+            <div class="text-[var(--text)]">Ideas, organized</div>
+            <div class="text-[10px] text-[var(--muted)]">Less mental clutter</div>
           </div>
         </div>
 
-        <!-- POWERED BY INTELLIGENCE -->
-        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark space-y-4">
-          <div class="text-center space-y-1.5">
-            <h3 class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
-              Powered By Intelligence
+        <!-- Floating Chip Right -->
+        <div class="absolute right-0 sm:-right-6 bottom-1/4 z-20 animate-chip-2 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/20">
+          <span class="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center text-sm font-bold">✦</span>
+          <div>
+            <div class="text-[var(--text)]">Made with curiosity</div>
+            <div class="text-[10px] text-[var(--muted)]">SwiftUI Native</div>
+          </div>
+        </div>
+
+        <!-- Device Phone Frame -->
+        <div class="w-48 sm:w-56 h-96 sm:h-[26rem] rounded-[2.5rem] p-3 bg-gradient-to-b from-gray-700 via-gray-900 to-black device-shadow border border-gray-600/40 animate-device relative overflow-hidden">
+          <!-- Screen Container -->
+          <div class="w-full h-full rounded-[2rem] bg-gradient-to-b from-blue-50 via-indigo-50/50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-slate-900 p-4 text-left flex flex-col justify-between overflow-hidden relative border border-white/10">
+            
+            <!-- Top Notch & Status Bar -->
+            <div>
+              <div class="flex justify-between items-center text-[9px] font-bold text-gray-500 dark:text-gray-400 mb-4 px-1">
+                <span>9:41</span>
+                <div class="w-10 h-2 bg-black dark:bg-gray-800 rounded-full"></div>
+                <span>● ● ▰</span>
+              </div>
+              <h4 class="text-base font-extrabold text-gray-900 dark:text-white tracking-tight mb-3">My Lists<span class="text-blue-500">.</span></h4>
+              
+              <!-- App Screen Items Mockup -->
+              <div class="space-y-2">
+                <div class="p-2.5 rounded-xl bg-white/80 dark:bg-gray-800/80 shadow-sm border border-black/5 dark:border-white/5 flex items-center gap-2 text-[11px] font-medium text-gray-800 dark:text-gray-200">
+                  <span class="w-4 h-4 rounded-full bg-blue-500 text-white flex items-center justify-center text-[9px] font-bold">✓</span>
+                  <span>Weekly essentials</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white/80 dark:bg-gray-800/80 shadow-sm border border-black/5 dark:border-white/5 flex items-center gap-2 text-[11px] font-medium text-gray-800 dark:text-gray-200">
+                  <span class="w-4 h-4 rounded-full bg-blue-500 text-white flex items-center justify-center text-[9px] font-bold">✓</span>
+                  <span>Plan the weekend</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white/50 dark:bg-gray-800/40 border border-dashed border-gray-300 dark:border-gray-700 flex items-center gap-2 text-[11px] text-gray-400">
+                  <span class="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600"></span>
+                  <span>New ideas</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen Bottom Tab Preview -->
+            <div class="pt-2 border-t border-gray-200/50 dark:border-gray-800 flex justify-around text-[10px] text-gray-400 font-medium">
+              <span class="text-blue-500 font-bold">Lists</span>
+              <span>Travel</span>
+              <span>Settings</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 03: YOUR STORY                     -->
+    <!-- ========================================== -->
+    <section id="about" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
+      <div class="mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">03. Story & Journey</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-2">Curiosity is my starting point.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-10">
+        
+        <!-- Story Card -->
+        <div class="lg:col-span-7 glass-card p-8 sm:p-10 rounded-apple-xl flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-blue-500/10 rounded-full blur-2xl"></div>
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-950 text-white flex items-center justify-center font-bold text-base mb-6 shadow-md">
+              VP.
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+              Self-taught.<br>Family-minded.<br>Always learning.
             </h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 font-medium">
-              My iOS apps are engineered with the latest tools and AI workflows.
+            <p class="text-[var(--muted)] text-base sm:text-lg leading-relaxed mb-6">
+              I’m Varun Patel, an Indian-origin husband and father who has called the United States home since 2005. My family keeps me grounded; building apps gives me a creative way to explore what’s possible.
             </p>
           </div>
 
-          <div class="grid grid-cols-2 gap-2.5">
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-emerald-500 transition-all">
-              <div class="w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-[10px] font-bold">
-                <i class="fa-solid fa-robot"></i>
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">ChatGPT</span>
-            </div>
-
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-sky-500 transition-all">
-              <div class="w-6 h-6 rounded-full bg-sky-500/10 text-sky-500 flex items-center justify-center text-[10px] font-bold">
-                <i class="fa-solid fa-code"></i>
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">Copilot</span>
-            </div>
-
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-teal-500 transition-all">
-              <div class="w-6 h-6 rounded-full bg-teal-500/10 text-teal-500 flex items-center justify-center text-[10px] font-bold">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">Perplexity</span>
-            </div>
-
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-amber-600 transition-all">
-              <div class="w-6 h-6 rounded-full bg-amber-600/10 text-amber-600 flex items-center justify-center text-[10px] font-extrabold">
-                A
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">Claude</span>
-            </div>
-
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-blue-500 transition-all">
-              <div class="w-6 h-6 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center text-[10px] font-bold">
-                <i class="fa-solid fa-sparkles"></i>
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">Gemini</span>
-            </div>
-
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-purple-500 transition-all">
-              <div class="w-6 h-6 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center text-[10px] font-bold">
-                <i class="fa-solid fa-gear"></i>
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">Codex</span>
-            </div>
-
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-violet-500 transition-all">
-              <div class="w-6 h-6 rounded-full bg-violet-500/10 text-violet-500 flex items-center justify-center text-[10px] font-bold">
-                <i class="fa-solid fa-arrows-spin"></i>
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">Cursor</span>
-            </div>
-
-            <div class="touch-target px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-slate-600 transition-all">
-              <div class="w-6 h-6 rounded-full bg-slate-500/10 text-slate-700 dark:text-slate-300 flex items-center justify-center text-[10px] font-bold">
-                <i class="fa-brands fa-github"></i>
-              </div>
-              <span class="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200">GitHub</span>
-            </div>
+          <div class="pt-6 border-t border-[var(--line)] flex items-center gap-4">
+            <span class="text-4xl sm:text-5xl font-extrabold tracking-tight text-[var(--blue)]">2025</span>
+            <span class="text-xs sm:text-sm text-[var(--muted)] leading-snug">
+              The year I began my hands-on<br class="hidden sm:inline"> coding journey.
+            </span>
           </div>
         </div>
 
-        <!-- CORE TECH CAPABILITIES STACK -->
-        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex-grow flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-3 mb-3">
-              <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <i class="fa-solid fa-code text-apple-accent"></i> Core Capabilities
-              </h3>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-200/70 dark:bg-slate-800/70 text-slate-600 dark:text-slate-400">5 Stack</span>
-            </div>
-
-            <div class="space-y-2.5">
-              <!-- Swift / SwiftUI -->
-              <div class="p-2.5 sm:p-3 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-apple-accent transition-all">
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-base font-bold">
-                    <i class="fa-brands fa-swift"></i>
-                  </div>
-                  <div>
-                    <div class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">SwiftUI & Swift</div>
-                    <div class="text-[10px] text-slate-500">iOS, macOS, watchOS</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Xcode -->
-              <div class="p-2.5 sm:p-3 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-apple-accent transition-all">
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-base font-bold">
-                    <i class="fa-solid fa-hammer"></i>
-                  </div>
-                  <div>
-                    <div class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">Xcode IDE</div>
-                    <div class="text-[10px] text-slate-500">Builds & Simulators</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Web Technologies Block (HTML / CSS / JS) -->
-              <div class="p-2.5 sm:p-3 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
-                <div class="text-xs font-semibold text-slate-900 dark:text-white flex items-center gap-1.5">
-                  <i class="fa-solid fa-globe text-sky-500"></i> Web Technologies
-                </div>
-                <div class="grid grid-cols-3 gap-1.5 text-center text-[11px] font-bold">
-                  <span class="py-1 px-1.5 rounded-lg bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">HTML5</span>
-                  <span class="py-1 px-1.5 rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">CSS3</span>
-                  <span class="py-1 px-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">JS (ES6)</span>
-                </div>
-              </div>
-            </div>
+        <!-- Core Principles Column -->
+        <div class="lg:col-span-5 flex flex-col justify-between gap-4">
+          <div class="glass-card p-6 sm:p-7 rounded-apple-lg flex-1">
+            <div class="text-2xl mb-3 text-blue-500">⌘</div>
+            <h4 class="text-lg font-bold mb-1">Learn by building</h4>
+            <p class="text-xs sm:text-sm text-[var(--muted)] leading-relaxed">
+              I turn new concepts into working experiments, then refine what I learn.
+            </p>
           </div>
 
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 text-center font-medium pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
-            Self-Taught Engineering Mindset
+          <div class="glass-card p-6 sm:p-7 rounded-apple-lg flex-1">
+            <div class="text-2xl mb-3 text-purple-500">◉</div>
+            <h4 class="text-lg font-bold mb-1">Solve real problems</h4>
+            <p class="text-xs sm:text-sm text-[var(--muted)] leading-relaxed">
+              I start with everyday needs and aim for apps that feel useful, not complicated.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 sm:p-7 rounded-apple-lg flex-1">
+            <div class="text-2xl mb-3 text-pink-500">↗</div>
+            <h4 class="text-lg font-bold mb-1">Improve every iteration</h4>
+            <p class="text-xs sm:text-sm text-[var(--muted)] leading-relaxed">
+              Better structure, thoughtful details, and a smoother experience—one step at a time.
+            </p>
           </div>
         </div>
 
       </div>
-
-      <!-- CENTER COLUMN: Glass MacBook M5 Interactive Showcase (Lg: 6 cols) -->
-      <div class="lg:col-span-6 glass-card rounded-3xl p-4 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex flex-col justify-between relative overflow-hidden min-h-[520px]">
-        
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200/80 dark:border-slate-800/80">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-laptop text-apple-accent text-sm"></i>
-            <h2 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white tracking-tight">Interactive Glass MacBook Pro M5</h2>
-          </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold">Xcode 17 Live</span>
-        </div>
-
-        <!-- MACBOOK M5 HARDWARE CONTAINER -->
-        <div class="my-auto w-full py-2">
-          
-          <!-- Screen Frame -->
-          <div class="macbook-screen rounded-2xl p-3 sm:p-4 shadow-macbook border border-white/80 dark:border-white/10 relative transition-all">
-            
-            <!-- Window Control Header -->
-            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200/70 dark:border-slate-800/80">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
-                <span class="ml-2 text-[11px] font-mono text-slate-600 dark:text-slate-300 font-semibold truncate max-w-[150px] sm:max-w-none">
-                  VarunApp — ContentView.swift
-                </span>
-              </div>
-
-              <!-- Action Controls -->
-              <div class="flex items-center gap-2">
-                <button id="runXcodeBtn" onclick="runXcodeSimulation()" class="touch-target px-3 py-1 rounded-lg bg-apple-accent hover:bg-apple-accentHover text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm">
-                  <i id="runIcon" class="fa-solid fa-play text-[10px]"></i>
-                  <span id="runText">Build & Run</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Editor Split Grid (Mobile Stacked, Desktop Side-by-Side) -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 bg-slate-950 text-slate-100 rounded-xl p-3 font-mono text-xs shadow-inner min-h-[260px] sm:min-h-[290px]">
-              
-              <!-- Swift Code Editor Box -->
-              <div class="md:col-span-7 space-y-1.5 overflow-x-auto custom-scroll leading-relaxed border-b md:border-b-0 md:border-r border-slate-800 pb-3 md:pb-0 md:pr-3 text-[11px]">
-                <div class="text-slate-500 text-[10px] pb-1 border-b border-slate-800/80 flex items-center justify-between font-sans">
-                  <span>Xcode Swift Editor</span>
-                  <span class="text-amber-400">@State Active</span>
-                </div>
-                <div class="pt-1">
-                  <span class="text-purple-400">import</span> <span class="text-sky-300">SwiftUI</span><br><br>
-                  <span class="text-purple-400">struct</span> <span class="text-emerald-400">ContentView</span>: <span class="text-sky-300">View</span> {<br>
-                  &nbsp;&nbsp;<span class="text-pink-400">@State</span> <span class="text-purple-400">private var</span> goalCount = <span id="codeGoalVal" class="text-amber-300">4</span><br>
-                  &nbsp;&nbsp;<span class="text-purple-400">var</span> body: <span class="text-purple-400">some</span> <span class="text-sky-300">View</span> {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-300">VStack</span>(spacing: <span class="text-amber-300">12</span>) {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-300">Text</span>(<span class="text-emerald-300">"Hello, Varun!"</span>)<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<span class="text-sky-300">font</span>(.<span class="text-blue-300">title2</span>)<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-300">Button</span>(<span class="text-emerald-300">"Increment"</span>) {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;goalCount += <span class="text-amber-300">1</span><br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                  &nbsp;&nbsp;}<br>
-                  }
-                </div>
-              </div>
-
-              <!-- Live Simulator Preview Box -->
-              <div class="md:col-span-5 flex flex-col justify-between bg-slate-900/90 rounded-lg p-3 border border-slate-800">
-                <div class="text-[10px] text-slate-400 uppercase tracking-wider flex items-center justify-between font-sans font-semibold">
-                  <span>iOS Canvas Preview</span>
-                  <span class="flex h-2 w-2 relative">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                </div>
-
-                <!-- Simulated App Canvas Screen -->
-                <div class="my-auto text-center space-y-2.5 py-2 font-sans">
-                  <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-apple-accent to-indigo-500 mx-auto flex items-center justify-center text-white text-lg shadow-sm">
-                    <i class="fa-solid fa-mobile-screen"></i>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-bold text-white">Hello, Varun!</h4>
-                    <p class="text-[10px] text-slate-400">iOS App Simulator</p>
-                  </div>
-
-                  <div class="bg-slate-950 border border-slate-800 rounded-xl p-2">
-                    <div class="text-[9px] text-slate-400 uppercase tracking-widest">Active Metric</div>
-                    <div id="simGoalCounter" class="text-xl sm:text-2xl font-extrabold text-sky-400">$04</div>
-                  </div>
-
-                  <button onclick="incrementGoalCounter()" class="touch-target w-full py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 text-xs font-semibold transition-all">
-                    + Tap Increment
-                  </button>
-                </div>
-
-                <div class="text-[9px] text-slate-500 text-center font-sans">
-                  M5 Silicon Neural Engine
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Glass MacBook Keyboard Shelf / Base -->
-          <div class="w-11/12 mx-auto h-3 bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-700 dark:to-slate-800 rounded-b-xl border-x border-b border-slate-400/50 dark:border-slate-600/50 shadow-inner">
-            <div class="w-16 h-1 bg-slate-500/40 dark:bg-slate-900/60 rounded-full mt-0.5 mx-auto"></div>
-          </div>
-        </div>
-
-        <div class="text-[11px] text-slate-500 dark:text-slate-400 text-center font-medium pt-2 border-t border-slate-200/80 dark:border-slate-800/80">
-          Integrated Xcode Development & SwiftUI State Management
-        </div>
-
-      </div>
-
-      <!-- RIGHT COLUMN: Dashboard & Live Analytics Cards (Lg: 3 cols) -->
-      <div class="lg:col-span-3 flex flex-col gap-6">
-        
-        <!-- LIVE GOAL METRICS CARD -->
-        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-3">
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <i class="fa-solid fa-chart-pie text-emerald-500"></i> Project Goals
-            </h3>
-            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Live</span>
-          </div>
-
-          <div class="text-center py-2 bg-white/60 dark:bg-slate-900/50 rounded-2xl border border-slate-200/80 dark:border-slate-800">
-            <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">Goal Counter</div>
-            <div id="dashGoalDisplay" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white my-0.5 tracking-tight">
-              $04
-            </div>
-            <div class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium flex items-center justify-center gap-1">
-              <i class="fa-solid fa-check-circle text-xs"></i> Synced with Xcode
-            </div>
-          </div>
-        </div>
-
-        <!-- CANVAS LIVE CHART CARD -->
-        <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-apple-glass dark:shadow-apple-glass-dark flex-grow flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-3 mb-3">
-              <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <i class="fa-solid fa-chart-line text-sky-500"></i> Activity Analytics
-              </h3>
-              <span class="text-[10px] text-slate-400 font-mono">Weekly</span>
-            </div>
-
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Build frequency & code commits</p>
-
-            <!-- Responsive HTML5 Canvas Chart -->
-            <div class="w-full h-32 relative">
-              <canvas id="analyticsChart" class="w-full h-full block"></canvas>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs flex items-center gap-3">
-            <i class="fa-solid fa-bolt text-sm text-indigo-500"></i>
-            <div>
-              <div class="font-bold">M5 Silicon Fast Compile</div>
-              <div class="text-[10px] opacity-80">Instant live reload</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
     </section>
 
-    <!-- BOTTOM BENTO SECTION: AI TOOLS & INTEGRATIONS GRID -->
-    <section class="glass-card rounded-3xl p-5 sm:p-8 shadow-apple-glass dark:shadow-apple-glass-dark hidden">
+    <!-- ========================================== -->
+    <!-- SECTION 04: DEVELOPER TOOLBOX             -->
+    <!-- ========================================== -->
+    <section id="toolbox" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
+      <div class="glass-card p-8 sm:p-12 rounded-apple-xl">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">04. Developer Toolbox</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">Human ideas. AI-assisted workflow.</h2>
+            <p class="text-sm sm:text-base text-[var(--muted)] mt-2 max-w-xl">
+              I use AI as a learning partner and productivity boost—not a substitute for curiosity, testing, or understanding how things work.
+            </p>
+          </div>
+
+          <!-- Toolbox Interactive Search -->
+          <div class="flex items-center gap-2 bg-[var(--surface-solid)] border border-[var(--line)] rounded-full px-4 py-2 text-xs">
+            <span class="text-gray-400">🔍</span>
+            <input type="text" id="toolSearch" placeholder="Filter tools..." class="bg-transparent focus:outline-none text-[var(--text)] w-28 sm:w-36">
+          </div>
+        </div>
+
+        <!-- Build Category -->
+        <div class="mb-8">
+          <h4 class="text-xs font-bold text-[var(--muted)] uppercase tracking-wider mb-4">Build</h4>
+          <div class="flex flex-wrap gap-3" id="buildToolsGrid">
+            
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-blue-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 font-mono font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">X</span>
+              <div>
+                <div class="text-sm font-semibold">Xcode</div>
+                <div class="text-[10px] text-[var(--muted)]">iOS IDE</div>
+              </div>
+            </div>
+
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-blue-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-orange-500/10 text-orange-500 font-mono font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">Sw</span>
+              <div>
+                <div class="text-sm font-semibold">Swift / SwiftUI</div>
+                <div class="text-[10px] text-[var(--muted)]">Native Framework</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- AI Tooling Category -->
+        <div>
+          <h4 class="text-xs font-bold text-[var(--muted)] uppercase tracking-wider mb-4">Think, Learn & Iterate</h4>
+          <div class="flex flex-wrap gap-3" id="aiToolsGrid">
+            
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-purple-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">✳</span>
+              <div>
+                <div class="text-sm font-semibold">ChatGPT</div>
+                <div class="text-[10px] text-[var(--muted)]">Logic & Architecture</div>
+              </div>
+            </div>
+
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-purple-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-500 font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">P</span>
+              <div>
+                <div class="text-sm font-semibold">Perplexity</div>
+                <div class="text-[10px] text-[var(--muted)]">Technical Research</div>
+              </div>
+            </div>
+
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-purple-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-500 font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">C</span>
+              <div>
+                <div class="text-sm font-semibold">Claude</div>
+                <div class="text-[10px] text-[var(--muted)]">Code Review & Refactoring</div>
+              </div>
+            </div>
+
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-purple-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-500 font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">✦</span>
+              <div>
+                <div class="text-sm font-semibold">GitHub Copilot</div>
+                <div class="text-[10px] text-[var(--muted)]">Inline Suggestions</div>
+              </div>
+            </div>
+
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-purple-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-blue-600/10 text-blue-600 font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">G</span>
+              <div>
+                <div class="text-sm font-semibold">Google Gemini</div>
+                <div class="text-[10px] text-[var(--muted)]">Concept Synthesis</div>
+              </div>
+            </div>
+
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-purple-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">W</span>
+              <div>
+                <div class="text-sm font-semibold">Windsurf</div>
+                <div class="text-[10px] text-[var(--muted)]">AI Flow IDE</div>
+              </div>
+            </div>
+
+            <div class="tool-chip glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--line)] hover:border-purple-500/40 transition-all cursor-default group">
+              <span class="w-8 h-8 rounded-xl bg-violet-500/10 text-violet-500 font-bold text-xs flex items-center justify-center group-hover:scale-110 transition-transform">Cu</span>
+              <div>
+                <div class="text-sm font-semibold">Cursor</div>
+                <div class="text-[10px] text-[var(--muted)]">Agentic Code Editor</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 02: YOUR PROJECTS                  -->
+    <!-- ========================================== -->
+    <section id="projects" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
       
-      <div class="text-center space-y-1.5 max-w-2xl mx-auto">
-        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">
-          Powered By Intelligence
-        </h3>
-        <p class="text-fluid-heading font-extrabold text-slate-900 dark:text-white tracking-tight">
-          My iOS apps, built with latest Xcode and powered by these AI tools:
-        </p>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">02. Selected Work</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-2">Small steps. Real apps.</h2>
+          <p class="text-base text-[var(--muted)] mt-2 max-w-lg">
+            Every project is a chance to learn, solve a practical problem, and make the next version a little better.
+          </p>
+        </div>
+
+        <!-- Filter Category Buttons -->
+        <div class="flex flex-wrap gap-2" id="projectFilterBtns">
+          <button data-filter="all" class="project-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-[var(--blue)] text-white transition-all">All</button>
+          <button data-filter="productivity" class="project-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-card text-[var(--muted)] hover:text-[var(--text)] transition-all">Productivity</button>
+          <button data-filter="travel" class="project-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-card text-[var(--muted)] hover:text-[var(--text)] transition-all">Travel</button>
+        </div>
       </div>
 
-      <!-- Fluid AI Badges Flex Grid -->
-      <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 max-w-5xl mx-auto pt-2">
+      <!-- Projects Grid (Two-column desktop / Single-column mobile) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projectsGrid">
         
-        <!-- ChatGPT -->
-        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-emerald-500 transition-all">
-          <div class="w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs font-bold">
-            <i class="fa-solid fa-robot"></i>
-          </div>
-          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">ChatGPT</span>
-        </div>
+        <!-- PROJECT 1: EasyList -->
+        <article data-category="productivity" class="project-card glass-card rounded-apple-xl overflow-hidden flex flex-col justify-between group hover:shadow-2xl transition-all duration-300">
+          <div>
+            <!-- Visual Art Banner Header -->
+            <div class="h-60 sm:h-64 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/40 dark:via-indigo-950/40 dark:to-purple-950/40 relative flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 bg-blue-500/5 backdrop-blur-3xl"></div>
+              
+              <!-- App Tile Graphic -->
+              <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300 border border-white/20">
+                <svg class="w-12 h-12 text-white" viewBox="0 0 64 64" fill="none">
+                  <path d="M18 17h29M18 31h29M18 45h17" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+                  <path d="m9 16 3 3 5-6M9 30l3 3 5-6M9 44l3 3 5-6" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
 
-        <!-- Copilot -->
-        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-sky-500 transition-all">
-          <div class="w-6 h-6 rounded-full bg-sky-500/10 text-sky-500 flex items-center justify-center text-xs font-bold">
-            <i class="fa-solid fa-code"></i>
-          </div>
-          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Copilot</span>
-        </div>
+              <span class="absolute bottom-4 left-6 text-[10px] font-bold tracking-widest uppercase text-blue-900/60 dark:text-blue-300/60">
+                Less mental clutter
+              </span>
+            </div>
 
-        <!-- Perplexity.ai -->
-        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-teal-500 transition-all">
-          <div class="w-6 h-6 rounded-full bg-teal-500/10 text-teal-500 flex items-center justify-center text-xs font-bold">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Perplexity.ai</span>
-        </div>
+            <!-- Content Area -->
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between text-xs font-medium text-[var(--muted)] mb-3">
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  Personal Project
+                </span>
+                <span class="font-mono">01 / 02</span>
+              </div>
 
-        <!-- Claude.ai -->
-        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-amber-600 transition-all">
-          <div class="w-6 h-6 rounded-full bg-amber-600/10 text-amber-600 flex items-center justify-center text-xs font-extrabold">
-            A
-          </div>
-          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Claude.ai</span>
-        </div>
+              <h3 class="text-2xl font-bold tracking-tight mb-2 group-hover:text-[var(--blue)] transition-colors">EasyList</h3>
+              <p class="text-sm text-[var(--muted)] leading-relaxed mb-6">
+                A simple, practical approach to keeping lists organized. Built around the idea that everyday planning should feel clear, quick, and effortless.
+              </p>
 
-        <!-- Google Gemini -->
-        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-blue-500 transition-all">
-          <div class="w-6 h-6 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center text-xs font-bold">
-            <i class="fa-solid fa-sparkles"></i>
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-200/60 dark:bg-gray-800 text-[var(--muted)]">iOS</span>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-200/60 dark:bg-gray-800 text-[var(--muted)]">SwiftUI</span>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-200/60 dark:bg-gray-800 text-[var(--muted)]">Productivity</span>
+              </div>
+            </div>
           </div>
-          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Google Gemini</span>
-        </div>
 
-        <!-- Codex -->
-        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-purple-500 transition-all">
-          <div class="w-6 h-6 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center text-xs font-bold">
-            <i class="fa-solid fa-gear"></i>
+          <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 flex items-center justify-between border-t border-[var(--line)] pt-4 mt-auto">
+            <span class="text-xs text-[var(--muted)] font-medium">My first app-building chapter</span>
+            <button onclick="openModal('easylist')" class="text-xs font-bold text-[var(--blue)] hover:underline flex items-center gap-1">
+              Learn more <span class="text-sm">↗</span>
+            </button>
           </div>
-          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Codex</span>
-        </div>
+        </article>
 
-        <!-- GitHub -->
-        <div class="touch-target px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-slate-600 transition-all">
-          <div class="w-6 h-6 rounded-full bg-slate-500/10 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs font-bold">
-            <i class="fa-brands fa-github"></i>
+        <!-- PROJECT 2: TripMate -->
+        <article data-category="travel" class="project-card glass-card rounded-apple-xl overflow-hidden flex flex-col justify-between group hover:shadow-2xl transition-all duration-300">
+          <div>
+            <!-- Visual Art Banner Header -->
+            <div class="h-60 sm:h-64 bg-gradient-to-br from-emerald-100 via-teal-100 to-sky-100 dark:from-emerald-950/40 dark:via-teal-950/40 dark:to-sky-950/40 relative flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 bg-emerald-500/5 backdrop-blur-3xl"></div>
+              
+              <!-- App Tile Graphic -->
+              <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-700 shadow-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300 border border-white/20">
+                <svg class="w-12 h-12 text-white" viewBox="0 0 64 64" fill="none">
+                  <path d="M32 55s18-17.2 18-32A18 18 0 0 0 14 23c0 14.8 18 32 18 32Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+                  <circle cx="32" cy="23" r="6" stroke="currentColor" stroke-width="4"/>
+                  <path d="M43 44h11M48.5 38.5v11" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <span class="absolute bottom-4 left-6 text-[10px] font-bold tracking-widest uppercase text-emerald-900/60 dark:text-emerald-300/60">
+                Make room for adventure
+              </span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between text-xs font-medium text-[var(--muted)] mb-3">
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  Personal Project
+                </span>
+                <span class="font-mono">02 / 02</span>
+              </div>
+
+              <h3 class="text-2xl font-bold tracking-tight mb-2 group-hover:text-[var(--blue)] transition-colors">TripMate</h3>
+              <p class="text-sm text-[var(--muted)] leading-relaxed mb-6">
+                A travel-focused app concept designed to make trips easier to plan and manage, bringing useful travel details together in one place.
+              </p>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-200/60 dark:bg-gray-800 text-[var(--muted)]">iOS</span>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-200/60 dark:bg-gray-800 text-[var(--muted)]">SwiftUI</span>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-200/60 dark:bg-gray-800 text-[var(--muted)]">Travel</span>
+              </div>
+            </div>
           </div>
-          <span class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">GitHub</span>
+
+          <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 flex items-center justify-between border-t border-[var(--line)] pt-4 mt-auto">
+            <span class="text-xs text-[var(--muted)] font-medium">Built around real-life needs</span>
+            <button onclick="openModal('tripmate')" class="text-xs font-bold text-[var(--blue)] hover:underline flex items-center gap-1">
+              Learn more <span class="text-sm">↗</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 05: RESPONSIVE DESIGN & CONTACT    -->
+    <!-- ========================================== -->
+    <section id="contact" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
+      <div class="glass-card p-10 sm:p-16 rounded-apple-xl text-center relative overflow-hidden bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5">
+        
+        <span class="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">The Next Chapter</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-2 mb-4 max-w-2xl mx-auto">
+          Good ideas get better when shared.
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--muted)] max-w-lg mx-auto leading-relaxed mb-8">
+          I’m continuing to learn, build, and explore new app ideas. Have feedback, a useful idea, or a collaboration in mind? I’d be glad to hear from you.
+        </p>
+
+        <!-- Interactive Contact Actions -->
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="mailto:hello@example.com?subject=Hello%20Varun" class="px-7 py-3.5 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
+            Say Hello ↗
+          </a>
+
+          <button onclick="copyEmail()" class="px-6 py-3.5 rounded-full glass-card hover:bg-gray-200/50 dark:hover:bg-gray-800/50 text-sm font-semibold transition-all flex items-center gap-2">
+            <span>Copy Email Address</span>
+            <span class="text-xs text-gray-400">📋</span>
+          </button>
         </div>
 
       </div>
@@ -676,176 +644,197 @@
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="py-6 border-t border-slate-200/70 dark:border-slate-800/80 mt-10 text-xs text-slate-500 dark:text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="border-t border-[var(--line)] py-10">
+    <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--muted)]">
       <div>
-        Varun Patel Portfolio &copy; 2026. Designed with Apple Aesthetics & Fluid Grid.
+        © <span id="copyrightYear">2026</span> Varun Patel. Built with curiosity.
       </div>
-      <div class="flex items-center gap-4 font-medium">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-apple-accent transition">GitHub</a>
-        <span>•</span>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-apple-accent transition">LinkedIn</a>
-        <span>•</span>
-        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="hover:text-apple-accent transition">Twitter / X</a>
+      <div class="flex items-center gap-6 font-medium">
+        <a href="#home" class="hover:text-[var(--text)] transition-colors">Back to top ↑</a>
+        <a href="#projects" class="hover:text-[var(--text)] transition-colors">Projects</a>
+        <a href="#about" class="hover:text-[var(--text)] transition-colors">About</a>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT CONTROLLERS -->
+  <!-- ========================================== -->
+  <!-- PROJECT DETAIL MODAL                       -->
+  <!-- ========================================== -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-md" aria-modal="true" role="dialog">
+    <div class="glass-card bg-[var(--surface-solid)] w-full max-w-lg rounded-apple-xl p-6 sm:p-8 shadow-2xl relative border border-white/20">
+      <button onclick="closeModal()" aria-label="Close modal" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 dark:hover:text-white text-xl font-bold p-1">
+        ✕
+      </button>
+
+      <div id="modalContent">
+        <!-- Dynamic content injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast fixed bottom-6 right-6 z-50 glass-card bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2">
+    <span>✨</span> <span id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT                                 -->
+  <!-- ========================================== -->
   <script>
-    // State Management
-    let currentGoalCount = 4;
+    // --- 1. Mobile Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-    function updateGoalDisplays() {
-      const formattedVal = currentGoalCount < 10 ? `$0${currentGoalCount}` : `$${currentGoalCount}`;
-      
-      const simCounter = document.getElementById('simGoalCounter');
-      const dashCounter = document.getElementById('dashGoalDisplay');
-      const codeVal = document.getElementById('codeGoalVal');
-
-      if (simCounter) simCounter.innerText = formattedVal;
-      if (dashCounter) dashCounter.innerText = formattedVal;
-      if (codeVal) codeVal.innerText = currentGoalCount;
-    }
-
-    function incrementGoalCounter() {
-      currentGoalCount++;
-      updateGoalDisplayWithAnimation();
-    }
-
-    function updateGoalDisplayWithAnimation() {
-      updateGoalDisplays();
-      drawChart();
-    }
-
-    function runXcodeSimulation() {
-      const runBtnText = document.getElementById('runText');
-      const runBtnIcon = document.getElementById('runIcon');
-
-      if (runBtnText) {
-        runBtnText.innerText = "Compiling...";
-        runBtnIcon.className = "fa-solid fa-spinner fa-spin text-[10px]";
-
-        setTimeout(() => {
-          runBtnText.innerText = "Running";
-          runBtnIcon.className = "fa-solid fa-check text-[10px]";
-          currentGoalCount++;
-          updateGoalDisplays();
-
-          setTimeout(() => {
-            runBtnText.innerText = "Build & Run";
-            runBtnIcon.className = "fa-solid fa-play text-[10px]";
-          }, 1200);
-        }, 500);
-      }
-    }
-
-    // Responsive Canvas Chart Renderer
-    function drawChart() {
-      const canvas = document.getElementById('analyticsChart');
-      if (!canvas) return;
-
-      const ctx = canvas.getContext('2d');
-      const dpr = window.devicePixelRatio || 1;
-      
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
-
-      const width = rect.width;
-      const height = rect.height;
-
-      ctx.clearRect(0, 0, width, height);
-
-      // Data points
-      const points = [20, 45, 30, 75, 55, 90, 80];
-      const stepX = width / (points.length - 1);
-
-      // Gradient Fill
-      const isDark = document.documentElement.classList.contains('dark');
-      const gradient = ctx.createLinearGradient(0, 0, 0, height);
-      gradient.addColorStop(0, isDark ? 'rgba(0, 113, 227, 0.4)' : 'rgba(0, 113, 227, 0.25)');
-      gradient.addColorStop(1, 'rgba(0, 113, 227, 0.0)');
-
-      // Draw Smooth Curve
-      ctx.beginPath();
-      ctx.moveTo(0, height - (points[0] / 100) * height);
-
-      for (let i = 0; i < points.length - 1; i++) {
-        const x1 = i * stepX;
-        const y1 = height - (points[i] / 100) * height;
-        const x2 = (i + 1) * stepX;
-        const y2 = height - (points[i + 1] / 100) * height;
-
-        const xc = (x1 + x2) / 2;
-        const yc = (y1 + y2) / 2;
-
-        ctx.quadraticCurveTo(x1, y1, xc, yc);
-      }
-
-      ctx.lineTo(width, height - (points[points.length - 1] / 100) * height);
-      ctx.lineTo(width, height);
-      ctx.lineTo(0, height);
-      ctx.closePath();
-
-      ctx.fillStyle = gradient;
-      ctx.fill();
-
-      // Stroke Line
-      ctx.beginPath();
-      ctx.moveTo(0, height - (points[0] / 100) * height);
-      for (let i = 0; i < points.length - 1; i++) {
-        const x1 = i * stepX;
-        const y1 = height - (points[i] / 100) * height;
-        const x2 = (i + 1) * stepX;
-        const y2 = height - (points[i + 1] / 100) * height;
-
-        const xc = (x1 + x2) / 2;
-        const yc = (y1 + y2) / 2;
-
-        ctx.quadraticCurveTo(x1, y1, xc, yc);
-      }
-      ctx.strokeStyle = '#0071e3';
-      ctx.lineWidth = 3;
-      ctx.stroke();
-    }
-
-    // Theme Switcher & Mobile Navigation Handlers
-    document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('themeToggle');
-      const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
-      const mobileDrawer = document.getElementById('mobileDrawer');
-
-      function toggleTheme() {
-        document.documentElement.classList.toggle('dark');
-        drawChart();
-      }
-
-      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-      if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
-
-      if (mobileMenuBtn && mobileDrawer) {
-        mobileMenuBtn.addEventListener('click', () => {
-          mobileDrawer.classList.remove('hidden');
-        });
-      }
-
-      if (closeDrawerBtn && mobileDrawer) {
-        closeDrawerBtn.addEventListener('click', () => {
-          mobileDrawer.classList.add('hidden');
-        });
-      }
-
-      // Initial chart draw
-      drawChart();
-
-      // Window resize re-draw canvas
-      window.addEventListener('resize', drawChart);
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
+      mobileMenuBtn.textContent = !isOpen ? 'Close' : 'Menu';
     });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.textContent = 'Menu';
+      });
+    });
+
+    // --- 2. Live Copyright Year ---
+    document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+
+    // --- 3. Toolbox Search Filter ---
+    const toolSearch = document.getElementById('toolSearch');
+    const toolChips = document.querySelectorAll('.tool-chip');
+
+    toolSearch.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      toolChips.forEach(chip => {
+        const text = chip.textContent.toLowerCase();
+        if (text.includes(query)) {
+          chip.style.display = 'flex';
+        } else {
+          chip.style.display = 'none';
+        }
+      });
+    });
+
+    // --- 4. Projects Category Filter ---
+    const filterBtns = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-[var(--blue)]', 'text-white');
+          b.classList.add('glass-card', 'text-[var(--muted)]');
+        });
+        btn.classList.add('bg-[var(--blue)]', 'text-white');
+        btn.classList.remove('glass-card', 'text-[var(--muted)]');
+
+        const filter = btn.getAttribute('data-filter');
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // --- 5. Project Detail Modal Data ---
+    const projectData = {
+      easylist: {
+        title: "EasyList",
+        subtitle: "Productivity & List Management",
+        badge: "SwiftUI / iOS Project",
+        description: "A simple, practical approach to keeping lists organized. Built around the idea that everyday planning should feel clear, quick, and effortless.",
+        features: [
+          "Minimalist list layout designed for zero friction",
+          "Custom focus categories and quick completion states",
+          "Built natively using Swift & SwiftUI",
+          "Designed with Apple Human Interface Guidelines"
+        ]
+      },
+      tripmate: {
+        title: "TripMate",
+        subtitle: "Travel Planning Concept",
+        badge: "SwiftUI / Travel Concept",
+        description: "A travel-focused app concept designed to make trips easier to plan and manage, bringing useful travel details together in one place.",
+        features: [
+          "Itinerary timeline view and pack list organizer",
+          "Consolidated travel detail cards",
+          "Lightweight offline-friendly structure",
+          "Adaptive native iOS layout"
+        ]
+      }
+    };
+
+    function openModal(key) {
+      const modal = document.getElementById('projectModal');
+      const modalContent = document.getElementById('modalContent');
+      const data = projectData[key];
+
+      if (!data) return;
+
+      modalContent.innerHTML = `
+        <span class="inline-block px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-xs font-semibold mb-3">
+          ${data.badge}
+        </span>
+        <h3 class="text-2xl font-bold tracking-tight mb-1">${data.title}</h3>
+        <p class="text-xs text-[var(--muted)] mb-4">${data.subtitle}</p>
+        <p class="text-sm text-[var(--muted)] leading-relaxed mb-6">${data.description}</p>
+        
+        <h4 class="text-xs font-bold text-[var(--text)] uppercase tracking-wider mb-2">Key Highlights</h4>
+        <ul class="space-y-2 text-xs text-[var(--muted)] mb-6">
+          ${data.features.map(f => `<li class="flex items-center gap-2"><span class="text-blue-500 font-bold">✓</span> ${f}</li>`).join('')}
+        </ul>
+
+        <div class="pt-4 border-t border-[var(--line)] flex justify-end">
+          <button onclick="closeModal()" class="px-5 py-2 rounded-full bg-[var(--blue)] text-white text-xs font-semibold">
+            Close Overview
+          </button>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').classList.add('hidden');
+    }
+
+    document.getElementById('projectModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('projectModal')) {
+        closeModal();
+      }
+    });
+
+    // --- 6. Clipboard Copy & Toast ---
+    function copyEmail() {
+      const email = "hello@example.com";
+      const tempInput = document.createElement('input');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      showToast("Email copied: hello@example.com");
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
   </script>
 </body>
 </html>
