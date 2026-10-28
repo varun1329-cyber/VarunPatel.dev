@@ -173,6 +173,35 @@
       opacity: 1;
     }
 
+    .section-shell {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 2rem;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.03);
+      overflow: hidden;
+      margin: 0 auto 1.5rem;
+    }
+
+    .section-home {
+      background: linear-gradient(180deg, rgba(231, 245, 255, 0.9), rgba(255, 255, 255, 0.7));
+    }
+
+    .section-about {
+      background: linear-gradient(180deg, rgba(243, 232, 255, 0.82), rgba(255, 255, 255, 0.7));
+    }
+
+    .section-toolbox {
+      background: linear-gradient(180deg, rgba(232, 255, 244, 0.9), rgba(255, 255, 255, 0.75));
+    }
+
+    .section-projects {
+      background: linear-gradient(180deg, rgba(255, 240, 232, 0.88), rgba(255, 255, 255, 0.72));
+    }
+
+    .section-contact {
+      background: linear-gradient(180deg, rgba(255, 247, 211, 0.9), rgba(255, 255, 255, 0.78));
+    }
+
     /* Accessibility feature: Disables heavy animations if user requests reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
@@ -190,55 +219,25 @@
   <!-- NAVIGATION BAR                                                            -->
   <!-- ========================================================================= -->
   <header class="sticky top-0 z-40 w-full glass-nav border-b border-[var(--line)]">
-    <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between" aria-label="Main Navigation">
-      
-      <!-- Logo Mark (VP.) -->
+    <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl p-1">
-        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-gray-800 to-gray-950 dark:from-gray-200 dark:to-gray-400 text-white dark:text-gray-950 font-bold text-xs flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200">
+        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-gray-800 to-gray-950 text-white font-bold text-xs flex items-center justify-center">
           VP
         </span>
         <span class="font-semibold text-base tracking-tight group-hover:text-[var(--blue)] transition-colors">
           Varun Patel
         </span>
       </a>
-
-      <!-- Desktop Navigation Links (Hidden on small mobile screens) -->
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--muted)]">
-        <a href="#about" class="hover:text-[var(--text)] transition-colors py-1">Story</a>
-        <a href="#toolbox" class="hover:text-[var(--text)] transition-colors py-1">Toolbox</a>
-        <a href="#projects" class="hover:text-[var(--text)] transition-colors py-1">Projects</a>
-      </div>
-
-      <!-- Action Button & Mobile Menu Toggle Button -->
-      <div class="flex items-center gap-3">
-        <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-xs font-semibold shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5">
-          <span>Let's Connect</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-
-        <!-- Hamburger button for mobile screens -->
-        <button id="mobileMenuBtn" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-xl border border-[var(--line)] bg-[var(--surface)] text-[var(--text)] text-sm font-medium">
-          Menu
-        </button>
-      </div>
-    </nav>
-
-    <!-- Mobile Navigation Drawer Menu (Toggled using JS) -->
-    <div id="mobileMenu" class="hidden md:hidden border-b border-[var(--line)] bg-[var(--surface-solid)] px-6 py-4 flex flex-col gap-4 text-sm font-medium">
-      <a href="#about" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Story</a>
-      <a href="#toolbox" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Toolbox</a>
-      <a href="#projects" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Projects</a>
-      <a href="#contact" class="mobile-nav-link py-2 text-[var(--blue)] font-semibold">Let's Connect ↗</a>
     </div>
   </header>
 
   <!-- MAIN CONTENT CONTAINER -->
-  <main class="flex-grow">
+  <main class="flex-grow pt-4 pb-6">
     
     <!-- ========================================================================= -->
     <!-- SECTION 01: MODERN LANDING PAGE (HERO)                                   -->
     <!-- ========================================================================= -->
-    <section id="home" class="pt-16 pb-16 md:pt-24 md:pb-24 max-w-6xl mx-auto px-5 text-center">
+    <section id="home" class="section-shell section-home pt-16 pb-16 md:pt-24 md:pb-24 max-w-6xl mx-auto px-5 text-center">
       
       <!-- Eyebrow Tag -->
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-xs font-semibold tracking-wide uppercase mb-6">
@@ -257,15 +256,13 @@
         A curious mind, a Mac, and a growing love for building useful things. I’m learning by doing—using code and AI-powered tools to bring thoughtful app ideas to life.
       </p>
 
-    
-
       <!-- Custom CSS Phone Illustration Mockup -->
       <div class="relative max-w-lg mx-auto mt-12 pt-4 pb-4 flex justify-center items-center">
         <!-- Glow accent -->
         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl rounded-full transform scale-90 -z-10"></div>
 
         <!-- Floating Chip Badge (Left) -->
-        <div class="absolute left-0 sm:-left-6 top-1/4 z-20 animate-chip-1 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/20">
+        <div class="absolute left-0 sm:-left-6 top-1/4 z-20 animate-chip-1 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/40">
           <span class="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center text-sm font-bold">✓</span>
           <div>
             <div class="text-[var(--text)]">Ideas, organized</div>
@@ -274,7 +271,7 @@
         </div>
 
         <!-- Floating Chip Badge (Right) -->
-        <div class="absolute right-0 sm:-right-6 bottom-1/4 z-20 animate-chip-2 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/20">
+        <div class="absolute right-0 sm:-right-6 bottom-1/4 z-20 animate-chip-2 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/40">
           <span class="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center text-sm font-bold">✦</span>
           <div>
             <div class="text-[var(--text)]">Made with curiosity</div>
@@ -285,7 +282,7 @@
         <!-- Phone Shell Container -->
         <div class="w-48 sm:w-56 h-96 sm:h-[26rem] rounded-[2.5rem] p-3 bg-gradient-to-b from-gray-700 via-gray-900 to-black device-shadow border border-gray-600/40 animate-device relative overflow-hidden">
           <!-- Phone Screen -->
-          <div class="w-full h-full rounded-[2rem] bg-gradient-to-b from-blue-50 via-indigo-50/50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-slate-900 p-4 text-left flex flex-col justify-between overflow-hidden relative border border-white/10">
+          <div class="w-full h-full rounded-[2rem] bg-gradient-to-b from-blue-50 via-indigo-50/50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-slate-900 p-4 text-left flex flex-col justify-between">
             
             <!-- Status Bar & Dynamic Island Notch -->
             <div>
@@ -329,7 +326,7 @@
     <!-- ========================================================================= -->
     <!-- SECTION 03: YOUR STORY                                                    -->
     <!-- ========================================================================= -->
-    <section id="about" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
+    <section id="about" class="section-shell section-about py-16 md:py-20 max-w-6xl mx-auto px-5">
       <div class="mb-12">
         <span class="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">Story & Journey</span>
         <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-2">Curiosity is my starting point.</h2>
@@ -348,7 +345,7 @@
               Self-taught.<br>Family-minded.<br>Always learning.
             </h3>
             <p class="text-[var(--muted)] text-base sm:text-lg leading-relaxed mb-6">
-              I’m Varun Patel, an Indian-origin husband and father who has called the United States home since 2005. My family keeps me grounded; building apps gives me a creative way to explore what’s possible.
+              I’m Varun Patel, an Indian-origin husband and father who has called the United States home since 2005. My family keeps me grounded; building apps gives me a creative way to explore what matters to me and solve everyday problems with purpose.
             </p>
           </div>
 
@@ -394,7 +391,7 @@
     <!-- ========================================================================= -->
     <!-- SECTION 04: DEVELOPER TOOLBOX                                            -->
     <!-- ========================================================================= -->
-    <section id="toolbox" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
+    <section id="toolbox" class="section-shell section-toolbox py-16 md:py-20 max-w-6xl mx-auto px-5">
       <div class="glass-card p-8 sm:p-12 rounded-apple-xl">
         
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -507,7 +504,7 @@
     <!-- ========================================================================= -->
     <!-- SECTION 02: YOUR PROJECTS                                                 -->
     <!-- ========================================================================= -->
-    <section id="projects" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
+    <section id="projects" class="section-shell section-projects py-16 md:py-20 max-w-6xl mx-auto px-5">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
@@ -533,11 +530,11 @@
         <article data-category="productivity" class="project-card glass-card rounded-apple-xl overflow-hidden flex flex-col justify-between group hover:shadow-2xl transition-all duration-300">
           <div>
             <!-- Banner Header Art -->
-            <div class="h-60 sm:h-64 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/40 dark:via-indigo-950/40 dark:to-purple-950/40 relative flex items-center justify-center overflow-hidden">
+            <div class="h-60 sm:h-64 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/40 dark:via-indigo-950/40 dark:to-purple-950/40 relative flex items-center justify-center">
               <div class="absolute inset-0 bg-blue-500/5 backdrop-blur-3xl"></div>
               
               <!-- App Tile Graphic -->
-              <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300 border border-white/20">
+              <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
                 <svg class="w-12 h-12 text-white" viewBox="0 0 64 64" fill="none">
                   <path d="M18 17h29M18 31h29M18 45h17" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
                   <path d="m9 16 3 3 5-6M9 30l3 3 5-6M9 44l3 3 5-6" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -586,11 +583,11 @@
         <article data-category="travel" class="project-card glass-card rounded-apple-xl overflow-hidden flex flex-col justify-between group hover:shadow-2xl transition-all duration-300">
           <div>
             <!-- Banner Header Art -->
-            <div class="h-60 sm:h-64 bg-gradient-to-br from-emerald-100 via-teal-100 to-sky-100 dark:from-emerald-950/40 dark:via-teal-950/40 dark:to-sky-950/40 relative flex items-center justify-center overflow-hidden">
+            <div class="h-60 sm:h-64 bg-gradient-to-br from-emerald-100 via-teal-100 to-sky-100 dark:from-emerald-950/40 dark:via-teal-950/40 dark:to-sky-950/40 relative flex items-center justify-center">
               <div class="absolute inset-0 bg-emerald-500/5 backdrop-blur-3xl"></div>
               
               <!-- App Tile Graphic -->
-              <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-700 shadow-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300 border border-white/20">
+              <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-700 shadow-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
                 <svg class="w-12 h-12 text-white" viewBox="0 0 64 64" fill="none">
                   <path d="M32 55s18-17.2 18-32A18 18 0 0 0 14 23c0 14.8 18 32 18 32Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
                   <circle cx="32" cy="23" r="6" stroke="currentColor" stroke-width="4"/>
@@ -642,7 +639,7 @@
     <!-- ========================================================================= -->
     <!-- SECTION 05: RESPONSIVE DESIGN & CONTACT PANEL                            -->
     <!-- ========================================================================= -->
-    <section id="contact" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
+    <section id="contact" class="section-shell section-contact py-16 md:py-20 max-w-6xl mx-auto px-5">
       <div class="glass-card p-10 sm:p-16 rounded-apple-xl text-center relative overflow-hidden bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5">
         
         <span class="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">The Next Chapter</span>
@@ -655,7 +652,7 @@
 
         <!-- Interactive Contact Buttons -->
         <div class="flex flex-wrap items-center justify-center gap-4">
-          <a href="mailto:hello@example.com?subject=Hello%20Varun" class="px-7 py-3.5 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
+          <a href="mailto:hello@example.com?subject=Hello%20Varun" class="px-7 py-3.5 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all">
             Say Hello ↗
           </a>
 
@@ -716,25 +713,7 @@
     // -------------------------------------------------------------------------
     // 1. MOBILE HAMBURGER MENU TOGGLE
     // -------------------------------------------------------------------------
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-    // Click event to show or hide the menu menu drawer
-    mobileMenuBtn.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.toggle('hidden');
-      mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
-      mobileMenuBtn.textContent = !isHidden ? 'Close' : 'Menu';
-    });
-
-    // Close mobile menu when user clicks any menu link
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        mobileMenuBtn.textContent = 'Menu';
-      });
-    });
+    // Menu removed from header; mobile interactions no longer needed.
 
     // -------------------------------------------------------------------------
     // 2. AUTOMATIC LIVE COPYRIGHT YEAR
