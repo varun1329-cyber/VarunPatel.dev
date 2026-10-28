@@ -3,6 +3,7 @@
   =============================================================================
   HTML DOCUMENT SETUP
   - Single View Snap Card Presentation Mode (Zero Internal Card Scroll)
+  - Interactive Xcode Simulator Widget on Card 3 (Toolbox)
   =============================================================================
 -->
 <html lang="en" class="h-full">
@@ -39,11 +40,11 @@
     }
   </script>
 
-  <!-- Custom Styles for Full-Screen Card Snap Scrolling -->
+  <!-- Custom Styles for Full-Screen Card Snap Scrolling & Xcode IDE Mockup -->
   <style>
     /* Theme Tokens */
     :root {
-      --bg: #0b0d12;
+      --bg: #090a0f;
       --surface: rgba(255, 255, 255, 0.88);
       --surface-solid: #ffffff;
       --text: #1d1d1f;
@@ -56,7 +57,7 @@
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #060709;
+        --bg: #06070a;
         --surface: rgba(20, 22, 28, 0.85);
         --surface-solid: #16181d;
         --text: #f5f5f7;
@@ -82,9 +83,9 @@
     /* Fullscreen Ambient Background Glows */
     .bg-ambient {
       background: 
-        radial-gradient(ellipse at 10% 10%, rgba(0, 113, 227, 0.22), transparent 50%),
-        radial-gradient(ellipse at 90% 25%, rgba(139, 92, 246, 0.18), transparent 50%),
-        radial-gradient(ellipse at 50% 85%, rgba(236, 72, 153, 0.15), transparent 50%),
+        radial-gradient(ellipse at 15% 15%, rgba(0, 113, 227, 0.25), transparent 50%),
+        radial-gradient(ellipse at 85% 20%, rgba(139, 92, 246, 0.22), transparent 50%),
+        radial-gradient(ellipse at 50% 85%, rgba(236, 72, 153, 0.18), transparent 50%),
         var(--bg);
     }
 
@@ -96,11 +97,11 @@
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Hide scrollbar Firefox */
+      scrollbar-width: none;
     }
 
     .cards-snap-container::-webkit-scrollbar {
-      display: none; /* Hide scrollbar Chrome/Safari */
+      display: none;
     }
 
     /* Individual Full Viewport Wrapper */
@@ -112,16 +113,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 0.75rem;
       box-sizing: border-box;
     }
 
-    /* Fixed-Size Center Card Shell - Strictly fits without internal scroll */
+    /* Fixed-Size Center Card Shell */
     .card-shell {
       width: 100%;
-      max-width: 900px;
-      height: calc(100dvh - 2.5rem);
-      max-height: 680px;
+      max-width: 980px;
+      height: calc(100dvh - 2rem);
+      max-height: 820px;
       background: var(--surface);
       border: 1px solid var(--line);
       backdrop-filter: blur(28px);
@@ -132,11 +133,10 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      overflow: hidden !important; /* Strict no internal card scroll */
+      overflow: hidden !important;
       box-sizing: border-box;
     }
 
-    /* Text Gradient */
     .gradient-text {
       background: linear-gradient(100deg, #0071e3 0%, #8b5cf6 50%, #ec4899 100%);
       -webkit-background-clip: text;
@@ -153,37 +153,21 @@
 
     /* Keyframe Animations */
     @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(-4deg); }
-      50% { transform: translateY(-6px) rotate(-2deg); }
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50% { transform: translateY(-5px) rotate(-1deg); }
     }
     @keyframes floatChip1 {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-5px); }
+      50% { transform: translateY(-4px); }
     }
     @keyframes floatChip2 {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-5px); }
+      50% { transform: translateY(-4px); }
     }
 
     .animate-device { animation: floatSlow 6s ease-in-out infinite; }
     .animate-chip-1 { animation: floatChip1 4s ease-in-out infinite; }
     .animate-chip-2 { animation: floatChip2 5s ease-in-out infinite 0.5s; }
-
-    /* Side Dot Navigation Controls */
-    .nav-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .nav-dot.active {
-      height: 24px;
-      background: var(--blue);
-      border-color: var(--blue);
-      box-shadow: 0 0 10px rgba(0, 113, 227, 0.6);
-    }
 
     /* Toast popup styling */
     .toast {
@@ -198,38 +182,17 @@
 
     @media (max-width: 640px) {
       .card-slide {
-        padding: 0.5rem;
+        padding: 0.35rem;
       }
       .card-shell {
-        height: calc(100dvh - 1.25rem);
-        border-radius: 20px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .cards-snap-container {
-        scroll-behavior: auto !important;
+        height: calc(100dvh - 0.75rem);
+        border-radius: 22px;
+        padding: 1rem !important;
       }
     }
   </style>
 </head>
 <body class="bg-ambient antialiased select-none">
-
-  <!-- ========================================================================= -->
-  <!-- SIDE QUICK-NAV DOTS                                                      -->
-  <!-- ========================================================================= -->
-  <aside class="fixed right-2.5 sm:right-5 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2 p-1.5 rounded-full glass-card border border-white/10 shadow-lg">
-    <button onclick="scrollToSlide(0)" class="nav-dot active" title="Home" id="dot-0" aria-label="Go to Home"></button>
-    <button onclick="scrollToSlide(1)" class="nav-dot" title="About" id="dot-1" aria-label="Go to About"></button>
-    <button onclick="scrollToSlide(2)" class="nav-dot" title="Toolbox" id="dot-2" aria-label="Go to Toolbox"></button>
-    <button onclick="scrollToSlide(3)" class="nav-dot" title="Projects" id="dot-3" aria-label="Go to Projects"></button>
-    <button onclick="scrollToSlide(4)" class="nav-dot" title="Contact & Footer" id="dot-4" aria-label="Go to Contact"></button>
-  </aside>
 
   <!-- ========================================================================= -->
   <!-- FULLSCREEN SNAP SCROLL CONTAINER                                         -->
@@ -240,92 +203,124 @@
     <!-- CARD 01: HERO / HOME                                                    -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-0">
-      <section class="card-shell p-5 sm:p-8 text-center flex flex-col justify-between">
+      <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <!-- Header Badge Line -->
-        <div class="w-full flex items-center justify-between">
+        <!-- CARD INTEGRATED HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-3">
           <div class="flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-gray-800 to-gray-950 text-white font-bold text-[11px] flex items-center justify-center shadow">
+            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-900 text-white font-bold text-xs flex items-center justify-center shadow">
               VP
             </span>
-            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel</span>
+            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
           </div>
 
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-[10px] font-semibold uppercase">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-[10px] font-bold tracking-wider uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-            Independent iOS Developer
+            01 / HERO
           </div>
-        </div>
+        </header>
 
-        <!-- Headline & Subtitle -->
-        <div class="my-auto py-2 max-w-xl mx-auto">
-          <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-2">
-            Hi, I’m Varun.<br>
-            <span class="gradient-text">I turn ideas into apps.</span>
-          </h1>
+        <!-- CENTER CONTENT: 2-COLUMN BALANCED HERO -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 my-auto items-center">
+          
+          <!-- Left Column -->
+          <div class="md:col-span-7 space-y-3 text-left">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-500 text-[10px] font-semibold tracking-wide">
+              <span>✦</span> SwiftUI Native • AI-Assisted Workflow
+            </div>
 
-          <p class="text-xs sm:text-sm text-[var(--muted)] font-normal leading-relaxed max-w-md mx-auto">
-            A curious mind, a Mac, and a love for building practical software. Learning by doing with Swift & AI-assisted tools.
-          </p>
-        </div>
+            <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+              Hi, I’m Varun.<br>
+              <span class="gradient-text">I turn ideas into native apps.</span>
+            </h1>
 
-        <!-- Compact Interactive Phone Visual -->
-        <div class="relative w-full max-w-xs mx-auto my-auto flex justify-center items-center">
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-xl rounded-full transform scale-90 -z-10"></div>
+            <p class="text-xs sm:text-sm text-[var(--muted)] font-normal leading-relaxed max-w-lg">
+              A curious self-taught developer building clean, purposeful iOS software. Learning by shipping code, iterating on real problems, and leveraging AI tools to accelerate build cycles.
+            </p>
 
-          <!-- Left Badge -->
-          <div class="absolute -left-3 top-1/4 z-20 animate-chip-1 glass-card p-2 rounded-lg shadow-md flex items-center gap-1.5 text-[10px] font-semibold text-left">
-            <span class="w-5 h-5 rounded bg-blue-500/10 text-blue-500 flex items-center justify-center text-[10px] font-bold">✓</span>
-            <div>
-              <div class="text-[var(--text)] text-[10px]">Ideas organized</div>
-              <div class="text-[8px] text-[var(--muted)]">Less clutter</div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded-md glass-card border border-[var(--line)] text-[10px] font-medium text-[var(--muted)] flex items-center gap-1">
+                <span class="text-blue-500">⚡</span> Fast Native SwiftUI
+              </span>
+              <span class="px-2.5 py-1 rounded-md glass-card border border-[var(--line)] text-[10px] font-medium text-[var(--muted)] flex items-center gap-1">
+                <span class="text-purple-500">🎯</span> Problem Focused
+              </span>
+              <span class="px-2.5 py-1 rounded-md glass-card border border-[var(--line)] text-[10px] font-medium text-[var(--muted)] flex items-center gap-1">
+                <span class="text-emerald-500">✦</span> AI Synergy
+              </span>
             </div>
           </div>
 
-          <!-- Right Badge -->
-          <div class="absolute -right-3 bottom-1/4 z-20 animate-chip-2 glass-card p-2 rounded-lg shadow-md flex items-center gap-1.5 text-[10px] font-semibold text-left">
-            <span class="w-5 h-5 rounded bg-purple-500/10 text-purple-500 flex items-center justify-center text-[10px] font-bold">✦</span>
-            <div>
-              <div class="text-[var(--text)] text-[10px]">SwiftUI Native</div>
-              <div class="text-[8px] text-[var(--muted)]">Curiosity driven</div>
-            </div>
-          </div>
+          <!-- Right Column: Animated iPhone Frame Preview -->
+          <div class="md:col-span-5 relative flex justify-center items-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-xl rounded-full transform scale-90 -z-10"></div>
 
-          <!-- Scaled Compact Phone Frame -->
-          <div class="w-36 sm:w-40 h-48 sm:h-52 rounded-[1.6rem] p-2 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-xl border border-gray-600/40 animate-device relative overflow-hidden">
-            <div class="w-full h-full rounded-[1.2rem] bg-gradient-to-b from-blue-50 via-indigo-50/50 to-purple-50 dark:from-gray-900 dark:to-slate-900 p-2.5 text-left flex flex-col justify-between">
+            <!-- Left Floating Chip -->
+            <div class="absolute -left-2 top-1/4 z-20 animate-chip-1 glass-card p-2 rounded-xl shadow-lg flex items-center gap-2 border border-white/30 text-left">
+              <span class="w-6 h-6 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center text-xs font-bold">✓</span>
               <div>
-                <div class="flex justify-between items-center text-[7px] font-bold text-gray-400 mb-1.5">
-                  <span>9:41</span>
-                  <div class="w-6 h-1 bg-black dark:bg-gray-800 rounded-full"></div>
-                  <span>● ▰</span>
-                </div>
-                <h4 class="text-[10px] font-extrabold text-gray-900 dark:text-white mb-1.5">My Lists<span class="text-blue-500">.</span></h4>
-                <div class="space-y-1">
-                  <div class="p-1.5 rounded-md bg-white/80 dark:bg-gray-800/80 shadow-xs flex items-center gap-1 text-[8px] font-medium">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500 text-white flex items-center justify-center text-[6px]">✓</span>
-                    <span>Weekly essentials</span>
-                  </div>
-                  <div class="p-1.5 rounded-md bg-white/80 dark:bg-gray-800/80 shadow-xs flex items-center gap-1 text-[8px] font-medium">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500 text-white flex items-center justify-center text-[6px]">✓</span>
-                    <span>Plan weekend</span>
-                  </div>
-                </div>
+                <div class="text-[var(--text)] text-[10px] font-bold">Ideas Organized</div>
+                <div class="text-[8px] text-[var(--muted)]">Zero cognitive noise</div>
               </div>
+            </div>
 
-              <div class="pt-1 border-t border-gray-200/40 dark:border-gray-800 flex justify-around text-[7px] text-gray-400 font-medium">
-                <span class="text-blue-500 font-bold">Lists</span>
-                <span>Travel</span>
-                <span>Settings</span>
+            <!-- Right Floating Chip -->
+            <div class="absolute -right-2 bottom-1/4 z-20 animate-chip-2 glass-card p-2 rounded-xl shadow-lg flex items-center gap-2 border border-white/30 text-left">
+              <span class="w-6 h-6 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center text-xs font-bold">✦</span>
+              <div>
+                <div class="text-[var(--text)] text-[10px] font-bold">Native iOS UX</div>
+                <div class="text-[8px] text-[var(--muted)]">SwiftUI Architecture</div>
+              </div>
+            </div>
+
+            <!-- Compact Phone Frame -->
+            <div class="w-40 sm:w-44 h-56 sm:h-64 rounded-[2rem] p-2 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-600/40 animate-device relative overflow-hidden">
+              <div class="w-full h-full rounded-[1.5rem] bg-gradient-to-b from-blue-50 via-indigo-50/50 to-purple-50 dark:from-gray-900 dark:to-slate-900 p-3 text-left flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-center text-[8px] font-bold text-gray-400 mb-2">
+                    <span>9:41</span>
+                    <div class="w-8 h-1.5 bg-black dark:bg-gray-800 rounded-full"></div>
+                    <span>● ▰</span>
+                  </div>
+                  <h4 class="text-xs font-extrabold text-gray-900 dark:text-white mb-2">My Lists<span class="text-blue-500">.</span></h4>
+                  <div class="space-y-1.5">
+                    <div class="p-1.5 rounded-lg bg-white/80 dark:bg-gray-800/80 shadow-xs flex items-center gap-1.5 text-[9px] font-medium">
+                      <span class="w-3 h-3 rounded-full bg-blue-500 text-white flex items-center justify-center text-[7px] font-bold">✓</span>
+                      <span>Weekly essentials</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-white/80 dark:bg-gray-800/80 shadow-xs flex items-center gap-1.5 text-[9px] font-medium">
+                      <span class="w-3 h-3 rounded-full bg-blue-500 text-white flex items-center justify-center text-[7px] font-bold">✓</span>
+                      <span>Trip packing list</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-white/40 dark:bg-gray-800/40 border border-dashed border-gray-300 dark:border-gray-700 flex items-center gap-1.5 text-[9px] text-gray-400">
+                      <span class="w-3 h-3 rounded-full border border-gray-300 dark:border-gray-600"></span>
+                      <span>Next app idea</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-1.5 border-t border-gray-200/50 dark:border-gray-800 flex justify-around text-[8px] text-gray-400 font-medium">
+                  <span class="text-blue-500 font-bold">Lists</span>
+                  <span>Travel</span>
+                  <span>Settings</span>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
 
-        <!-- Card Footer -->
-        <div class="pt-1 text-[10px] font-medium text-[var(--muted)] flex items-center justify-center gap-1 opacity-70">
-          <span>Scroll or tap dots to switch cards</span>
-          <span class="animate-bounce">↓</span>
+        <!-- BOTTOM ACTION ROW -->
+        <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
+          <div class="flex items-center gap-3">
+            <button onclick="scrollToSlide(3)" class="px-3 py-1 rounded-full bg-[var(--blue)] text-white font-semibold hover:bg-[var(--blue-hover)] transition-all">
+              Explore Projects ↗
+            </button>
+            <button onclick="scrollToSlide(1)" class="hover:text-[var(--text)] transition-colors">
+              Read My Story ↓
+            </button>
+          </div>
+          <span class="hidden sm:inline font-mono text-[9px]">SCROLL OR ARROW KEYS TO NAVIGATE</span>
         </div>
 
       </section>
@@ -335,188 +330,296 @@
     <!-- CARD 02: ABOUT / STORY                                                  -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-1">
-      <section class="card-shell p-5 sm:p-8 flex flex-col justify-between">
+      <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <div>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)]">Story & Journey</span>
-          <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight mt-0.5 mb-3">Curiosity is my starting point.</h2>
-        </div>
+        <!-- CARD INTEGRATED HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-900 text-white font-bold text-xs flex items-center justify-center shadow">
+              VP
+            </span>
+            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
+          </div>
 
-        <!-- Combined Compact Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 my-auto items-stretch">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-500 text-[10px] font-bold tracking-wider uppercase">
+            02 / STORY
+          </div>
+        </header>
+
+        <!-- CENTER CONTENT: BALANCED STORY & PRINCIPLES -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 my-auto items-stretch">
           
-          <!-- Story Block -->
-          <div class="md:col-span-7 glass-card p-4 sm:p-6 rounded-apple-lg flex flex-col justify-between relative overflow-hidden">
+          <!-- Left Personal Story Box -->
+          <div class="md:col-span-7 glass-card p-5 rounded-apple-lg flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-blue-500/10 rounded-full blur-2xl"></div>
             <div>
-              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-gray-800 to-gray-950 text-white flex items-center justify-center font-bold text-xs mb-2 shadow">
-                VP.
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)]">Background & Journey</span>
+                <span class="text-xs text-[var(--blue)] font-bold">U.S. Resident since 2005</span>
               </div>
-              <h3 class="text-base sm:text-lg font-bold tracking-tight mb-2">
-                Self-taught. Family-minded. Always learning.
+
+              <h3 class="text-lg sm:text-2xl font-bold tracking-tight mb-2">
+                Curiosity is my starting point. Family keeps me grounded.
               </h3>
-              <p class="text-[var(--muted)] text-xs leading-relaxed mb-3">
-                I’m Varun Patel, an Indian-origin husband and father in the US since 2005. Family keeps me grounded; building iOS apps gives me a creative outlet to solve real everyday problems.
+
+              <p class="text-xs sm:text-sm text-[var(--muted)] leading-relaxed mb-4">
+                I’m Varun Patel, an Indian-origin husband and father living in the United States. My family inspires me to spend time meaningfully, and building iOS apps gives me a creative avenue to explore real-world challenges and turn solutions into sleek, native software.
               </p>
             </div>
 
-            <div class="pt-2 border-t border-[var(--line)] flex items-center gap-2.5">
-              <span class="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--blue)]">2025</span>
-              <span class="text-[10px] text-[var(--muted)] leading-tight">
-                Began hands-on coding & iOS app dev.
-              </span>
+            <div class="pt-3 border-t border-[var(--line)] flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl font-extrabold tracking-tight text-[var(--blue)]">2025</span>
+                <span class="text-[10px] text-[var(--muted)] leading-tight">
+                  Official start of my hands-on<br>iOS app development journey.
+                </span>
+              </div>
+
+              <div class="hidden sm:block text-right">
+                <span class="text-[10px] font-mono text-[var(--muted)]">LOCATION</span>
+                <div class="text-xs font-semibold">United States 🇺🇸</div>
+              </div>
             </div>
           </div>
 
-          <!-- Principles Column -->
-          <div class="md:col-span-5 flex flex-col justify-between gap-2">
-            <div class="glass-card p-3 rounded-xl flex-1 flex items-start gap-2.5">
-              <div class="text-base text-blue-500 font-bold">⌘</div>
+          <!-- Right 4 Core Principles Grid -->
+          <div class="md:col-span-5 grid grid-cols-2 gap-2.5">
+            
+            <div class="glass-card p-3.5 rounded-xl flex flex-col justify-between border border-[var(--line)]">
+              <div class="text-lg mb-1 text-blue-500 font-bold">⌘</div>
               <div>
-                <h4 class="text-xs font-bold">Learn by building</h4>
-                <p class="text-[10px] text-[var(--muted)] leading-tight mt-0.5">Concepts to working experiments.</p>
+                <h4 class="text-xs font-bold mb-0.5">Learn by Building</h4>
+                <p class="text-[10px] text-[var(--muted)] leading-tight">Concepts turn into working code experiments instantly.</p>
               </div>
             </div>
 
-            <div class="glass-card p-3 rounded-xl flex-1 flex items-start gap-2.5">
-              <div class="text-base text-purple-500 font-bold">◉</div>
+            <div class="glass-card p-3.5 rounded-xl flex flex-col justify-between border border-[var(--line)]">
+              <div class="text-lg mb-1 text-purple-500 font-bold">◉</div>
               <div>
-                <h4 class="text-xs font-bold">Solve real problems</h4>
-                <p class="text-[10px] text-[var(--muted)] leading-tight mt-0.5">Everyday needs, non-cluttered.</p>
+                <h4 class="text-xs font-bold mb-0.5">Solve Real Problems</h4>
+                <p class="text-[10px] text-[var(--muted)] leading-tight">Focused on simple utility without cognitive noise.</p>
               </div>
             </div>
 
-            <div class="glass-card p-3 rounded-xl flex-1 flex items-start gap-2.5">
-              <div class="text-base text-pink-500 font-bold">↗</div>
+            <div class="glass-card p-3.5 rounded-xl flex flex-col justify-between border border-[var(--line)]">
+              <div class="text-lg mb-1 text-emerald-500 font-bold">✦</div>
               <div>
-                <h4 class="text-xs font-bold">Iterate & improve</h4>
-                <p class="text-[10px] text-[var(--muted)] leading-tight mt-0.5">Smoother UX with each version.</p>
+                <h4 class="text-xs font-bold mb-0.5">Human + AI Synergy</h4>
+                <p class="text-[10px] text-[var(--muted)] leading-tight">AI accelerates logic, human vision directs purpose.</p>
               </div>
             </div>
+
+            <div class="glass-card p-3.5 rounded-xl flex flex-col justify-between border border-[var(--line)]">
+              <div class="text-lg mb-1 text-pink-500 font-bold">↗</div>
+              <div>
+                <h4 class="text-xs font-bold mb-0.5">Constant Iteration</h4>
+                <p class="text-[10px] text-[var(--muted)] leading-tight">Cleaner architecture and smoother UX with every commit.</p>
+              </div>
+            </div>
+
           </div>
 
         </div>
 
-        <!-- Footer Bar inside card -->
-        <div class="pt-2 text-[10px] text-[var(--muted)] flex justify-between items-center border-t border-[var(--line)]">
-          <span>Card 02 of 05</span>
-          <button onclick="scrollToSlide(2)" class="font-semibold text-[var(--blue)] hover:underline">Next: Toolbox →</button>
+        <!-- BOTTOM STATUS PILLS -->
+        <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-[var(--text)]">Core Values:</span>
+            <span class="px-2 py-0.5 rounded-full glass-card border border-[var(--line)]">Precision</span>
+            <span class="px-2 py-0.5 rounded-full glass-card border border-[var(--line)]">Curiosity</span>
+            <span class="px-2 py-0.5 rounded-full glass-card border border-[var(--line)]">Simplicity</span>
+          </div>
+          <button onclick="scrollToSlide(2)" class="font-semibold text-[var(--blue)] hover:underline">
+            Next: Toolbox →
+          </button>
         </div>
 
       </section>
     </div>
 
     <!-- ----------------------------------------------------------------------- -->
-    <!-- CARD 03: DEVELOPER TOOLBOX                                              -->
+    <!-- CARD 03: DEVELOPER TOOLBOX + PLAYABLE XCODE SCREEN                      -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-2">
-      <section class="card-shell p-5 sm:p-8 flex flex-col justify-between">
+      <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <div class="flex items-center justify-between gap-2 mb-2">
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)]">Developer Toolbox</span>
-            <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight mt-0.5">Human ideas. AI workflow.</h2>
+        <!-- CARD INTEGRATED HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-700 text-white font-bold text-xs flex items-center justify-center shadow">
+              VP
+            </span>
+            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
           </div>
 
-          <!-- Search Filter -->
-          <div class="flex items-center gap-1.5 bg-[var(--surface-solid)] border border-[var(--line)] rounded-full px-2.5 py-1 text-[11px]">
-            <span class="text-gray-400">🔍</span>
-            <input type="text" id="toolSearch" placeholder="Filter..." class="bg-transparent focus:outline-none text-[var(--text)] w-20 sm:w-24">
+          <div class="flex items-center gap-3">
+            <div class="hidden sm:flex items-center gap-1.5 bg-[var(--surface-solid)] border border-[var(--line)] rounded-full px-2.5 py-0.5 text-[10px]">
+              <span class="text-gray-400">🔍</span>
+              <input type="text" id="toolSearch" placeholder="Filter tools..." class="bg-transparent focus:outline-none text-[var(--text)] w-20">
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-[10px] font-bold tracking-wider uppercase">
+              03 / TOOLBOX
+            </div>
           </div>
-        </div>
+        </header>
 
-        <div class="my-auto space-y-3">
-          <!-- Build Category -->
-          <div>
-            <h4 class="text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider mb-1.5">Build</h4>
-            <div class="flex flex-wrap gap-2" id="buildToolsGrid">
-              
-              <div class="tool-chip glass-card px-3 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-blue-500/10 text-blue-500 font-mono font-bold text-[10px] flex items-center justify-center">X</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Xcode</div>
-                  <div class="text-[8px] text-[var(--muted)]">iOS IDE</div>
+        <!-- CENTER CONTENT: TOOLBOX + PLAYABLE XCODE ENVIRONMENT -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 my-auto items-stretch">
+          
+          <!-- Left Column: Tool Chips Grid -->
+          <div class="md:col-span-5 flex flex-col justify-between space-y-3">
+            <div>
+              <h4 class="text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider mb-2">Native Build Stack</h4>
+              <div class="flex flex-wrap gap-1.5" id="buildToolsGrid">
+                
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-blue-500/10 text-blue-500 font-mono font-bold text-[10px] flex items-center justify-center">X</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">Xcode</div>
+                    <div class="text-[8px] text-[var(--muted)]">iOS IDE</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="tool-chip glass-card px-3 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-orange-500/10 text-orange-500 font-mono font-bold text-[10px] flex items-center justify-center">Sw</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Swift / SwiftUI</div>
-                  <div class="text-[8px] text-[var(--muted)]">Native Framework</div>
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-orange-500/10 text-orange-500 font-mono font-bold text-[10px] flex items-center justify-center">Sw</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">SwiftUI / Swift</div>
+                    <div class="text-[8px] text-[var(--muted)]">Native UI</div>
+                  </div>
                 </div>
-              </div>
 
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-sky-500/10 text-sky-500 font-mono font-bold text-[10px] flex items-center justify-center">CD</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">CoreData</div>
+                    <div class="text-[8px] text-[var(--muted)]">Local Storage</div>
+                  </div>
+                </div>
+
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-pink-500/10 text-pink-500 font-mono font-bold text-[10px] flex items-center justify-center">SF</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">SF Symbols</div>
+                    <div class="text-[8px] text-[var(--muted)]">Iconography</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider mb-2">AI & Iteration Stack</h4>
+              <div class="flex flex-wrap gap-1.5" id="aiToolsGrid">
+                
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-amber-500/10 text-amber-500 font-bold text-[10px] flex items-center justify-center">C</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">Claude</div>
+                    <div class="text-[8px] text-[var(--muted)]">Refactoring</div>
+                  </div>
+                </div>
+
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-violet-500/10 text-violet-500 font-bold text-[10px] flex items-center justify-center">Cu</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">Cursor</div>
+                    <div class="text-[8px] text-[var(--muted)]">Agentic Editor</div>
+                  </div>
+                </div>
+
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-500 font-bold text-[10px] flex items-center justify-center">✳</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">ChatGPT</div>
+                    <div class="text-[8px] text-[var(--muted)]">Architecture</div>
+                  </div>
+                </div>
+
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-teal-500/10 text-teal-500 font-bold text-[10px] flex items-center justify-center">P</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">Perplexity</div>
+                    <div class="text-[8px] text-[var(--muted)]">Research</div>
+                  </div>
+                </div>
+
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-indigo-500/10 text-indigo-500 font-bold text-[10px] flex items-center justify-center">✦</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">Copilot</div>
+                    <div class="text-[8px] text-[var(--muted)]">Inline Docs</div>
+                  </div>
+                </div>
+
+                <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
+                  <span class="w-5 h-5 rounded bg-blue-600/10 text-blue-600 font-bold text-[10px] flex items-center justify-center">G</span>
+                  <div>
+                    <div class="text-[11px] font-semibold leading-none">Gemini</div>
+                    <div class="text-[8px] text-[var(--muted)]">Synthesis</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Workflow Summary Box -->
+            <div class="p-3 rounded-xl bg-blue-500/5 border border-blue-500/10 text-[10px] text-[var(--muted)] leading-relaxed">
+              <span class="font-bold text-[var(--text)]">Workflow Philosophy:</span> Human intuition defines the app vision and user flow, while AI assistants refine code structure, suggest optimal SwiftUI patterns, and catch edge cases.
             </div>
           </div>
 
-          <!-- AI & Thinking Category -->
-          <div>
-            <h4 class="text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider mb-1.5">Think, Learn & Iterate</h4>
-            <div class="flex flex-wrap gap-2" id="aiToolsGrid">
-              
-              <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-emerald-500/10 text-emerald-500 font-bold text-[10px] flex items-center justify-center">✳</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">ChatGPT</div>
-                  <div class="text-[8px] text-[var(--muted)]">Architecture</div>
-                </div>
+          <!-- Right Column: Interactive Playable Xcode Playground Screen -->
+          <div class="md:col-span-7 rounded-2xl bg-[#1e1e24] text-gray-200 border border-gray-700 shadow-2xl flex flex-col justify-between overflow-hidden font-mono text-[11px]">
+            
+            <!-- Xcode Window Top Bar -->
+            <div class="px-3 py-2 bg-[#282830] border-b border-gray-700 flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                <span class="text-[10px] text-gray-400 font-sans font-semibold ml-2">VarunAppIdea.swift — Xcode Playground</span>
               </div>
 
-              <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-teal-500/10 text-teal-500 font-bold text-[10px] flex items-center justify-center">P</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Perplexity</div>
-                  <div class="text-[8px] text-[var(--muted)]">Research</div>
-                </div>
-              </div>
-
-              <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-amber-500/10 text-amber-500 font-bold text-[10px] flex items-center justify-center">C</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Claude</div>
-                  <div class="text-[8px] text-[var(--muted)]">Code Review</div>
-                </div>
-              </div>
-
-              <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-indigo-500/10 text-indigo-500 font-bold text-[10px] flex items-center justify-center">✦</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Copilot</div>
-                  <div class="text-[8px] text-[var(--muted)]">Suggestions</div>
-                </div>
-              </div>
-
-              <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-blue-600/10 text-blue-600 font-bold text-[10px] flex items-center justify-center">G</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Gemini</div>
-                  <div class="text-[8px] text-[var(--muted)]">Synthesis</div>
-                </div>
-              </div>
-
-              <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-sky-500/10 text-sky-500 font-bold text-[10px] flex items-center justify-center">W</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Windsurf</div>
-                  <div class="text-[8px] text-[var(--muted)]">AI Flow IDE</div>
-                </div>
-              </div>
-
-              <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
-                <span class="w-5 h-5 rounded bg-violet-500/10 text-violet-500 font-bold text-[10px] flex items-center justify-center">Cu</span>
-                <div>
-                  <div class="text-[11px] font-semibold leading-none">Cursor</div>
-                  <div class="text-[8px] text-[var(--muted)]">Agentic Editor</div>
-                </div>
-              </div>
-
+              <button onclick="runXcodeSnippet()" id="runXcodeBtn" class="px-2.5 py-0.5 rounded bg-blue-600 hover:bg-blue-500 text-white font-sans text-[10px] font-bold flex items-center gap-1 transition-all shadow">
+                <span>▶</span> Run Code
+              </button>
             </div>
+
+            <!-- Code Editor Body -->
+            <div class="p-3.5 space-y-1 text-left bg-[#1e1e24] text-gray-300 leading-normal font-mono text-[10px] sm:text-[11px]">
+              <div><span class="text-purple-400">import</span> SwiftUI</div>
+              <div class="text-gray-500">// Interactive Swift App Logic Prototype</div>
+              <div><span class="text-purple-400">struct</span> <span class="text-amber-300">AppIdea</span> {</div>
+              <div class="pl-4"><span class="text-purple-400">let</span> title = <span class="text-emerald-400">"EasyList iOS"</span></div>
+              <div class="pl-4"><span class="text-purple-400">let</span> developer = <span class="text-emerald-400">"Varun Patel"</span></div>
+              <div class="pl-4"><span class="text-purple-400">var</span> status = <span class="text-emerald-400">"Building in progress..."</span></div>
+              <div class="pl-4"><span class="text-purple-400">var</span> isNativeSwiftUI = <span class="text-orange-400">true</span></div>
+              <div>}</div>
+              <div class="pt-1"><span class="text-purple-400">let</span> currentBuild = <span class="text-amber-300">AppIdea</span>()</div>
+              <div><span class="text-blue-400">print</span>(<span class="text-emerald-400">"🚀 Executing \(currentBuild.title) by \(currentBuild.developer)..."</span>)</div>
+            </div>
+
+            <!-- Xcode Console Simulator Output Box -->
+            <div class="p-3 bg-[#18181c] border-t border-gray-800 text-[10px]">
+              <div class="flex items-center justify-between text-gray-500 text-[9px] mb-1">
+                <span>ALL CONSOLE OUTPUT</span>
+                <span id="xcodeBuildStatus" class="text-emerald-400 font-sans">● Ready</span>
+              </div>
+              <div id="xcodeConsole" class="text-emerald-400 font-mono text-[10px] h-12 flex items-center">
+                Press "▶ Run Code" above to execute Swift code logic live...
+              </div>
+            </div>
+
           </div>
+
         </div>
 
-        <div class="pt-2 text-[10px] text-[var(--muted)] flex justify-between items-center border-t border-[var(--line)]">
+        <!-- BOTTOM STATUS ROW -->
+        <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
           <span>Card 03 of 05</span>
-          <button onclick="scrollToSlide(3)" class="font-semibold text-[var(--blue)] hover:underline">Next: Projects →</button>
+          <button onclick="scrollToSlide(3)" class="font-semibold text-[var(--blue)] hover:underline">
+            Next: Projects →
+          </button>
         </div>
 
       </section>
@@ -526,145 +629,233 @@
     <!-- CARD 04: PROJECTS                                                       -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-3">
-      <section class="card-shell p-5 sm:p-8 flex flex-col justify-between">
+      <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <div class="flex items-center justify-between gap-2 mb-2">
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)]">Selected Work</span>
-            <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight mt-0.5">Small steps. Real apps.</h2>
+        <!-- CARD INTEGRATED HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-teal-700 text-white font-bold text-xs flex items-center justify-center shadow">
+              VP
+            </span>
+            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
           </div>
 
-          <!-- Project Filter Buttons -->
-          <div class="flex gap-1" id="projectFilterBtns">
-            <button data-filter="all" class="project-filter-btn px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[var(--blue)] text-white transition-all">All</button>
-            <button data-filter="productivity" class="project-filter-btn px-2.5 py-0.5 rounded-full text-[10px] font-semibold glass-card text-[var(--muted)] transition-all">Productivity</button>
-            <button data-filter="travel" class="project-filter-btn px-2.5 py-0.5 rounded-full text-[10px] font-semibold glass-card text-[var(--muted)] transition-all">Travel</button>
-          </div>
-        </div>
+          <div class="flex items-center gap-2">
+            <!-- Filter Pills -->
+            <div class="flex gap-1" id="projectFilterBtns">
+              <button data-filter="all" class="project-filter-btn px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[var(--blue)] text-white transition-all">All</button>
+              <button data-filter="productivity" class="project-filter-btn px-2 py-0.5 rounded-full text-[10px] font-semibold glass-card text-[var(--muted)] transition-all">Productivity</button>
+              <button data-filter="travel" class="project-filter-btn px-2 py-0.5 rounded-full text-[10px] font-semibold glass-card text-[var(--muted)] transition-all">Travel</button>
+            </div>
 
-        <!-- Projects Grid Container (No scrollable wrapper) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-auto" id="projectsGrid">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-[10px] font-bold tracking-wider uppercase">
+              04 / PROJECTS
+            </div>
+          </div>
+        </header>
+
+        <!-- CENTER CONTENT: 2 RICH FEATURED PROJECT CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto" id="projectsGrid">
           
-          <!-- EasyList Card -->
-          <article data-category="productivity" class="project-card glass-card rounded-xl flex flex-col justify-between p-4 border border-[var(--line)]">
+          <!-- PROJECT 1: EasyList -->
+          <article data-category="productivity" class="project-card glass-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-[var(--line)] hover:shadow-xl transition-all">
             <div>
-              <div class="flex items-center justify-between text-[10px] text-[var(--muted)] mb-1.5">
-                <span class="flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  Personal Project
+              <!-- Top Banner & Tile -->
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center shadow-md">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 64 64" fill="none">
+                      <path d="M18 17h29M18 31h29M18 45h17" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+                      <path d="m9 16 3 3 5-6M9 30l3 3 5-6M9 44l3 3 5-6" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base sm:text-lg font-bold tracking-tight">EasyList</h3>
+                    <div class="text-[10px] text-blue-500 font-semibold">SwiftUI Native • Productivity</div>
+                  </div>
+                </div>
+
+                <span class="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 text-[9px] font-bold">
+                  01 / 02
                 </span>
-                <span class="font-mono">01 / 02</span>
               </div>
 
-              <div class="flex items-center gap-3 mb-2">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center shadow shrink-0">
-                  <svg class="w-4 h-4 text-white" viewBox="0 0 64 64" fill="none">
-                    <path d="M18 17h29M18 31h29M18 45h17" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
-                    <path d="m9 16 3 3 5-6M9 30l3 3 5-6M9 44l3 3 5-6" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold tracking-tight">EasyList</h3>
-                  <span class="text-[9px] text-[var(--muted)]">SwiftUI / iOS App</span>
-                </div>
-              </div>
-
-              <p class="text-[11px] text-[var(--muted)] leading-relaxed mb-2">
-                A simple, practical approach to keeping lists organized. Built for clear, effortless daily planning.
+              <p class="text-xs text-[var(--muted)] leading-relaxed mb-3">
+                A simple, practical approach to keeping daily tasks and lists organized. Designed around zero cognitive friction, quick entry, and instant completion tracking.
               </p>
+
+              <!-- Feature Bullet Highlights -->
+              <ul class="space-y-1 text-[10px] text-[var(--muted)] mb-3">
+                <li class="flex items-center gap-1.5"><span class="text-blue-500 font-bold">✓</span> Fast list item creation and categories</li>
+                <li class="flex items-center gap-1.5"><span class="text-blue-500 font-bold">✓</span> Native Apple UI Guidelines & Haptics</li>
+              </ul>
+
+              <!-- Tag Chips -->
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">iOS App</span>
+                <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">SwiftUI</span>
+                <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">CoreData</span>
+              </div>
             </div>
 
-            <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between">
-              <span class="text-[9px] text-[var(--muted)]">Focus: Less mental clutter</span>
-              <button onclick="openModal('easylist')" class="text-[11px] font-bold text-[var(--blue)] hover:underline flex items-center gap-0.5">
-                Learn more ↗
+            <div class="pt-2.5 border-t border-[var(--line)] flex items-center justify-between">
+              <span class="text-[10px] text-[var(--muted)] font-medium">Focus: Less mental clutter</span>
+              <button onclick="openModal('easylist')" class="px-3 py-1 rounded-full bg-[var(--blue)] text-white text-[10px] font-bold hover:bg-[var(--blue-hover)] transition-all">
+                View Details ↗
               </button>
             </div>
           </article>
 
-          <!-- TripMate Card -->
-          <article data-category="travel" class="project-card glass-card rounded-xl flex flex-col justify-between p-4 border border-[var(--line)]">
+          <!-- PROJECT 2: TripMate -->
+          <article data-category="travel" class="project-card glass-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-[var(--line)] hover:shadow-xl transition-all">
             <div>
-              <div class="flex items-center justify-between text-[10px] text-[var(--muted)] mb-1.5">
-                <span class="flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  Personal Project
+              <!-- Top Banner & Tile -->
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center shadow-md">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 64 64" fill="none">
+                      <path d="M32 55s18-17.2 18-32A18 18 0 0 0 14 23c0 14.8 18 32 18 32Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+                      <circle cx="32" cy="23" r="6" stroke="currentColor" stroke-width="4"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base sm:text-lg font-bold tracking-tight">TripMate</h3>
+                    <div class="text-[10px] text-emerald-500 font-semibold">SwiftUI Concept • Travel</div>
+                  </div>
+                </div>
+
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[9px] font-bold">
+                  02 / 02
                 </span>
-                <span class="font-mono">02 / 02</span>
               </div>
 
-              <div class="flex items-center gap-3 mb-2">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center shadow shrink-0">
-                  <svg class="w-4 h-4 text-white" viewBox="0 0 64 64" fill="none">
-                    <path d="M32 55s18-17.2 18-32A18 18 0 0 0 14 23c0 14.8 18 32 18 32Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-                    <circle cx="32" cy="23" r="6" stroke="currentColor" stroke-width="4"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold tracking-tight">TripMate</h3>
-                  <span class="text-[9px] text-[var(--muted)]">SwiftUI / Travel Concept</span>
-                </div>
-              </div>
-
-              <p class="text-[11px] text-[var(--muted)] leading-relaxed mb-2">
-                A travel-focused app concept designed to make trips easier to plan, manage, and track details in one place.
+              <p class="text-xs text-[var(--muted)] leading-relaxed mb-3">
+                A travel-focused app concept designed to simplify trip planning, consolidate packing lists, and keep essential travel details readily accessible in one unified hub.
               </p>
+
+              <!-- Feature Bullet Highlights -->
+              <ul class="space-y-1 text-[10px] text-[var(--muted)] mb-3">
+                <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Trip packing checklist with smart grouping</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Lightweight offline-friendly architecture</li>
+              </ul>
+
+              <!-- Tag Chips -->
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">iOS Concept</span>
+                <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">SwiftUI</span>
+                <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">Travel UX</span>
+              </div>
             </div>
 
-            <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between">
-              <span class="text-[9px] text-[var(--muted)]">Focus: Seamless Travel</span>
-              <button onclick="openModal('tripmate')" class="text-[11px] font-bold text-[var(--blue)] hover:underline flex items-center gap-0.5">
-                Learn more ↗
+            <div class="pt-2.5 border-t border-[var(--line)] flex items-center justify-between">
+              <span class="text-[10px] text-[var(--muted)] font-medium">Focus: Seamless Travel</span>
+              <button onclick="openModal('tripmate')" class="px-3 py-1 rounded-full bg-[var(--blue)] text-white text-[10px] font-bold hover:bg-[var(--blue-hover)] transition-all">
+                View Details ↗
               </button>
             </div>
           </article>
 
         </div>
 
-        <div class="pt-2 text-[10px] text-[var(--muted)] flex justify-between items-center border-t border-[var(--line)]">
-          <span>Card 04 of 05</span>
-          <button onclick="scrollToSlide(4)" class="font-semibold text-[var(--blue)] hover:underline">Next: Contact →</button>
+        <!-- SNEAK PEEK BOTTOM BAR -->
+        <div class="p-2.5 rounded-xl bg-purple-500/5 border border-purple-500/10 flex items-center justify-between text-[10px] text-[var(--muted)]">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-purple-500 animate-ping"></span>
+            <span class="font-bold text-[var(--text)]">Upcoming Project Concept:</span> Daily Habit Companion (In Active Architecture Phase)
+          </div>
+          <button onclick="scrollToSlide(4)" class="font-semibold text-[var(--blue)] hover:underline">
+            Contact & Connect →
+          </button>
         </div>
 
       </section>
     </div>
 
     <!-- ----------------------------------------------------------------------- -->
-    <!-- CARD 05: CONTACT & FOOTER (COMBINED CONCISE CARD)                       -->
+    <!-- CARD 05: CONTACT & FUTURE                                               -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-4">
-      <section class="card-shell p-5 sm:p-8 flex flex-col justify-between text-center">
+      <section class="card-shell p-5 sm:p-7 flex flex-col justify-between text-center">
         
-        <div>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)]">The Next Chapter</span>
-          <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight mt-0.5">Good ideas get better when shared.</h2>
+        <!-- CARD INTEGRATED HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-pink-600 to-purple-900 text-white font-bold text-xs flex items-center justify-center shadow">
+              VP
+            </span>
+            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
+          </div>
+
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-500 text-[10px] font-bold tracking-wider uppercase">
+            05 / CONTACT
+          </div>
+        </header>
+
+        <!-- CENTER CONTENT: ACTION & INTERACTIVE FEEDBACK GRID -->
+        <div class="my-auto space-y-4 max-w-2xl mx-auto w-full">
+          
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-[10px] font-semibold mb-2">
+              Open for Feedback & Collaborations
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+              Let’s build something thoughtful together.
+            </h2>
+            <p class="text-xs sm:text-sm text-[var(--muted)] max-w-lg mx-auto leading-relaxed mt-1.5">
+              Whether you have feedback on my apps, a potential project idea, or advice to share as I continue my iOS developer journey, I’d love to hear from you.
+            </p>
+          </div>
+
+          <!-- Contact Action Cards Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+            
+            <!-- Direct Action Card -->
+            <div class="glass-card p-4 rounded-xl flex flex-col justify-between space-y-3 border border-[var(--line)]">
+              <div>
+                <h4 class="text-xs font-bold mb-1">Direct Contact</h4>
+                <p class="text-[10px] text-[var(--muted)] leading-relaxed">Reach out directly via email for thoughts, app feedback, or discussions.</p>
+              </div>
+
+              <div class="space-y-2">
+                <a href="mailto:hello@example.com?subject=Hello%20Varun" class="w-full py-2 rounded-lg bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-xs font-semibold flex items-center justify-center gap-1 shadow transition-all">
+                  <span>Send Email</span> ↗
+                </a>
+                <button onclick="copyEmail()" class="w-full py-1.5 rounded-lg glass-card hover:bg-gray-200/50 text-[10px] font-semibold flex items-center justify-center gap-1.5 transition-all">
+                  <span>Copy Email Address</span> 📋
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Quick Message Simulator Card -->
+            <div class="glass-card p-4 rounded-xl flex flex-col justify-between border border-[var(--line)]" id="feedbackFormCard">
+              <div>
+                <h4 class="text-xs font-bold mb-1">Quick Note / Feedback</h4>
+                <p class="text-[10px] text-[var(--muted)] leading-relaxed">Send a quick note right here from your browser.</p>
+              </div>
+
+              <form onsubmit="handleQuickFeedback(event)" class="space-y-2 mt-2">
+                <input type="text" id="feedbackName" placeholder="Your name..." required class="w-full px-2.5 py-1.5 rounded-md bg-[var(--surface-solid)] border border-[var(--line)] text-xs text-[var(--text)] focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <input type="text" id="feedbackMsg" placeholder="Short message..." required class="w-full px-2.5 py-1.5 rounded-md bg-[var(--surface-solid)] border border-[var(--line)] text-xs text-[var(--text)] focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <button type="submit" class="w-full py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow">
+                  Submit Note
+                </button>
+              </form>
+            </div>
+
+          </div>
+
         </div>
 
-        <!-- Contact CTA Content -->
-        <div class="my-auto max-w-md mx-auto py-2">
-          <p class="text-xs text-[var(--muted)] leading-relaxed mb-5">
-            I’m continuing to learn, build, and explore new iOS app ideas. Have feedback, a project idea, or a potential collaboration in mind? I’d love to connect.
-          </p>
-
-          <!-- Contact Buttons -->
-          <div class="flex flex-wrap items-center justify-center gap-2.5">
-            <a href="mailto:hello@example.com?subject=Hello%20Varun" class="px-5 py-2.5 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-xs font-semibold shadow-md shadow-blue-500/20 transition-all">
-              Say Hello ↗
-            </a>
-
-            <button onclick="copyEmail()" class="px-4 py-2.5 rounded-full glass-card hover:bg-gray-200/50 text-xs font-semibold transition-all flex items-center gap-1.5">
-              <span>Copy Email Address</span>
-              <span class="text-gray-400 text-[10px]">📋</span>
+        <!-- INTEGRATED FOOTER INSIDE CARD -->
+        <div class="pt-3 border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between text-[10px] text-[var(--muted)] gap-2">
+          <div>© <span id="copyrightYear">2026</span> Varun Patel. Built with curiosity & code.</div>
+          
+          <div class="flex items-center gap-4">
+            <span>Location: United States 🇺🇸</span>
+            <button onclick="scrollToSlide(0)" class="font-bold text-[var(--blue)] hover:underline">
+              Back to Top ↑
             </button>
           </div>
-        </div>
-
-        <!-- Integrated Footer inside Final Card -->
-        <div class="pt-3 border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between text-[10px] text-[var(--muted)] gap-1.5">
-          <div>© <span id="copyrightYear">2026</span> Varun Patel. Built with curiosity.</div>
-          <button onclick="scrollToSlide(0)" class="hover:text-[var(--text)] transition-colors font-semibold">
-            Back to top ↑
-          </button>
         </div>
 
       </section>
@@ -676,7 +867,7 @@
   <!-- MODAL OVERLAY                                                             -->
   <!-- ========================================================================= -->
   <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-md" aria-modal="true" role="dialog">
-    <div class="glass-card bg-[var(--surface-solid)] w-full max-w-md rounded-apple-xl p-5 shadow-2xl relative border border-white/20">
+    <div class="glass-card bg-[var(--surface-solid)] w-full max-w-md rounded-apple-xl p-5 shadow-2xl relative border border-white/20 text-left">
       <button onclick="closeModal()" aria-label="Close modal" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-gray-600 dark:hover:text-white text-base font-bold p-1">
         ✕
       </button>
@@ -690,16 +881,10 @@
     <span>✨</span> <span id="toastMessage">Copied to clipboard!</span>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- JAVASCRIPT LOGIC                                                          -->
-  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // -------------------------------------------------------------------------
-    // 1. SNAP CARD NAVIGATION & OBSERVER
-    // -------------------------------------------------------------------------
     const container = document.getElementById('snapContainer');
     const slides = document.querySelectorAll('.card-slide');
-    const dots = document.querySelectorAll('.nav-dot');
 
     function scrollToSlide(index) {
       if (slides[index]) {
@@ -707,67 +892,51 @@
       }
     }
 
-    // IntersectionObserver to sync vertical dots with active slide card
-    const observerOptions = {
-      root: container,
-      threshold: 0.6
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const slideId = entry.target.id;
-          const index = parseInt(slideId.replace('slide-', ''));
-          
-          dots.forEach((dot, i) => {
-            if (i === index) {
-              dot.classList.add('active');
-            } else {
-              dot.classList.remove('active');
-            }
-          });
-        }
-      });
-    }, observerOptions);
-
-    slides.forEach(slide => observer.observe(slide));
-
-    // Keyboard Arrow Keys to switch card slides
+    // Keyboard Arrow Navigation
     window.addEventListener('keydown', (e) => {
-      let activeIndex = 0;
-      dots.forEach((dot, i) => {
-        if (dot.classList.contains('active')) activeIndex = i;
-      });
+      const currentScroll = container.scrollTop;
+      const slideHeight = window.innerHeight;
+      const currentIndex = Math.round(currentScroll / slideHeight);
 
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        if (activeIndex < slides.length - 1) scrollToSlide(activeIndex + 1);
+        if (currentIndex < slides.length - 1) scrollToSlide(currentIndex + 1);
       } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        if (activeIndex > 0) scrollToSlide(activeIndex - 1);
+        if (currentIndex > 0) scrollToSlide(currentIndex - 1);
       }
     });
 
-    // -------------------------------------------------------------------------
-    // 2. LIVE COPYRIGHT YEAR
-    // -------------------------------------------------------------------------
+    // Live Copyright Year
     document.getElementById('copyrightYear').textContent = new Date().getFullYear();
 
-    // -------------------------------------------------------------------------
-    // 3. TOOLBOX REAL-TIME SEARCH FILTER
-    // -------------------------------------------------------------------------
+    // Xcode Playground Code Runner Logic
+    function runXcodeSnippet() {
+      const consoleEl = document.getElementById('xcodeConsole');
+      const statusEl = document.getElementById('xcodeBuildStatus');
+      
+      statusEl.textContent = "● Compiling...";
+      statusEl.className = "text-yellow-400 font-sans animate-pulse";
+      consoleEl.textContent = "Building target 'VarunAppIdea' with Swift 5.9...";
+
+      setTimeout(() => {
+        statusEl.textContent = "● Build Succeeded";
+        statusEl.className = "text-emerald-400 font-sans";
+        consoleEl.innerHTML = `<span class="text-emerald-400 font-mono">🚀 Executing EasyList iOS by Varun Patel...\n[Success] Native SwiftUI View mounted smoothly in 0.04s.</span>`;
+      }, 800);
+    }
+
+    // Toolbox Realtime Search
     const toolSearch = document.getElementById('toolSearch');
-    const toolChips = document.querySelectorAll('.tool-chip');
-
-    toolSearch.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase().trim();
-      toolChips.forEach(chip => {
-        const text = chip.textContent.toLowerCase();
-        chip.style.display = text.includes(query) ? 'flex' : 'none';
+    if (toolSearch) {
+      toolSearch.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        document.querySelectorAll('.tool-chip').forEach(chip => {
+          const text = chip.textContent.toLowerCase();
+          chip.style.display = text.includes(query) ? 'flex' : 'none';
+        });
       });
-    });
+    }
 
-    // -------------------------------------------------------------------------
-    // 4. PROJECTS FILTER BUTTONS
-    // -------------------------------------------------------------------------
+    // Project Category Filter
     const filterBtns = document.querySelectorAll('.project-filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -783,18 +952,12 @@
 
         const filter = btn.getAttribute('data-filter');
         projectCards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
+          card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? 'flex' : 'none';
         });
       });
     });
 
-    // -------------------------------------------------------------------------
-    // 5. PROJECT DETAIL MODAL DATA & CONTROLLER
-    // -------------------------------------------------------------------------
+    // Modal Controller
     const projectData = {
       easylist: {
         title: "EasyList",
@@ -826,7 +989,6 @@
       const modal = document.getElementById('projectModal');
       const modalContent = document.getElementById('modalContent');
       const data = projectData[key];
-
       if (!data) return;
 
       modalContent.innerHTML = `
@@ -844,11 +1006,10 @@
 
         <div class="pt-2 border-t border-[var(--line)] flex justify-end">
           <button onclick="closeModal()" class="px-3.5 py-1 rounded-full bg-[var(--blue)] text-white text-xs font-semibold">
-            Close Overview
+            Close
           </button>
         </div>
       `;
-
       modal.classList.remove('hidden');
     }
 
@@ -860,18 +1021,30 @@
       if (e.target === document.getElementById('projectModal')) closeModal();
     });
 
-    // -------------------------------------------------------------------------
-    // 6. CLIPBOARD EMAIL COPY & TOAST NOTIFICATION
-    // -------------------------------------------------------------------------
+    // Quick Feedback Form Simulation
+    function handleQuickFeedback(e) {
+      e.preventDefault();
+      const name = document.getElementById('feedbackName').value;
+      const formCard = document.getElementById('feedbackFormCard');
+
+      formCard.innerHTML = `
+        <div class="py-4 text-center space-y-2">
+          <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-500 font-bold text-sm mx-auto flex items-center justify-center">✓</div>
+          <h4 class="text-xs font-bold text-[var(--text)]">Thanks, ${name}!</h4>
+          <p class="text-[10px] text-[var(--muted)]">Your message was submitted locally in this interactive demo.</p>
+        </div>
+      `;
+      showToast("Message sent successfully!");
+    }
+
+    // Email Copy & Toast Notification
     function copyEmail() {
-      const email = "hello@example.com";
       const tempInput = document.createElement('input');
-      tempInput.value = email;
+      tempInput.value = "hello@example.com";
       document.body.appendChild(tempInput);
       tempInput.select();
       document.execCommand('copy');
       document.body.removeChild(tempInput);
-
       showToast("Email copied: hello@example.com");
     }
 
