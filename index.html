@@ -176,30 +176,19 @@
     .section-shell {
       position: relative;
       border: 1px solid var(--line);
-      border-radius: 2rem;
-      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.03);
+      border-radius: 1.8rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
       overflow: hidden;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 1rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(246,246,248,0.94));
     }
 
-    .section-home {
-      background: linear-gradient(180deg, rgba(231, 245, 255, 0.9), rgba(255, 255, 255, 0.7));
-    }
-
-    .section-about {
-      background: linear-gradient(180deg, rgba(243, 232, 255, 0.82), rgba(255, 255, 255, 0.7));
-    }
-
-    .section-toolbox {
-      background: linear-gradient(180deg, rgba(232, 255, 244, 0.9), rgba(255, 255, 255, 0.75));
-    }
-
-    .section-projects {
-      background: linear-gradient(180deg, rgba(255, 240, 232, 0.88), rgba(255, 255, 255, 0.72));
-    }
-
+    .section-home,
+    .section-about,
+    .section-toolbox,
+    .section-projects,
     .section-contact {
-      background: linear-gradient(180deg, rgba(255, 247, 211, 0.9), rgba(255, 255, 255, 0.78));
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(246,246,248,0.94));
     }
 
     .projects-row {
@@ -233,6 +222,18 @@
     @media (min-width: 768px) {
       .projects-row .project-card {
         flex-basis: 48%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .section-shell {
+        max-width: calc(100% - 0.9rem);
+        border-radius: 1.2rem;
+      }
+
+      .section-shell > * {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
       }
     }
 
