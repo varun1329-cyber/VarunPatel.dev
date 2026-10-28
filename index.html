@@ -2,8 +2,8 @@
 <!-- 
   =============================================================================
   HTML DOCUMENT SETUP
-  - Single View Snap Card Presentation Mode (Zero Internal Card Scroll)
-  - Interactive Xcode Simulator Widget on Card 3 (Toolbox)
+  - Varun Patel iOS Portfolio (Single View Snap-Card Experience)
+  - Standardized Card Headers & Non-Clickable Footers Across All Cards
   =============================================================================
 -->
 <html lang="en" class="h-full">
@@ -40,9 +40,8 @@
     }
   </script>
 
-  <!-- Custom Styles for Full-Screen Card Snap Scrolling & Xcode IDE Mockup -->
+  <!-- Custom Styles for Full-Screen Card Snap Scrolling & Apple Glassmorphic UI -->
   <style>
-    /* Theme Tokens */
     :root {
       --bg: #090a0f;
       --surface: rgba(255, 255, 255, 0.88);
@@ -151,7 +150,7 @@
       -webkit-backdrop-filter: blur(16px);
     }
 
-    /* Keyframe Animations */
+    /* Animations */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(-3deg); }
       50% { transform: translateY(-5px) rotate(-1deg); }
@@ -200,27 +199,29 @@
   <main class="cards-snap-container" id="snapContainer">
 
     <!-- ----------------------------------------------------------------------- -->
-    <!-- CARD 01: HERO / HOME                                                    -->
+    <!-- CARD 01: HERO / INTRO                                                    -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-0">
       <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <!-- CARD INTEGRATED HEADER -->
+        <!-- CARD HEADER -->
         <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-3">
-          <div class="flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-900 text-white font-bold text-xs flex items-center justify-center shadow">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-900 text-white font-bold text-sm flex items-center justify-center shadow">
               VP
             </span>
-            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
+            <div class="flex flex-col text-left leading-tight">
+              <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel</span>
+              <span class="text-[10px] text-[var(--muted)] font-medium">Independent iOS Developer</span>
+            </div>
           </div>
 
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-[10px] font-bold tracking-wider uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-            01 / HERO
+          <div class="text-[10px] font-mono font-bold tracking-widest text-[var(--blue)] px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+            [01 - Intro]
           </div>
         </header>
 
-        <!-- CENTER CONTENT: 2-COLUMN BALANCED HERO -->
+        <!-- CENTER CONTENT: 2-COLUMN HERO -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 my-auto items-center">
           
           <!-- Left Column -->
@@ -310,43 +311,39 @@
 
         </div>
 
-        <!-- BOTTOM ACTION ROW -->
-        <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
-          <div class="flex items-center gap-3">
-            <button onclick="scrollToSlide(3)" class="px-3 py-1 rounded-full bg-[var(--blue)] text-white font-semibold hover:bg-[var(--blue-hover)] transition-all">
-              Explore Projects ↗
-            </button>
-            <button onclick="scrollToSlide(1)" class="hover:text-[var(--text)] transition-colors">
-              Read My Story ↓
-            </button>
-          </div>
-          <span class="hidden sm:inline font-mono text-[9px]">SCROLL OR ARROW KEYS TO NAVIGATE</span>
-        </div>
+        <!-- CARD FOOTER (NON-CLICKABLE INFORMATIVE LABEL) -->
+        <footer class="pt-2.5 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
+          <span class="font-mono text-[9px]">SCROLL OR ARROW KEYS TO NAVIGATE</span>
+          <span class="font-semibold text-[var(--blue)]">Next: Story & Journey ↓</span>
+        </footer>
 
       </section>
     </div>
 
     <!-- ----------------------------------------------------------------------- -->
-    <!-- CARD 02: ABOUT / STORY                                                  -->
+    <!-- CARD 02: STORY                                                          -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-1">
       <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <!-- CARD INTEGRATED HEADER -->
+        <!-- CARD HEADER -->
         <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-3">
-          <div class="flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-900 text-white font-bold text-xs flex items-center justify-center shadow">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-900 text-white font-bold text-sm flex items-center justify-center shadow">
               VP
             </span>
-            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
+            <div class="flex flex-col text-left leading-tight">
+              <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel</span>
+              <span class="text-[10px] text-[var(--muted)] font-medium">Independent iOS Developer</span>
+            </div>
           </div>
 
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-500 text-[10px] font-bold tracking-wider uppercase">
-            02 / STORY
+          <div class="text-[10px] font-mono font-bold tracking-widest text-purple-500 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+            [02 - Story]
           </div>
         </header>
 
-        <!-- CENTER CONTENT: BALANCED STORY & PRINCIPLES -->
+        <!-- CENTER CONTENT: STORY & PRINCIPLES -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 my-auto items-stretch">
           
           <!-- Left Personal Story Box -->
@@ -421,18 +418,15 @@
 
         </div>
 
-        <!-- BOTTOM STATUS PILLS -->
-        <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
+        <!-- CARD FOOTER (NON-CLICKABLE INFORMATIVE LABEL) -->
+        <footer class="pt-2.5 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
           <div class="flex items-center gap-2">
             <span class="font-bold text-[var(--text)]">Core Values:</span>
             <span class="px-2 py-0.5 rounded-full glass-card border border-[var(--line)]">Precision</span>
             <span class="px-2 py-0.5 rounded-full glass-card border border-[var(--line)]">Curiosity</span>
-            <span class="px-2 py-0.5 rounded-full glass-card border border-[var(--line)]">Simplicity</span>
           </div>
-          <button onclick="scrollToSlide(2)" class="font-semibold text-[var(--blue)] hover:underline">
-            Next: Toolbox →
-          </button>
-        </div>
+          <span class="font-semibold text-[var(--blue)]">Next: Developer Toolbox ↓</span>
+        </footer>
 
       </section>
     </div>
@@ -443,23 +437,20 @@
     <div class="card-slide" id="slide-2">
       <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <!-- CARD INTEGRATED HEADER -->
-        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-2.5">
-          <div class="flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-700 text-white font-bold text-xs flex items-center justify-center shadow">
+        <!-- CARD HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-3">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 text-white font-bold text-sm flex items-center justify-center shadow">
               VP
             </span>
-            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
+            <div class="flex flex-col text-left leading-tight">
+              <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel</span>
+              <span class="text-[10px] text-[var(--muted)] font-medium">Independent iOS Developer</span>
+            </div>
           </div>
 
-          <div class="flex items-center gap-3">
-            <div class="hidden sm:flex items-center gap-1.5 bg-[var(--surface-solid)] border border-[var(--line)] rounded-full px-2.5 py-0.5 text-[10px]">
-              <span class="text-gray-400">🔍</span>
-              <input type="text" id="toolSearch" placeholder="Filter tools..." class="bg-transparent focus:outline-none text-[var(--text)] w-20">
-            </div>
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-[10px] font-bold tracking-wider uppercase">
-              03 / TOOLBOX
-            </div>
+          <div class="text-[10px] font-mono font-bold tracking-widest text-[var(--blue)] px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+            [03 - Toolbox]
           </div>
         </header>
 
@@ -470,7 +461,7 @@
           <div class="md:col-span-5 flex flex-col justify-between space-y-3">
             <div>
               <h4 class="text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider mb-2">Native Build Stack</h4>
-              <div class="flex flex-wrap gap-1.5" id="buildToolsGrid">
+              <div class="flex flex-wrap gap-1.5">
                 
                 <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
                   <span class="w-5 h-5 rounded bg-blue-500/10 text-blue-500 font-mono font-bold text-[10px] flex items-center justify-center">X</span>
@@ -509,7 +500,7 @@
 
             <div>
               <h4 class="text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider mb-2">AI & Iteration Stack</h4>
-              <div class="flex flex-wrap gap-1.5" id="aiToolsGrid">
+              <div class="flex flex-wrap gap-1.5">
                 
                 <div class="tool-chip glass-card px-2.5 py-1.5 rounded-lg flex items-center gap-2 border border-[var(--line)]">
                   <span class="w-5 h-5 rounded bg-amber-500/10 text-amber-500 font-bold text-[10px] flex items-center justify-center">C</span>
@@ -614,13 +605,11 @@
 
         </div>
 
-        <!-- BOTTOM STATUS ROW -->
-        <div class="pt-2 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
+        <!-- CARD FOOTER (NON-CLICKABLE INFORMATIVE LABEL) -->
+        <footer class="pt-2.5 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
           <span>Card 03 of 05</span>
-          <button onclick="scrollToSlide(3)" class="font-semibold text-[var(--blue)] hover:underline">
-            Next: Projects →
-          </button>
-        </div>
+          <span class="font-semibold text-[var(--blue)]">Next: Selected Projects ↓</span>
+        </footer>
 
       </section>
     </div>
@@ -631,36 +620,29 @@
     <div class="card-slide" id="slide-3">
       <section class="card-shell p-5 sm:p-7 flex flex-col justify-between">
         
-        <!-- CARD INTEGRATED HEADER -->
-        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-2.5">
-          <div class="flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-teal-700 text-white font-bold text-xs flex items-center justify-center shadow">
+        <!-- CARD HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-3">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-teal-700 text-white font-bold text-sm flex items-center justify-center shadow">
               VP
             </span>
-            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
+            <div class="flex flex-col text-left leading-tight">
+              <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel</span>
+              <span class="text-[10px] text-[var(--muted)] font-medium">Independent iOS Developer</span>
+            </div>
           </div>
 
-          <div class="flex items-center gap-2">
-            <!-- Filter Pills -->
-            <div class="flex gap-1" id="projectFilterBtns">
-              <button data-filter="all" class="project-filter-btn px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[var(--blue)] text-white transition-all">All</button>
-              <button data-filter="productivity" class="project-filter-btn px-2 py-0.5 rounded-full text-[10px] font-semibold glass-card text-[var(--muted)] transition-all">Productivity</button>
-              <button data-filter="travel" class="project-filter-btn px-2 py-0.5 rounded-full text-[10px] font-semibold glass-card text-[var(--muted)] transition-all">Travel</button>
-            </div>
-
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-[10px] font-bold tracking-wider uppercase">
-              04 / PROJECTS
-            </div>
+          <div class="text-[10px] font-mono font-bold tracking-widest text-[var(--blue)] px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+            [04 - Projects]
           </div>
         </header>
 
         <!-- CENTER CONTENT: 2 RICH FEATURED PROJECT CARDS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto" id="projectsGrid">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto">
           
           <!-- PROJECT 1: EasyList -->
-          <article data-category="productivity" class="project-card glass-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-[var(--line)] hover:shadow-xl transition-all">
+          <article class="glass-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-[var(--line)] hover:shadow-xl transition-all">
             <div>
-              <!-- Top Banner & Tile -->
               <div class="flex items-start justify-between mb-3">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center shadow-md">
@@ -684,13 +666,11 @@
                 A simple, practical approach to keeping daily tasks and lists organized. Designed around zero cognitive friction, quick entry, and instant completion tracking.
               </p>
 
-              <!-- Feature Bullet Highlights -->
               <ul class="space-y-1 text-[10px] text-[var(--muted)] mb-3">
                 <li class="flex items-center gap-1.5"><span class="text-blue-500 font-bold">✓</span> Fast list item creation and categories</li>
                 <li class="flex items-center gap-1.5"><span class="text-blue-500 font-bold">✓</span> Native Apple UI Guidelines & Haptics</li>
               </ul>
 
-              <!-- Tag Chips -->
               <div class="flex flex-wrap gap-1.5 mb-2">
                 <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">iOS App</span>
                 <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">SwiftUI</span>
@@ -707,9 +687,8 @@
           </article>
 
           <!-- PROJECT 2: TripMate -->
-          <article data-category="travel" class="project-card glass-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-[var(--line)] hover:shadow-xl transition-all">
+          <article class="glass-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-[var(--line)] hover:shadow-xl transition-all">
             <div>
-              <!-- Top Banner & Tile -->
               <div class="flex items-start justify-between mb-3">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center shadow-md">
@@ -733,13 +712,11 @@
                 A travel-focused app concept designed to simplify trip planning, consolidate packing lists, and keep essential travel details readily accessible in one unified hub.
               </p>
 
-              <!-- Feature Bullet Highlights -->
               <ul class="space-y-1 text-[10px] text-[var(--muted)] mb-3">
                 <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Trip packing checklist with smart grouping</li>
                 <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Lightweight offline-friendly architecture</li>
               </ul>
 
-              <!-- Tag Chips -->
               <div class="flex flex-wrap gap-1.5 mb-2">
                 <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">iOS Concept</span>
                 <span class="px-2 py-0.5 rounded-md bg-gray-200/60 dark:bg-gray-800 text-[9px] font-medium text-[var(--muted)]">SwiftUI</span>
@@ -757,37 +734,38 @@
 
         </div>
 
-        <!-- SNEAK PEEK BOTTOM BAR -->
-        <div class="p-2.5 rounded-xl bg-purple-500/5 border border-purple-500/10 flex items-center justify-between text-[10px] text-[var(--muted)]">
+        <!-- CARD FOOTER (NON-CLICKABLE INFORMATIVE LABEL) -->
+        <footer class="pt-2.5 border-t border-[var(--line)] flex items-center justify-between text-[10px] text-[var(--muted)]">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-purple-500 animate-ping"></span>
-            <span class="font-bold text-[var(--text)]">Upcoming Project Concept:</span> Daily Habit Companion (In Active Architecture Phase)
+            <span class="font-bold text-[var(--text)]">Next Concept:</span> Daily Habit Companion
           </div>
-          <button onclick="scrollToSlide(4)" class="font-semibold text-[var(--blue)] hover:underline">
-            Contact & Connect →
-          </button>
-        </div>
+          <span class="font-semibold text-[var(--blue)]">Next: Get in Touch ↓</span>
+        </footer>
 
       </section>
     </div>
 
     <!-- ----------------------------------------------------------------------- -->
-    <!-- CARD 05: CONTACT & FUTURE                                               -->
+    <!-- CARD 05: CONTACT                                                        -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="card-slide" id="slide-4">
       <section class="card-shell p-5 sm:p-7 flex flex-col justify-between text-center">
         
-        <!-- CARD INTEGRATED HEADER -->
-        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-2.5">
-          <div class="flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-pink-600 to-purple-900 text-white font-bold text-xs flex items-center justify-center shadow">
+        <!-- CARD HEADER -->
+        <header class="w-full flex items-center justify-between border-b border-[var(--line)] pb-3">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-600 to-purple-900 text-white font-bold text-sm flex items-center justify-center shadow">
               VP
             </span>
-            <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel — <span class="text-[var(--muted)] font-normal">Self-Taught iOS Developer</span></span>
+            <div class="flex flex-col text-left leading-tight">
+              <span class="font-bold text-xs tracking-tight text-[var(--text)]">Varun Patel</span>
+              <span class="text-[10px] text-[var(--muted)] font-medium">Independent iOS Developer</span>
+            </div>
           </div>
 
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-500 text-[10px] font-bold tracking-wider uppercase">
-            05 / CONTACT
+          <div class="text-[10px] font-mono font-bold tracking-widest text-pink-500 px-2.5 py-1 rounded-full bg-pink-500/10 border border-pink-500/20">
+            [05 - Contact]
           </div>
         </header>
 
@@ -846,17 +824,11 @@
 
         </div>
 
-        <!-- INTEGRATED FOOTER INSIDE CARD -->
-        <div class="pt-3 border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between text-[10px] text-[var(--muted)] gap-2">
+        <!-- CARD FOOTER (NON-CLICKABLE INFORMATIVE LABEL) -->
+        <footer class="pt-2.5 border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between text-[10px] text-[var(--muted)] gap-2">
           <div>© <span id="copyrightYear">2026</span> Varun Patel. Built with curiosity & code.</div>
-          
-          <div class="flex items-center gap-4">
-            <span>Location: United States 🇺🇸</span>
-            <button onclick="scrollToSlide(0)" class="font-bold text-[var(--blue)] hover:underline">
-              Back to Top ↑
-            </button>
-          </div>
-        </div>
+          <div class="font-semibold text-emerald-500">End of Presentation • Thank You</div>
+        </footer>
 
       </section>
     </div>
@@ -923,39 +895,6 @@
         consoleEl.innerHTML = `<span class="text-emerald-400 font-mono">🚀 Executing EasyList iOS by Varun Patel...\n[Success] Native SwiftUI View mounted smoothly in 0.04s.</span>`;
       }, 800);
     }
-
-    // Toolbox Realtime Search
-    const toolSearch = document.getElementById('toolSearch');
-    if (toolSearch) {
-      toolSearch.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        document.querySelectorAll('.tool-chip').forEach(chip => {
-          const text = chip.textContent.toLowerCase();
-          chip.style.display = text.includes(query) ? 'flex' : 'none';
-        });
-      });
-    }
-
-    // Project Category Filter
-    const filterBtns = document.querySelectorAll('.project-filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => {
-          b.classList.remove('bg-[var(--blue)]', 'text-white');
-          b.classList.add('glass-card', 'text-[var(--muted)]');
-        });
-
-        btn.classList.add('bg-[var(--blue)]', 'text-white');
-        btn.classList.remove('glass-card', 'text-[var(--muted)]');
-
-        const filter = btn.getAttribute('data-filter');
-        projectCards.forEach(card => {
-          card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? 'flex' : 'none';
-        });
-      });
-    });
 
     // Modal Controller
     const projectData = {
