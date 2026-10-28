@@ -1,22 +1,46 @@
 <!DOCTYPE html>
+<!-- 
+  =============================================================================
+  HTML DOCUMENT SETUP
+  - lang="en": Tells search engines and screen readers the main language is English.
+  =============================================================================
+-->
 <html lang="en">
 <head>
+  <!-- 
+    1. CHARACTER ENCODING & VIEWPORT 
+    - charset="UTF-8": Allows the page to display standard text, special characters, and emojis.
+    - viewport width=device-width, initial-scale=1.0: Ensures proper responsive sizing on mobile screens.
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Theme color controls the browser toolbar tint on supported mobile browsers -->
   <meta name="theme-color" content="#f5f5f7">
+  
+  <!-- SEO Description: Appears in search engine results -->
   <meta name="description" content="Varun Patel — self-taught iOS app developer building practical apps with curiosity, code, and AI-powered tools.">
+  
   <title>Varun Patel — Independent iOS Developer</title>
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- 
+    2. EXTERNAL FONTS (Google Fonts)
+    - Preconnecting speeds up font loading time by opening a handshake with Google's servers.
+    - Loads Inter (clean sans-serif font) and JetBrains Mono (monospaced code font).
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS -->
+  <!-- 
+    3. TAILWIND CSS FRAMEWORK
+    - Tailwind provides utility classes (e.g., "flex", "items-center", "p-4") directly in HTML.
+    - 'darkMode: media' automatically syncs dark mode with your computer or phone's system settings.
+  -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'media', // Automatic system preference dark mode
+      darkMode: 'media', // Auto dark mode driven by device preferences
       theme: {
         extend: {
           fontFamily: {
@@ -24,7 +48,7 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           borderRadius: {
-            'apple-xl': '30px',
+            'apple-xl': '30px', // Custom Apple-style rounded corners
             'apple-lg': '22px',
           }
         }
@@ -32,8 +56,12 @@
     }
   </script>
 
+  <!-- 
+    4. CUSTOM CSS & THEME DESIGN TOKENS
+    - CSS Variables (--variable-name) allow you to change colors globally in one place.
+  -->
   <style>
-    /* Light Theme Tokens */
+    /* Light Mode Default Theme Colors */
     :root {
       --bg: #f5f5f7;
       --surface: rgba(255, 255, 255, 0.78);
@@ -47,7 +75,7 @@
       --shadow: 0 18px 55px rgba(20, 30, 55, 0.07);
     }
 
-    /* Automatic Dark Theme via System Preference */
+    /* Automatic Dark Mode Palette (Triggers automatically if the user's OS is in dark mode) */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #08090b;
@@ -63,20 +91,21 @@
       }
     }
 
+    /* Enables smooth scrolling when clicking navigation anchor links (e.g. #about) */
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 80px;
+      scroll-padding-top: 80px; /* Offset to prevent sticky navbar from hiding section titles */
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden; /* Prevents unwanted horizontal scrolling on mobile */
+      -webkit-font-smoothing: antialiased; /* Crisp typography rendering on macOS/iOS */
     }
 
-    /* Gradient Background Accents */
+    /* Radial ambient color glows in the background */
     .bg-ambient {
       background: 
         radial-gradient(ellipse at 10% 0%, rgba(0, 113, 227, 0.12), transparent 36rem),
@@ -84,6 +113,7 @@
         radial-gradient(ellipse at 50% 70%, rgba(244, 114, 182, 0.08), transparent 35rem);
     }
 
+    /* Apple-style gradient text clipping effect */
     .gradient-text {
       background: linear-gradient(100deg, #0071e3 0%, #8b5cf6 50%, #ec4899 100%);
       -webkit-background-clip: text;
@@ -91,12 +121,14 @@
       color: transparent;
     }
 
+    /* Frosted Glass Navigation Bar effect */
     .glass-nav {
       background: color-mix(in srgb, var(--bg) 80%, transparent);
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
 
+    /* Frosted Glass Content Cards */
     .glass-card {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -104,11 +136,12 @@
       -webkit-backdrop-filter: blur(16px);
     }
 
-    /* Phone Device Mockup Floating Animations */
+    /* Depth shadow for the phone frame mockup */
     .device-shadow {
       box-shadow: 0 30px 70px rgba(0,0,0,0.22), inset 0 1px 1px rgba(255,255,255,0.4);
     }
 
+    /* Custom CSS Keyframe Animations for floating phone mockup elements */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(-7deg); }
       50% { transform: translateY(-10px) rotate(-5deg); }
@@ -124,19 +157,11 @@
       50% { transform: translateY(-9px) rotate(6deg); }
     }
 
-    .animate-device {
-      animation: floatSlow 7s ease-in-out infinite;
-    }
+    .animate-device { animation: floatSlow 7s ease-in-out infinite; }
+    .animate-chip-1 { animation: floatChip1 5s ease-in-out infinite; }
+    .animate-chip-2 { animation: floatChip2 6s ease-in-out infinite 0.5s; }
 
-    .animate-chip-1 {
-      animation: floatChip1 5s ease-in-out infinite;
-    }
-
-    .animate-chip-2 {
-      animation: floatChip2 6s ease-in-out infinite 0.5s;
-    }
-
-    /* Toast Notification */
+    /* Toast popup alert styling */
     .toast {
       transform: translateY(100%);
       opacity: 0;
@@ -148,7 +173,7 @@
       opacity: 1;
     }
 
-    /* Reduced Motion Accessibility */
+    /* Accessibility feature: Disables heavy animations if user requests reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
         animation-duration: 0.01ms !important;
@@ -161,13 +186,13 @@
 </head>
 <body class="bg-ambient antialiased min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
 
-  <!-- ========================================== -->
-  <!-- NAVIGATION BAR                               -->
-  <!-- ========================================== -->
+  <!-- ========================================================================= -->
+  <!-- NAVIGATION BAR                                                            -->
+  <!-- ========================================================================= -->
   <header class="sticky top-0 z-40 w-full glass-nav border-b border-[var(--line)]">
     <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between" aria-label="Main Navigation">
       
-      <!-- Brand Logo -->
+      <!-- Logo Mark (VP.) -->
       <a href="#home" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl p-1">
         <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-gray-800 to-gray-950 dark:from-gray-200 dark:to-gray-400 text-white dark:text-gray-950 font-bold text-xs flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200">
           VP.
@@ -177,28 +202,28 @@
         </span>
       </a>
 
-      <!-- Navigation Links -->
+      <!-- Desktop Navigation Links (Hidden on small mobile screens) -->
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--muted)]">
         <a href="#about" class="hover:text-[var(--text)] transition-colors py-1">Story</a>
         <a href="#toolbox" class="hover:text-[var(--text)] transition-colors py-1">Toolbox</a>
         <a href="#projects" class="hover:text-[var(--text)] transition-colors py-1">Projects</a>
       </div>
 
-      <!-- Contact CTA & Mobile Toggle -->
+      <!-- Action Button & Mobile Menu Toggle Button -->
       <div class="flex items-center gap-3">
         <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-xs font-semibold shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5">
           <span>Let's Connect</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
 
-        <!-- Mobile Hamburger Menu Button -->
+        <!-- Hamburger button for mobile screens -->
         <button id="mobileMenuBtn" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-xl border border-[var(--line)] bg-[var(--surface)] text-[var(--text)] text-sm font-medium">
           Menu
         </button>
       </div>
     </nav>
 
-    <!-- Mobile Drawer Navigation -->
+    <!-- Mobile Navigation Drawer Menu (Toggled using JS) -->
     <div id="mobileMenu" class="hidden md:hidden border-b border-[var(--line)] bg-[var(--surface-solid)] px-6 py-4 flex flex-col gap-4 text-sm font-medium">
       <a href="#about" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Story</a>
       <a href="#toolbox" class="mobile-nav-link py-2 border-b border-gray-100 dark:border-gray-800">Toolbox</a>
@@ -207,14 +232,15 @@
     </div>
   </header>
 
+  <!-- MAIN CONTENT CONTAINER -->
   <main class="flex-grow">
     
-    <!-- ========================================== -->
-    <!-- SECTION 01: MODERN LANDING PAGE (HERO)    -->
-    <!-- ========================================== -->
+    <!-- ========================================================================= -->
+    <!-- SECTION 01: MODERN LANDING PAGE (HERO)                                   -->
+    <!-- ========================================================================= -->
     <section id="home" class="pt-16 pb-16 md:pt-24 md:pb-24 max-w-6xl mx-auto px-5 text-center">
       
-      <!-- Eyebrow Badge -->
+      <!-- Eyebrow Tag -->
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 text-[var(--blue)] text-xs font-semibold tracking-wide uppercase mb-6">
         <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
         Independent Builder · Self-Taught iOS Developer
@@ -226,22 +252,22 @@
         <span class="gradient-text">I turn ideas into apps.</span>
       </h1>
 
-      <!-- Copy Subtitle -->
+      <!-- Intro Subtitle -->
       <p class="text-lg sm:text-xl md:text-2xl text-[var(--muted)] max-w-2xl mx-auto font-normal leading-relaxed mb-6">
         A curious mind, a Mac, and a growing love for building useful things. I’m learning by doing—using code and AI-powered tools to bring thoughtful app ideas to life.
       </p>
 
-      <!-- Journey Note -->
+      <!-- Sub-note -->
       <p class="text-xs text-[var(--muted)] tracking-wide font-medium">
         Building independently in the USA · Started my coding journey in 2025
       </p>
 
-      <!-- Interactive CSS App Illustration Mockup -->
+      <!-- Custom CSS Phone Illustration Mockup -->
       <div class="relative max-w-lg mx-auto mt-12 pt-4 pb-4 flex justify-center items-center">
-        <!-- Ambient Orbit Glow -->
+        <!-- Glow accent -->
         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl rounded-full transform scale-90 -z-10"></div>
 
-        <!-- Floating Chip Left -->
+        <!-- Floating Chip Badge (Left) -->
         <div class="absolute left-0 sm:-left-6 top-1/4 z-20 animate-chip-1 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/20">
           <span class="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center text-sm font-bold">✓</span>
           <div>
@@ -250,7 +276,7 @@
           </div>
         </div>
 
-        <!-- Floating Chip Right -->
+        <!-- Floating Chip Badge (Right) -->
         <div class="absolute right-0 sm:-right-6 bottom-1/4 z-20 animate-chip-2 glass-card px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold text-left border border-white/20">
           <span class="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center text-sm font-bold">✦</span>
           <div>
@@ -259,12 +285,12 @@
           </div>
         </div>
 
-        <!-- Device Phone Frame -->
+        <!-- Phone Shell Container -->
         <div class="w-48 sm:w-56 h-96 sm:h-[26rem] rounded-[2.5rem] p-3 bg-gradient-to-b from-gray-700 via-gray-900 to-black device-shadow border border-gray-600/40 animate-device relative overflow-hidden">
-          <!-- Screen Container -->
+          <!-- Phone Screen -->
           <div class="w-full h-full rounded-[2rem] bg-gradient-to-b from-blue-50 via-indigo-50/50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-slate-900 p-4 text-left flex flex-col justify-between overflow-hidden relative border border-white/10">
             
-            <!-- Top Notch & Status Bar -->
+            <!-- Status Bar & Dynamic Island Notch -->
             <div>
               <div class="flex justify-between items-center text-[9px] font-bold text-gray-500 dark:text-gray-400 mb-4 px-1">
                 <span>9:41</span>
@@ -273,7 +299,7 @@
               </div>
               <h4 class="text-base font-extrabold text-gray-900 dark:text-white tracking-tight mb-3">My Lists<span class="text-blue-500">.</span></h4>
               
-              <!-- App Screen Items Mockup -->
+              <!-- App List Items -->
               <div class="space-y-2">
                 <div class="p-2.5 rounded-xl bg-white/80 dark:bg-gray-800/80 shadow-sm border border-black/5 dark:border-white/5 flex items-center gap-2 text-[11px] font-medium text-gray-800 dark:text-gray-200">
                   <span class="w-4 h-4 rounded-full bg-blue-500 text-white flex items-center justify-center text-[9px] font-bold">✓</span>
@@ -290,7 +316,7 @@
               </div>
             </div>
 
-            <!-- Screen Bottom Tab Preview -->
+            <!-- Bottom Navigation Bar Mockup -->
             <div class="pt-2 border-t border-gray-200/50 dark:border-gray-800 flex justify-around text-[10px] text-gray-400 font-medium">
               <span class="text-blue-500 font-bold">Lists</span>
               <span>Travel</span>
@@ -303,9 +329,9 @@
 
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 03: YOUR STORY                     -->
-    <!-- ========================================== -->
+    <!-- ========================================================================= -->
+    <!-- SECTION 03: YOUR STORY                                                    -->
+    <!-- ========================================================================= -->
     <section id="about" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
       <div class="mb-12">
         <span class="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">03. Story & Journey</span>
@@ -314,7 +340,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-10">
         
-        <!-- Story Card -->
+        <!-- Story Card (7 Columns on large screens) -->
         <div class="lg:col-span-7 glass-card p-8 sm:p-10 rounded-apple-xl flex flex-col justify-between relative overflow-hidden">
           <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-blue-500/10 rounded-full blur-2xl"></div>
           <div>
@@ -329,6 +355,7 @@
             </p>
           </div>
 
+          <!-- Highlight Metric Footer -->
           <div class="pt-6 border-t border-[var(--line)] flex items-center gap-4">
             <span class="text-4xl sm:text-5xl font-extrabold tracking-tight text-[var(--blue)]">2025</span>
             <span class="text-xs sm:text-sm text-[var(--muted)] leading-snug">
@@ -337,7 +364,7 @@
           </div>
         </div>
 
-        <!-- Core Principles Column -->
+        <!-- Three Core Principles (5 Columns on large screens) -->
         <div class="lg:col-span-5 flex flex-col justify-between gap-4">
           <div class="glass-card p-6 sm:p-7 rounded-apple-lg flex-1">
             <div class="text-2xl mb-3 text-blue-500">⌘</div>
@@ -367,9 +394,9 @@
       </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 04: DEVELOPER TOOLBOX             -->
-    <!-- ========================================== -->
+    <!-- ========================================================================= -->
+    <!-- SECTION 04: DEVELOPER TOOLBOX                                            -->
+    <!-- ========================================================================= -->
     <section id="toolbox" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
       <div class="glass-card p-8 sm:p-12 rounded-apple-xl">
         
@@ -382,14 +409,14 @@
             </p>
           </div>
 
-          <!-- Toolbox Interactive Search -->
+          <!-- Interactive Search Input Filter -->
           <div class="flex items-center gap-2 bg-[var(--surface-solid)] border border-[var(--line)] rounded-full px-4 py-2 text-xs">
             <span class="text-gray-400">🔍</span>
             <input type="text" id="toolSearch" placeholder="Filter tools..." class="bg-transparent focus:outline-none text-[var(--text)] w-28 sm:w-36">
           </div>
         </div>
 
-        <!-- Build Category -->
+        <!-- Category: Build Tools -->
         <div class="mb-8">
           <h4 class="text-xs font-bold text-[var(--muted)] uppercase tracking-wider mb-4">Build</h4>
           <div class="flex flex-wrap gap-3" id="buildToolsGrid">
@@ -413,7 +440,7 @@
           </div>
         </div>
 
-        <!-- AI Tooling Category -->
+        <!-- Category: AI Coding & Brainstorming Tools -->
         <div>
           <h4 class="text-xs font-bold text-[var(--muted)] uppercase tracking-wider mb-4">Think, Learn & Iterate</h4>
           <div class="flex flex-wrap gap-3" id="aiToolsGrid">
@@ -480,9 +507,9 @@
       </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 02: YOUR PROJECTS                  -->
-    <!-- ========================================== -->
+    <!-- ========================================================================= -->
+    <!-- SECTION 02: YOUR PROJECTS                                                 -->
+    <!-- ========================================================================= -->
     <section id="projects" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -494,7 +521,7 @@
           </p>
         </div>
 
-        <!-- Filter Category Buttons -->
+        <!-- Filter Category Control Buttons -->
         <div class="flex flex-wrap gap-2" id="projectFilterBtns">
           <button data-filter="all" class="project-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-[var(--blue)] text-white transition-all">All</button>
           <button data-filter="productivity" class="project-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-card text-[var(--muted)] hover:text-[var(--text)] transition-all">Productivity</button>
@@ -502,13 +529,13 @@
         </div>
       </div>
 
-      <!-- Projects Grid (Two-column desktop / Single-column mobile) -->
+      <!-- Projects Grid (Two-column layout on medium/large screens, 1-column on mobile) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projectsGrid">
         
         <!-- PROJECT 1: EasyList -->
         <article data-category="productivity" class="project-card glass-card rounded-apple-xl overflow-hidden flex flex-col justify-between group hover:shadow-2xl transition-all duration-300">
           <div>
-            <!-- Visual Art Banner Header -->
+            <!-- Banner Header Art -->
             <div class="h-60 sm:h-64 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 dark:from-blue-950/40 dark:via-indigo-950/40 dark:to-purple-950/40 relative flex items-center justify-center overflow-hidden">
               <div class="absolute inset-0 bg-blue-500/5 backdrop-blur-3xl"></div>
               
@@ -525,7 +552,7 @@
               </span>
             </div>
 
-            <!-- Content Area -->
+            <!-- Card Content Body -->
             <div class="p-6 sm:p-8">
               <div class="flex items-center justify-between text-xs font-medium text-[var(--muted)] mb-3">
                 <span class="inline-flex items-center gap-1.5">
@@ -549,6 +576,7 @@
             </div>
           </div>
 
+          <!-- Card Footer Action -->
           <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 flex items-center justify-between border-t border-[var(--line)] pt-4 mt-auto">
             <span class="text-xs text-[var(--muted)] font-medium">My first app-building chapter</span>
             <button onclick="openModal('easylist')" class="text-xs font-bold text-[var(--blue)] hover:underline flex items-center gap-1">
@@ -560,7 +588,7 @@
         <!-- PROJECT 2: TripMate -->
         <article data-category="travel" class="project-card glass-card rounded-apple-xl overflow-hidden flex flex-col justify-between group hover:shadow-2xl transition-all duration-300">
           <div>
-            <!-- Visual Art Banner Header -->
+            <!-- Banner Header Art -->
             <div class="h-60 sm:h-64 bg-gradient-to-br from-emerald-100 via-teal-100 to-sky-100 dark:from-emerald-950/40 dark:via-teal-950/40 dark:to-sky-950/40 relative flex items-center justify-center overflow-hidden">
               <div class="absolute inset-0 bg-emerald-500/5 backdrop-blur-3xl"></div>
               
@@ -578,7 +606,7 @@
               </span>
             </div>
 
-            <!-- Content Area -->
+            <!-- Card Content Body -->
             <div class="p-6 sm:p-8">
               <div class="flex items-center justify-between text-xs font-medium text-[var(--muted)] mb-3">
                 <span class="inline-flex items-center gap-1.5">
@@ -602,6 +630,7 @@
             </div>
           </div>
 
+          <!-- Card Footer Action -->
           <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 flex items-center justify-between border-t border-[var(--line)] pt-4 mt-auto">
             <span class="text-xs text-[var(--muted)] font-medium">Built around real-life needs</span>
             <button onclick="openModal('tripmate')" class="text-xs font-bold text-[var(--blue)] hover:underline flex items-center gap-1">
@@ -613,9 +642,9 @@
       </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 05: RESPONSIVE DESIGN & CONTACT    -->
-    <!-- ========================================== -->
+    <!-- ========================================================================= -->
+    <!-- SECTION 05: RESPONSIVE DESIGN & CONTACT PANEL                            -->
+    <!-- ========================================================================= -->
     <section id="contact" class="py-16 md:py-20 max-w-6xl mx-auto px-5">
       <div class="glass-card p-10 sm:p-16 rounded-apple-xl text-center relative overflow-hidden bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5">
         
@@ -627,12 +656,13 @@
           I’m continuing to learn, build, and explore new app ideas. Have feedback, a useful idea, or a collaboration in mind? I’d be glad to hear from you.
         </p>
 
-        <!-- Interactive Contact Actions -->
+        <!-- Interactive Contact Buttons -->
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a href="mailto:hello@example.com?subject=Hello%20Varun" class="px-7 py-3.5 rounded-full bg-[var(--blue)] hover:bg-[var(--blue-hover)] text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
             Say Hello ↗
           </a>
 
+          <!-- Clipboard Copy Button -->
           <button onclick="copyEmail()" class="px-6 py-3.5 rounded-full glass-card hover:bg-gray-200/50 dark:hover:bg-gray-800/50 text-sm font-semibold transition-all flex items-center gap-2">
             <span>Copy Email Address</span>
             <span class="text-xs text-gray-400">📋</span>
@@ -644,9 +674,9 @@
 
   </main>
 
-  <!-- ========================================== -->
-  <!-- FOOTER                                     -->
-  <!-- ========================================== -->
+  <!-- ========================================================================= -->
+  <!-- FOOTER                                                                    -->
+  <!-- ========================================================================= -->
   <footer class="border-t border-[var(--line)] py-10">
     <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--muted)]">
       <div>
@@ -660,41 +690,47 @@
     </div>
   </footer>
 
-  <!-- ========================================== -->
-  <!-- PROJECT DETAIL MODAL                       -->
-  <!-- ========================================== -->
+  <!-- ========================================================================= -->
+  <!-- PROJECT DETAIL MODAL OVERLAY                                              -->
+  <!-- ========================================================================= -->
   <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-md" aria-modal="true" role="dialog">
     <div class="glass-card bg-[var(--surface-solid)] w-full max-w-lg rounded-apple-xl p-6 sm:p-8 shadow-2xl relative border border-white/20">
+      <!-- Close Button -->
       <button onclick="closeModal()" aria-label="Close modal" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 dark:hover:text-white text-xl font-bold p-1">
         ✕
       </button>
 
+      <!-- Modal Content Target -->
       <div id="modalContent">
-        <!-- Dynamic content injected via JavaScript -->
+        <!-- Content gets injected dynamically by openModal() in JavaScript below -->
       </div>
     </div>
   </div>
 
-  <!-- Toast Notification -->
+  <!-- Toast Alert Popup -->
   <div id="toast" class="toast fixed bottom-6 right-6 z-50 glass-card bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2">
     <span>✨</span> <span id="toastMessage">Copied to clipboard!</span>
   </div>
 
-  <!-- ========================================== -->
-  <!-- JAVASCRIPT                                 -->
-  <!-- ========================================== -->
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT LOGIC                                                          -->
+  <!-- ========================================================================= -->
   <script>
-    // --- 1. Mobile Menu Toggle ---
+    // -------------------------------------------------------------------------
+    // 1. MOBILE HAMBURGER MENU TOGGLE
+    // -------------------------------------------------------------------------
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
+    // Click event to show or hide the menu menu drawer
     mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('hidden');
-      mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
-      mobileMenuBtn.textContent = !isOpen ? 'Close' : 'Menu';
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
+      mobileMenuBtn.textContent = !isHidden ? 'Close' : 'Menu';
     });
 
+    // Close mobile menu when user clicks any menu link
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
@@ -703,17 +739,24 @@
       });
     });
 
-    // --- 2. Live Copyright Year ---
+    // -------------------------------------------------------------------------
+    // 2. AUTOMATIC LIVE COPYRIGHT YEAR
+    // -------------------------------------------------------------------------
+    // Gets the current year from the device date (e.g. 2026) and updates the footer
     document.getElementById('copyrightYear').textContent = new Date().getFullYear();
 
-    // --- 3. Toolbox Search Filter ---
+    // -------------------------------------------------------------------------
+    // 3. TOOLBOX REAL-TIME SEARCH FILTER
+    // -------------------------------------------------------------------------
     const toolSearch = document.getElementById('toolSearch');
     const toolChips = document.querySelectorAll('.tool-chip');
 
+    // Runs every time the user types in the search box
     toolSearch.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase().trim();
       toolChips.forEach(chip => {
         const text = chip.textContent.toLowerCase();
+        // Displays or hides tool chips matching the typed query
         if (text.includes(query)) {
           chip.style.display = 'flex';
         } else {
@@ -722,20 +765,27 @@
       });
     });
 
-    // --- 4. Projects Category Filter ---
+    // -------------------------------------------------------------------------
+    // 4. PROJECTS CATEGORY FILTER BUTTONS
+    // -------------------------------------------------------------------------
     const filterBtns = document.querySelectorAll('.project-filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+        // Reset styles for all filter buttons
         filterBtns.forEach(b => {
           b.classList.remove('bg-[var(--blue)]', 'text-white');
           b.classList.add('glass-card', 'text-[var(--muted)]');
         });
+
+        // Highlight the clicked filter button
         btn.classList.add('bg-[var(--blue)]', 'text-white');
         btn.classList.remove('glass-card', 'text-[var(--muted)]');
 
         const filter = btn.getAttribute('data-filter');
+        
+        // Filter cards based on data-category attribute
         projectCards.forEach(card => {
           if (filter === 'all' || card.getAttribute('data-category') === filter) {
             card.style.display = 'flex';
@@ -746,7 +796,9 @@
       });
     });
 
-    // --- 5. Project Detail Modal Data ---
+    // -------------------------------------------------------------------------
+    // 5. PROJECT DETAIL MODAL DATA & CONTROLLER
+    // -------------------------------------------------------------------------
     const projectData = {
       easylist: {
         title: "EasyList",
@@ -774,6 +826,7 @@
       }
     };
 
+    // Opens the popup modal with details for the clicked project
     function openModal(key) {
       const modal = document.getElementById('projectModal');
       const modalContent = document.getElementById('modalContent');
@@ -781,6 +834,7 @@
 
       if (!data) return;
 
+      // Inject HTML content into the modal dialog dynamically
       modalContent.innerHTML = `
         <span class="inline-block px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-xs font-semibold mb-3">
           ${data.badge}
@@ -804,17 +858,21 @@
       modal.classList.remove('hidden');
     }
 
+    // Hides the modal
     function closeModal() {
       document.getElementById('projectModal').classList.add('hidden');
     }
 
+    // Closes modal if user clicks outside the modal box
     document.getElementById('projectModal').addEventListener('click', (e) => {
       if (e.target === document.getElementById('projectModal')) {
         closeModal();
       }
     });
 
-    // --- 6. Clipboard Copy & Toast ---
+    // -------------------------------------------------------------------------
+    // 6. CLIPBOARD EMAIL COPY FUNCTION & TOAST NOTIFICATION
+    // -------------------------------------------------------------------------
     function copyEmail() {
       const email = "hello@example.com";
       const tempInput = document.createElement('input');
@@ -831,6 +889,8 @@
       const toast = document.getElementById('toast');
       document.getElementById('toastMessage').textContent = message;
       toast.classList.add('show');
+      
+      // Hide the toast automatically after 3 seconds
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
