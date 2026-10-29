@@ -65,9 +65,12 @@
     nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 36px; }
     .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; letter-spacing: -.035em; }
     .brand-mark {
-      display: grid; place-items: center; width: 32px; height: 32px; border-radius: 11px;
-      background: linear-gradient(145deg, #25252a, #55565e); color: #fff; font-size: 12px; letter-spacing: -.04em;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+      width: 32px; height: 32px; border-radius: 11px;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid var(--line);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      display: block;
     }
     .nav-links { display: flex; align-items: center; gap: clamp(16px, 3vw, 30px); color: var(--muted); font-size: 13px; font-weight: 520; }
     .nav-links a:hover, .text-link:hover { color: var(--blue); }
@@ -96,7 +99,7 @@
     .mini-task { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.78); border-radius: 8px; padding: 8px 6px; margin-bottom: 6px; font-size: 7px; font-weight: 600; }
     .mini-check { display: grid; place-items: center; width: 11px; height: 11px; border-radius: 50%; background: #1687ed; color: #ffffff; font-size: 7px; }
     .floating-chip { position: absolute; display: flex; align-items: center; gap: 9px; padding: 11px 14px; border-radius: 16px; background: var(--surface); border: 1px solid rgba(255,255,255,.25); backdrop-filter: blur(20px); box-shadow: var(--shadow); font-size: 12px; font-weight: 650; }
-    .floating-chip span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 9px; background: var(--tint); color: var(--blue); font-size: 14px; }
+    .floating-chip span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 999px; background: var(--tint); color: var(--blue); font-size: 14px; }
     .chip-left { left: 2%; top: 23%; transform: rotate(-5deg); }
     .chip-right { right: 1%; bottom: 17%; transform: rotate(5deg); }
     
@@ -110,7 +113,7 @@
     .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 20px; align-items: stretch; }
     .about-card, .tools-card { border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--surface); padding: clamp(24px, 4vw, 36px); box-shadow: var(--shadow); }
     .about-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; }
-    .about-mark { width: 55px; height: 55px; border-radius: 18px; display: grid; place-items: center; background: linear-gradient(145deg,#26262b,#555761); color: #ffffff; font-size: 17px; font-weight: 750; letter-spacing: -.06em; margin-bottom: 28px; }
+    .about-mark { width: 55px; height: 55px; border-radius: 18px; object-fit: cover; object-position: top center; border: 1px solid var(--line); margin-bottom: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .about-card h3 { font-size: 28px; line-height: 1.1; margin: 0 0 10px; }
     .about-card p, .tools-card p { color: var(--muted); font-size: 14px; line-height: 1.7; margin: 0; }
     .about-stat { display: flex; gap: 12px; align-items: center; padding-top: 25px; margin-top: 28px; border-top: 1px solid var(--line); }
@@ -288,7 +291,8 @@
   <div class="nav-wrap">
     <nav class="wrap" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Varun Patel home">
-        <span class="brand-mark">VP</span><span>Varun Patel</span>
+        <img class="brand-mark" src="watermarked_img_58902197873415532.jpg" alt="Varun Patel profile photo">
+        <span>Varun Patel</span>
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
@@ -331,7 +335,7 @@
       <div class="about-grid">
         <article class="about-card">
           <div>
-            <div class="about-mark">VP.</div>
+            <img class="about-mark" src="watermarked_img_58902197873415532.jpg" alt="Varun Patel avatar">
             <h3>Self-taught.<br>Family-minded.<br>Always learning.</h3>
             <p>I’m Varun Patel, an Indian-origin husband and father who has called the United States home since 2005. My family keeps me grounded; building apps gives me a creative way to explore what’s possible.</p>
           </div>
@@ -414,7 +418,7 @@
 
       <div class="principles">
         <article class="principle"><div class="principle-icon" aria-hidden="true">⌘</div><h4>Learn by building</h4><p>I turn new concepts into working experiments, then refine what I learn.</p></article>
-        <article class="principle"><div class="principle-icon" aria-hidden="true">◉</div><h4>Solve real problems</h4><p>I start with everyday needs and aim for apps that feel useful, not complicated.</p></article>
+        <article class="principle"><div class="principle-icon" aria-hidden="true">◉</div>'<h4>Solve real problems</h4><p>I start with everyday needs and aim for apps that feel useful, not complicated.</p></article>
         <article class="principle"><div class="principle-icon" aria-hidden="true">↗</div><h4>Improve every iteration</h4><p>Better structure, thoughtful details, and a smoother experience—one step at a time.</p></article>
       </div>
     </section>
