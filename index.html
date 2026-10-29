@@ -63,15 +63,28 @@
       border-bottom: 1px solid var(--line);
     }
     nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 36px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; letter-spacing: -.035em; }
+    .brand {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      row-gap: 1px;
+      align-items: center;
+      font-weight: 650;
+      letter-spacing: -.035em;
+      line-height: 1.15;
+    }
     .brand-mark {
-      width: 32px; height: 32px; border-radius: 11px;
+      grid-row: 1 / span 2;
+      width: 36px; height: 36px; border-radius: 11px;
       object-fit: cover;
       object-position: top center;
       border: 1px solid var(--line);
       box-shadow: 0 2px 6px rgba(0,0,0,0.12);
       display: block;
     }
+    .brand-name { font-size: 14px; }
+    .brand-title { font-size: 11px; font-weight: 520; color: var(--muted); letter-spacing: -.02em; }
     .nav-links { display: flex; align-items: center; gap: clamp(16px, 3vw, 30px); color: var(--muted); font-size: 13px; font-weight: 520; }
     .nav-links a:hover, .text-link:hover { color: var(--blue); }
     .nav-cta { color: var(--blue) !important; }
@@ -292,7 +305,8 @@
     <nav class="wrap" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Varun Patel home">
         <img class="brand-mark" src="Gemini_Generated_Image_55p7sn55p7sn55p7.jpg" alt="Varun Patel profile photo">
-        <span>Varun Patel</span>
+        <span class="brand-name">Varun Patel</span>
+        <span class="brand-title">Independent iOS Developer</span>
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
