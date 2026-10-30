@@ -137,7 +137,6 @@
     .tool-group { margin-top: 22px; }
     .tool-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; margin-bottom: 12px; }
     
-    /* Responsive Grid for Toolbox */
     .tool-grid { 
       display: grid; 
       grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); 
@@ -177,7 +176,6 @@
       fill: currentColor;
     }
 
-    /* Authentic Brand Icon Backgrounds */
     .icon-xcode { background: linear-gradient(135deg, #147ce5, #005bb5); }
     .icon-swift { background: linear-gradient(135deg, #ff5238, #f03e2f); }
     .icon-chatgpt { background: linear-gradient(135deg, #10a37f, #0d8a6c); }
@@ -194,9 +192,10 @@
     .principle h4 { margin: 0 0 7px; font-size: 15px; letter-spacing: -.025em; }
     .principle p { color: var(--muted); font-size: 12px; line-height: 1.55; margin: 0; }
 
-    /* Horizontal Scrollable Selected Work Cards */
+    /* Horizontal Scrollable Selected Work Cards - Equal Dimension Setup */
     .projects-scroll-wrapper {
       display: flex;
+      align-items: stretch;
       gap: 20px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
@@ -224,24 +223,60 @@
       background: var(--surface);
       box-shadow: var(--shadow);
       min-width: 320px;
-      height: 100%;
     }
-    .project-art { min-height: 240px; display: grid; place-items: center; position: relative; overflow: hidden; }
+    .project-art { height: 240px; min-height: 240px; display: grid; place-items: center; position: relative; overflow: hidden; flex-shrink: 0; }
     .easy-art { background: linear-gradient(140deg,#e4f2ff,#c4dfff 55%,#d8d4ff); }
     .trip-art { background: linear-gradient(140deg,#e5f8ed,#b8ead5 52%,#d8f0ff); }
     .art-orb { position: absolute; width: 260px; height: 260px; border-radius: 50%; background: rgba(255,255,255,.32); filter: blur(1px); }
-    .app-tile { position: relative; width: 108px; height: 108px; border-radius: 27px; display: grid; place-items: center; box-shadow: 0 22px 35px rgba(20,40,80,.19), inset 0 1px 1px rgba(255,255,255,.7); }
-    .easy-tile { background: #0b84ff; color: #111111; border: 5px solid #111111; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 22px 35px rgba(20,40,80,.19); }
-    .trip-tile { background: #eef4ff; color: #0071e3; border: 1px solid rgba(0,113,227,0.15); }
+    
+    /* Header-Synced App Icon Header Styling */
+    .app-icon-header-easylist {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: #0b84ff;
+      color: #111111;
+      border: 4px solid #111111;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 10px 25px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 2;
+    }
+    .app-icon-header-easylist svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .app-icon-header-tripmate {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: #eef4ff;
+      color: #0071e3;
+      border: 1px solid rgba(0,113,227,0.2);
+      box-shadow: 0 10px 25px rgba(0,113,227,0.12);
+      position: relative;
+      z-index: 2;
+    }
+    .app-icon-header-tripmate svg {
+      width: 32px;
+      height: 32px;
+      stroke-width: 2.1;
+    }
+
     .art-caption { position: absolute; left: 22px; bottom: 20px; color: rgba(20,35,55,.62); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     
     .project-content { padding: 24px 25px 25px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .project-body { display: flex; flex-direction: column; flex-grow: 1; }
     .project-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
     .project-status { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 11px; font-weight: 650; }
     .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #30b56b; }
     .project-number { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
     .project-content h3 { margin: 0 0 9px; font-size: 26px; letter-spacing: -.05em; }
-    .project-description { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; min-height: 68px; }
+    .project-description { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; flex-grow: 1; }
     .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
     .tag { padding: 6px 10px; border-radius: 999px; background: color-mix(in srgb, var(--text) 5%, transparent); color: var(--muted); font-size: 11px; font-weight: 600; }
     .project-footer { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 17px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 650; }
@@ -272,9 +307,14 @@
       .chip-left { left: 0; top: 19%; }
       .chip-right { right: 0; bottom: 12%; }
       .about-grid { grid-template-columns: 1fr; }
-      .project-card { flex: 0 0 calc(100vw - 64px); width: calc(100vw - 64px); }
-      .project-art { min-height: 220px; }
-      .project-description { min-height: 0; }
+      
+      /* Standardized card size across mobile views */
+      .project-card { 
+        flex: 0 0 calc(100vw - 64px); 
+        width: calc(100vw - 64px); 
+        min-width: calc(100vw - 64px);
+      }
+      .project-art { height: 210px; min-height: 210px; }
       .principles { grid-template-columns: 1fr; }
       .principle { display: grid; grid-template-columns: 34px 1fr; column-gap: 10px; }
       .principle-icon { grid-row: span 2; margin-bottom: 0; }
@@ -288,8 +328,14 @@
       .device { transform: scale(.75) rotate(-7deg); }
       .floating-chip { padding: 8px 10px; font-size: 10px; }
       .floating-chip span { width: 24px; height: 24px; }
+      
+      .project-card {
+        flex: 0 0 calc(100vw - 44px);
+        width: calc(100vw - 44px);
+        min-width: calc(100vw - 44px);
+      }
       .project-content { padding: 20px; }
-      .project-art { min-height: 195px; }
+      .project-art { height: 195px; min-height: 195px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .tool-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -436,7 +482,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2: Selected Work (Horizontal Scrolling Cards View) -->
+    <!-- SECTION 2: Selected Work (Equal Height Cards Setup) -->
     <section class="wrap" id="projects">
       <div class="section-heading">
         <div>
@@ -451,17 +497,18 @@
         <article class="project-card">
           <div class="project-art easy-art">
             <div class="art-orb"></div>
-            <div class="app-tile easy-tile" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none" style="width: 52px; height: 52px;">
-                <rect x="8" y="6" width="16" height="20" rx="4" stroke="currentColor" stroke-width="2.5"/>
-                <path d="M12 12H20M12 17H20M12 22H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M21 9.5L23.5 12L28 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Header-synced EasyList Icon -->
+            <div class="app-icon-header-easylist" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="6" width="16" height="20" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                  <path d="M12 12H20M12 17H20M12 22H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M21 9.5L23.5 12L28 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="art-caption">Less mental clutter</div>
           </div>
           <div class="project-content">
-            <div>
+            <div class="project-body">
               <div class="project-meta"><span class="project-status"><span class="status-dot"></span> Personal project</span><span class="project-number">01 / 02</span></div>
               <h3>EasyList</h3>
               <p class="project-description">A simple, practical approach to keeping lists organized. Built around the idea that everyday planning should feel clear, quick, and effortless.</p>
@@ -477,18 +524,17 @@
         <article class="project-card">
           <div class="project-art trip-art">
             <div class="art-orb"></div>
-            <div class="app-tile trip-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 52px; height: 52px;">
-                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/>
-                <path d="M14 8H8"/>
-                <path d="M16 12H8"/>
-                <path d="M13 16H8"/>
+            <!-- Header-synced TripMate Icon -->
+            <div class="app-icon-header-tripmate" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 8H8M16 12H8M12 16H8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="art-caption">Your Expense mate for the Trips</div>
           </div>
           <div class="project-content">
-            <div>
+            <div class="project-body">
               <div class="project-meta"><span class="project-status"><span class="status-dot"></span> Personal project</span><span class="project-number">02 / 02</span></div>
               <h3>TripMate</h3>
               <p class="project-description">Every Trip needs a Smart "Expense" Mate.</p>
@@ -511,7 +557,7 @@
         <h2>Good ideas get better when shared.</h2>
         <p>I’m continuing to learn, build, and explore new app ideas. Have feedback, a useful idea, or a collaboration in mind? I’d be glad to hear from you.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:varun1329@icloud.com?subject=Hello%20Varun">Say hello <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-primary" href="mailto:hello@example.com?subject=Hello%20Varun">Say hello <span aria-hidden="true">↗</span></a>
           <a class="btn btn-secondary" href="#projects">Back to projects <span aria-hidden="true">↑</span></a>
         </div>
         <p style="font-size:11px;margin-top:18px">Before publishing, replace the example email with your preferred contact address.</p>
