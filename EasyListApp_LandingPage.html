@@ -290,6 +290,180 @@
         }
     </script>
 
+     <!-- Privacy Section -->
+    <section class="py-20 bg-white border-t border-gray-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center space-x-2 bg-orange-50 border border-orange-200 text-orange-700 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-orange-600"></i>
+                        <span>Privacy Policy</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-appleText mb-6 leading-tight">
+                        Your privacy is important to us.
+                    </h2>
+                    <p class="text-appleSecText text-base sm:text-lg leading-relaxed mb-6">
+                        EasyList collects and stores only basic shopping list items locally on your device. No personal information, contacts, location data, or usage tracking is collected or shared.
+                    </p>
+
+                    <div class="bg-appleBg p-6 rounded-2xl border border-gray-200/80 space-y-3">
+                        <h4 class="font-bold text-appleText text-sm uppercase tracking-wider">Stored Locally On Device:</h4>
+                        <ul class="space-y-2 text-sm text-appleSecText">
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>1. Item names</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>2. Item creation timestamp</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>3. Item completion status</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>4. Total Count of items</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span>5. Total Count of completed items</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p class="text-xs text-appleSecText mt-4 leading-relaxed">
+                        All item data is saved strictly inside a JSON file within the app's documents directory. Your data is never transmitted to external servers or third parties. You retain full control to add or delete items anytime.
+                    </p>
+                </div>
+
+                <!-- Visual Privacy Card -->
+                <div class="bg-gradient-to-br from-orange-500/10 via-appleBg to-blue-50/50 p-8 sm:p-10 rounded-3xl border border-gray-200/80 shadow-apple-card relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-500 text-white flex items-center justify-center mb-6 shadow-md">
+                        <i data-lucide="hand" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-appleText mb-3">100% On-Device Isolation</h3>
+                    <p class="text-appleSecText text-sm leading-relaxed mb-6">
+                        No accounts required, no cloud sign-ins, and no hidden telemetry. Your checklists remain entirely private on your iPhone.
+                    </p>
+
+                    <div class="p-4 bg-white/90 backdrop-blur rounded-2xl border border-gray-200 text-xs text-gray-600 font-mono space-y-2">
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-gray-400">Storage Location</span>
+                            <span class="font-semibold text-appleText">Documents Directory</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-gray-400">External Transmission</span>
+                            <span class="font-semibold text-emerald-600">None (0 KB Sent)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">User Data Control</span>
+                            <span class="font-semibold text-appleAccent">100% Full Control</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specification / Code Architecture Section -->
+    <section class="py-20 bg-appleDarkBg text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-blue-400 font-semibold">Technical Architecture</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight mt-2 mb-6">
+                        Designed for resilience and privacy.
+                    </h2>
+                    <p class="text-gray-400 text-base leading-relaxed mb-6">
+                        EasyList avoids remote backend dependencies and cloud sync complexity. Data remains 100% locally isolated inside the iOS Application Documents Directory.
+                    </p>
+
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="database" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                            <span><strong>JSON File Persistence:</strong> Maintained via <code>EasyListData.json</code> with automated pretty-printed encoding.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="refresh-cw" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                            <span><strong>Atomic State Protection:</strong> Failed async operations trigger immediate state rollbacks to preserve list integrity.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="star" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                            <span><strong>Local Rating Persistence:</strong> In-app ratings and feedback comments are preserved in <code>RatingFeedback.json</code>.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Code Preview Card -->
+                <div class="bg-gray-900 border border-gray-800 rounded-3xl p-6 font-mono text-xs text-gray-300 shadow-2xl overflow-x-auto">
+                    <div class="flex items-center space-x-2 mb-4 pb-3 border-b border-gray-800">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-gray-500 ml-2 text-[11px]">ListDetailView.swift (Normalization Logic)</span>
+                    </div>
+                    <pre class="text-blue-300"><code>// Duplicate Prevention Normalization
+<span class="text-purple-400">func</span> <span class="text-yellow-300">normalizedItemName</span>(_ name: String) -> String {
+    <span class="text-purple-400">var</span> clean = name
+        .<span class="text-yellow-300">trimmingCharacters</span>(in: .whitespacesAndNewlines)
+        .<span class="text-yellow-300">lowercased</span>()
+
+    <span class="text-purple-400">if</span> clean.<span class="text-yellow-300">hasSuffix</span>(<span class="text-green-300">"ies"</span>) {
+        clean = String(clean.<span class="text-yellow-300">dropLast</span>(3)) + <span class="text-green-300">"y"</span>
+    } <span class="text-purple-400">else if</span> clean.<span class="text-yellow-300">hasSuffix</span>(<span class="text-green-300">"es"</span>) && clean.count > 2 {
+        clean = String(clean.<span class="text-yellow-300">dropLast</span>(2))
+    } <span class="text-purple-400">else if</span> clean.<span class="text-yellow-300">hasSuffix</span>(<span class="text-green-300">"s"</span>) && clean.count > 1 {
+        clean = String(clean.<span class="text-yellow-300">dropLast</span>(1))
+    }
+    <span class="text-purple-400">return</span> clean
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-appleBg border-t border-gray-200/80 py-12 text-xs text-appleSecText">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-2">
+                    <div style="display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #e9f5ee; color: #28774a;" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 14px; height: 14px;">
+                            <path
+                                d="M5 9L7 11L11 6M5 17L7 19L11 14M5 25L7 27L11 22"
+                                stroke="currentColor"
+                                stroke-width="2.2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path
+                                d="M16 9H27M16 17H27M16 25H27"
+                                stroke="currentColor"
+                                stroke-width="2.2"
+                                stroke-linecap="round"
+                            />
+                        </svg>
+                    </div>
+                    <span class="font-semibold text-appleText">EasyList</span>
+                    <span>— Simple, focused checklist app for iOS.</span>
+                </div>
+
+                <div class="flex items-center space-x-6 text-gray-500">
+                    <span class="hover:text-appleText transition-colors">SwiftUI & Swift</span>
+                    <span class="hover:text-appleText transition-colors">Local-Only Data</span>
+                    <span class="hover:text-appleText transition-colors">varun1329@icloud.com</span>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200/60 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-400">
+                <p>&copy; EasyList App. Built with Swift, SwiftUI, AVFoundation, and local JSON persistence.</p>
+                <p class="mt-2 sm:mt-0">Apple-inspired Landing Page</p>
+            </div>
+        </div>
+    </footer>
+
+    
     <script>
         lucide.createIcons();
     </script>
