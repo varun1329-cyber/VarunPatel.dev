@@ -212,6 +212,31 @@
       background: var(--muted);
       border-radius: 10px;
     }
+    
+    /* Pagination Dots Indicator */
+    .projects-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pagination-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--line);
+      border: 1px solid var(--muted);
+      transition: background 0.3s ease, width 0.3s ease;
+      cursor: pointer;
+    }
+    .pagination-dot.active {
+      width: 24px;
+      border-radius: 99px;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
     .project-card {
       flex: 0 0 calc(50% - 10px);
       width: calc(50% - 10px);
@@ -547,6 +572,12 @@
           </div>
         </article>
       </div>
+
+      <!-- Pagination Indicator Dots -->
+      <div class="projects-pagination" id="projectsPagination" aria-label="Project pagination indicator">
+        <button class="pagination-dot active" data-index="0" aria-label="Go to project 1"></button>
+        <button class="pagination-dot" data-index="1" aria-label="Go to project 2"></button>
+      </div>
       
     </section>
 
@@ -585,6 +616,38 @@
       menuToggle.setAttribute('aria-expanded', 'false');
       menuToggle.textContent = 'Menu';
     }));
+
+    // Scroll pagination dots sync
+    const scrollWrapper = document.querySelector('.projects-scroll-wrapper');
+    const dots = document.querySelectorAll('.pagination-dot');
+
+    if (scrollWrapper && dots.length > 0) {
+      scrollWrapper.addEventListener('scroll', () => {
+        const scrollLeft = scrollWrapper.scrollLeft;
+        const cardWidth = scrollWrapper.querySelector('.project-card').offsetWidth + 20; // card width + gap
+        const activeIndex = Math.round(scrollLeft / cardWidth);
+        
+        dots.forEach((dot, idx) => {
+          if (idx === activeIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      });
+
+      // Allow clicking dots to scroll to card
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          const cardWidth = scrollWrapper.querySelector('.project-card').offsetWidth + 20;
+          scrollWrapper.scrollTo({
+            left: idx * cardWidth,
+            behavior: 'smooth'
+          });
+        });
+      });
+    }
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
