@@ -203,6 +203,7 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: var(--muted) transparent;
+      background: transparent !important;
     }
     .projects-scroll-wrapper::-webkit-scrollbar {
       height: 6px;
@@ -220,8 +221,8 @@
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      background: var(--surface);
-      box-shadow: var(--shadow);
+      background: transparent !important;
+      box-shadow: none !important;
       min-width: 320px;
     }
     .project-art { height: 240px; min-height: 240px; display: grid; place-items: center; position: relative; overflow: hidden; flex-shrink: 0; }
@@ -308,7 +309,6 @@
       .chip-right { right: 0; bottom: 12%; }
       .about-grid { grid-template-columns: 1fr; }
       
-      /* Standardized card size across mobile views */
       .project-card { 
         flex: 0 0 calc(100vw - 64px); 
         width: calc(100vw - 64px); 
@@ -492,9 +492,9 @@
         </div>
       </div>
       
-      <!-- Horizontal Scrollable Container -->
-      <div class="projects-scroll-wrapper" style="background: transparent;">
-        <article class="project-card" style="background: transparent;">
+      <!-- Horizontal Scrollable Container with Transparent Background -->
+      <div class="projects-scroll-wrapper">
+        <article class="project-card">
           <div class="project-art easy-art">
             <div class="art-orb"></div>
             <!-- Header-synced EasyList Icon -->
@@ -521,7 +521,7 @@
           </div>
         </article>
 
-        <article class="project-card" style="background: transparent;">
+        <article class="project-card">
           <div class="project-art trip-art">
             <div class="art-orb"></div>
             <!-- Header-synced TripMate Icon -->
