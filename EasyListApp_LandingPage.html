@@ -45,19 +45,20 @@
         }
 
         .phone-bezel {
-            width: min(100%, 360px);
-            padding: 12px;
-            border-radius: 44px;
+            width: 100%;
+            max-width: 320px;
+            padding: 10px;
+            border-radius: 40px;
             background: linear-gradient(180deg, #1a1a1a, #090909);
             border: 2px solid rgba(255,255,255,0.12);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3);
         }
 
         .phone-screen {
             position: relative;
             width: 100%;
             aspect-ratio: 9 / 19.5;
-            border-radius: 32px;
+            border-radius: 30px;
             overflow: hidden;
             background: #000;
             border: 1px solid rgba(255,255,255,0.08);
@@ -69,108 +70,20 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             background: #000;
             display: block;
         }
 
-        .screen-ui {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.26), rgba(0,0,0,0.04) 36%, rgba(0,0,0,0.12));
-            z-index: 2;
-        }
-
-        .screen-topbar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 3;
-            padding: 16px 18px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .dynamic-island {
-            width: 118px;
-            height: 24px;
-            border-radius: 999px;
-            background: rgba(0,0,0,0.75);
-            margin: 0 auto;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 10px;
-            z-index: 5;
-        }
-
-        .screen-title {
-            margin-top: 24px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .screen-subtitle {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.8);
-            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .screen-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .action-pill {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.16);
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            display: grid;
-            place-items: center;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .screen-bottom {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 3;
-            padding: 14px 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(to top, rgba(0,0,0,0.28), transparent);
-        }
-
-        .composer {
-            flex: 1;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.14);
-            border: 1px solid rgba(255,255,255,0.18);
-            color: rgba(255,255,255,0.7);
-            padding: 10px 14px;
-            font-size: 0.72rem;
-        }
-
-        .mic-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: rgba(0, 113, 227, 0.9);
-            color: white;
-            display: grid;
-            place-items: center;
-            box-shadow: 0 6px 18px rgba(0, 113, 227, 0.35);
+        @media (min-width: 640px) {
+            .phone-bezel {
+                max-width: 340px;
+                padding: 12px;
+                border-radius: 44px;
+            }
+            .phone-screen {
+                border-radius: 32px;
+            }
         }
 
         .no-scrollbar::-webkit-scrollbar {
@@ -185,22 +98,16 @@
         .app-icon-header {
             display: grid;
             place-items: center;
-            width: 38px;
-            height: 38px;
-            border-radius: 11px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             background: #e9f5ee;
             color: #28774a;
         }
 
         .app-icon-header svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        @media (max-width: 480px) {
-            .phone-bezel {
-                width: min(100%, 320px);
-            }
+            width: 18px;
+            height: 18px;
         }
     </style>
 </head>
@@ -208,8 +115,8 @@
 
     <!-- Header -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-gray-200/60 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3 font-semibold text-lg sm:text-xl tracking-tight">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <div class="flex items-center space-x-2.5 font-semibold text-base sm:text-lg tracking-tight">
                 <div class="app-icon-header" aria-hidden="true">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 9L7 11L11 6M5 17L7 19L11 14M5 25L7 27L11 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -226,26 +133,22 @@
     </nav>
 
     <!-- Hero Section -->
-<!-- Hero Section -->
-    <section class="pt-28 sm:pt-36 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
-        <span class="text-appleAccent font-semibold text-xs sm:text-sm tracking-wide uppercase bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">
+    <section class="pt-20 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
+        <span class="inline-block text-appleAccent font-semibold text-xs tracking-wide uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
             SwiftUI & Local Persistence
         </span>
         
-        <!-- Reduced top margin from mt-6 to mt-4 -->
-        <h1 class="mt-4 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-appleText max-w-4xl mx-auto leading-tight">
+        <h1 class="mt-3 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-appleText max-w-3xl mx-auto leading-tight">
             One focused checklist.<br class="hidden sm:inline"/> Zero clutter.
         </h1>
         
-     
-        <!-- Reduced top margin from mt-6 to mt-3 -->
-        <p class="mt-3 text-lg sm:text-2xl text-appleSecText max-w-2xl mx-auto font-normal leading-relaxed">
+        <p class="mt-2 text-base sm:text-xl text-appleSecText max-w-xl mx-auto font-normal">
             See App in Action.
         </p>
-         
+          
         <!-- App iPhone Mockup Preview -->
-        <div class="mt-10 sm:mt-12 relative mx-auto app-demo-section" style="max-width: 360px;">
-            <div class="phone-bezel shadow-phone-shadow relative z-10 mx-auto">
+        <div class="mt-6 sm:mt-8 relative mx-auto flex justify-center app-demo-section">
+            <div class="phone-bezel shadow-phone-shadow relative z-10">
                 <div class="phone-screen">
                     <video
                         id="easylist-video"
@@ -286,8 +189,8 @@
                     }
                 });
             }, {
-                threshold: 0.5,
-                rootMargin: '0px 0px -6% 0px'
+                threshold: 0.4,
+                rootMargin: '0px'
             });
 
             observer.observe(appDemoSection);
@@ -296,69 +199,69 @@
     </script>
 
     <!-- Core Features Section -->
-    <section class="py-16 bg-white border-y border-gray-200/70">
+    <section class="py-12 sm:py-16 bg-white border-y border-gray-200/70">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div class="text-center mb-8 sm:mb-10">
                 <span class="text-xs font-bold uppercase tracking-wider text-appleAccent bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                     Overview & Capabilities
                 </span>
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-appleText mt-3">
+                <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-appleText mt-2">
                     Core Features
                 </h2>
-                <p class="text-appleSecText text-sm sm:text-base mt-2">
+                <p class="text-appleSecText text-sm sm:text-base mt-1">
                     Everything you need for clean, fast, and organized list management.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Tip 1 -->
-                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-gray-200/80 flex items-center justify-center text-gray-700 shrink-0">
-                        <i data-lucide="text-cursor" class="w-5 h-5"></i>
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-3.5">
+                    <div class="w-9 h-9 rounded-full bg-gray-200/80 flex items-center justify-center text-gray-700 shrink-0">
+                        <i data-lucide="text-cursor" class="w-4 h-4"></i>
                     </div>
                     <div>
                         <h3 class="text-base font-bold text-appleText">Smart Item Entry</h3>
-                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
+                        <p class="text-appleSecText text-xs leading-relaxed mt-0.5">
                             Type and press return to add item. App smartly auto-capitalizes, sorts alphabetically, and avoids duplicates.
                         </p>
                     </div>
                 </div>
 
                 <!-- Tip 2 -->
-                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-appleAccent shrink-0">
-                        <i data-lucide="mic" class="w-5 h-5"></i>
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-3.5">
+                    <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-appleAccent shrink-0">
+                        <i data-lucide="mic" class="w-4 h-4"></i>
                     </div>
                     <div>
                         <h3 class="text-base font-bold text-appleText">Use Your Voice [Hands free]</h3>
-                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
+                        <p class="text-appleSecText text-xs leading-relaxed mt-0.5">
                             Use microphone to add items hands free.
                         </p>
                     </div>
                 </div>
 
                 <!-- Tip 3 -->
-                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
-                        <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-3.5">
+                    <div class="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
+                        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
                     </div>
                     <div>
                         <h3 class="text-base font-bold text-appleText">Live Progress Tracking</h3>
-                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
-                            Tap an item to toggle the status, and watch the progress bar update in real time.
+                        <p class="text-appleSecText text-xs leading-relaxed mt-0.5">
+                            Tap an item to toggle status, and watch the progress bar update in real time.
                         </p>
                     </div>
                 </div>
 
                 <!-- Tip 4 -->
-                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
-                        <i data-lucide="more-horizontal" class="w-5 h-5"></i>
+                <div class="p-5 bg-appleBg rounded-2xl border border-gray-200/70 flex items-start space-x-3.5">
+                    <div class="w-9 h-9 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+                        <i data-lucide="more-horizontal" class="w-4 h-4"></i>
                     </div>
                     <div>
                         <h3 class="text-base font-bold text-appleText">Easy Clean Up</h3>
-                        <p class="text-appleSecText text-xs leading-relaxed mt-1">
-                            Clear all-completed items OR entire List in one tap.
+                        <p class="text-appleSecText text-xs leading-relaxed mt-0.5">
+                            Clear completed items or the entire list in one tap.
                         </p>
                     </div>
                 </div>
@@ -367,120 +270,117 @@
     </section>
 
     <!-- Data Management Section -->
-    <section class="py-20 bg-appleBg">
+    <section class="py-12 sm:py-16 bg-appleBg">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
                 <span class="text-xs font-bold uppercase tracking-wider text-appleAccent bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                     Control & Storage
                 </span>
-                <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-appleText mt-3">
+                <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-appleText mt-2">
                     Data Management
                 </h2>
-                <p class="mt-4 text-appleSecText text-base sm:text-lg">
-                    Easily check usage stats, clear all data with safety alerts, and manage your stored items directly in App Settings.
+                <p class="mt-1 text-appleSecText text-sm sm:text-base">
+                    Check usage stats, clear data safely, and manage stored items in App Settings.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Usage Stats -->
-                <div class="p-8 bg-white rounded-3xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
-                    <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-appleAccent mb-6">
-                        <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="p-6 sm:p-7 bg-white rounded-2xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
+                    <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-appleAccent mb-4">
+                        <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-appleText mb-2">Live Usage Metrics</h3>
-                    <p class="text-appleSecText text-sm leading-relaxed">
-                        Track your list count, total items, completed items, and estimated storage footprint (KB/MB) instantly from the settings panel.
+                    <h3 class="text-lg font-bold text-appleText mb-1">Live Usage Metrics</h3>
+                    <p class="text-appleSecText text-xs leading-relaxed">
+                        Track list count, total items, completed items, and storage footprint (KB/MB) instantly from settings.
                     </p>
                 </div>
 
-                <!-- Clear Data -->
-                <div class="p-8 bg-white rounded-3xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
-                    <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 mb-6">
-                        <i data-lucide="trash-2" class="w-6 h-6"></i>
+                <div class="p-6 sm:p-7 bg-white rounded-2xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
+                    <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-red-600 mb-4">
+                        <i data-lucide="trash-2" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-appleText mb-2">Clear All Data</h3>
-                    <p class="text-appleSecText text-sm leading-relaxed">
-                        Option to reset and start fresh in one click. Protected with confirmation alerts specifying exact lists and items to be removed.
+                    <h3 class="text-lg font-bold text-appleText mb-1">Clear All Data</h3>
+                    <p class="text-appleSecText text-xs leading-relaxed">
+                        Reset and start fresh in one tap. Protected with confirmation alerts for exact lists and items.
                     </p>
                 </div>
 
-                <!-- Ratings & Feedback -->
-                <div class="p-8 bg-white rounded-3xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
-                    <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
-                        <i data-lucide="star" class="w-6 h-6"></i>
+                <div class="p-6 sm:p-7 bg-white rounded-2xl border border-gray-200/60 shadow-apple-card hover:shadow-apple-hover transition-all duration-300">
+                    <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 mb-4">
+                        <i data-lucide="star" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-appleText mb-2">Feedback Logging</h3>
-                    <p class="text-appleSecText text-sm leading-relaxed">
-                        In-app star ratings and optional comments are stored locally in <code>RatingFeedback.json</code>, providing continuous feedback tracking.
+                    <h3 class="text-lg font-bold text-appleText mb-1">Feedback Logging</h3>
+                    <p class="text-appleSecText text-xs leading-relaxed">
+                        In-app star ratings and comments are saved locally in <code>RatingFeedback.json</code> for simple tracking.
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    
-     <!-- Privacy Section -->
-    <section class="py-20 bg-white border-t border-gray-200/70">
+
+    <!-- Privacy Section -->
+    <section class="py-12 sm:py-16 bg-white border-t border-gray-200/70">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div>
-                    <div class="inline-flex items-center space-x-2 bg-orange-50 border border-orange-200 text-orange-700 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
-                        <i data-lucide="shield-check" class="w-4 h-4 text-orange-600"></i>
+                    <div class="inline-flex items-center space-x-1.5 bg-orange-50 border border-orange-200 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-orange-600"></i>
                         <span>Privacy Policy</span>
                     </div>
-                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-appleText mb-6 leading-tight">
+                    <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-appleText mb-3 leading-tight">
                         Your privacy is important to us.
                     </h2>
-                    <p class="text-appleSecText text-base sm:text-lg leading-relaxed mb-6">
-                        EasyList collects and stores only basic shopping list items locally on your device. No personal information, contacts, location data, or usage tracking is collected or shared.
+                    <p class="text-appleSecText text-sm sm:text-base leading-relaxed mb-4">
+                        EasyList collects and stores basic list items locally on your device. No personal information, contacts, location data, or usage tracking is ever collected or shared.
                     </p>
 
-                    <div class="bg-appleBg p-6 rounded-2xl border border-gray-200/80 space-y-3">
-                        <h4 class="font-bold text-appleText text-sm uppercase tracking-wider">Stored Locally On Device:</h4>
-                        <ul class="space-y-2 text-sm text-appleSecText">
+                    <div class="bg-appleBg p-5 rounded-2xl border border-gray-200/80 space-y-2.5">
+                        <h4 class="font-bold text-appleText text-xs uppercase tracking-wider">Stored Locally On Device:</h4>
+                        <ul class="space-y-1.5 text-xs text-appleSecText">
                             <li class="flex items-center space-x-2">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                                 <span>1. Item names</span>
                             </li>
                             <li class="flex items-center space-x-2">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                                 <span>2. Item creation timestamp</span>
                             </li>
                             <li class="flex items-center space-x-2">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                                 <span>3. Item completion status</span>
                             </li>
                             <li class="flex items-center space-x-2">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>4. Total Count of items</span>
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                <span>4. Total count of items</span>
                             </li>
                             <li class="flex items-center space-x-2">
-                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                                <span>5. Total Count of completed items</span>
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                <span>5. Total count of completed items</span>
                             </li>
                         </ul>
                     </div>
 
-                    <p class="text-xs text-appleSecText mt-4 leading-relaxed">
-                        All item data is saved strictly inside a JSON file within the app's documents directory. Your data is never transmitted to external servers or third parties. You retain full control to add or delete items anytime.
+                    <p class="text-xs text-appleSecText mt-3 leading-relaxed">
+                        All item data is saved strictly inside a JSON file within the app's documents directory.
                     </p>
                 </div>
 
                 <!-- Visual Privacy Card -->
-                <div class="bg-gradient-to-br from-orange-500/10 via-appleBg to-blue-50/50 p-8 sm:p-10 rounded-3xl border border-gray-200/80 shadow-apple-card relative overflow-hidden">
-                    <div class="w-14 h-14 rounded-2xl bg-orange-500 text-white flex items-center justify-center mb-6 shadow-md">
-                        <i data-lucide="hand" class="w-7 h-7"></i>
+                <div class="bg-gradient-to-br from-orange-500/10 via-appleBg to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-gray-200/80 shadow-apple-card">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-4 shadow-sm">
+                        <i data-lucide="hand" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-appleText mb-3">100% On-Device Isolation</h3>
-                    <p class="text-appleSecText text-sm leading-relaxed mb-6">
-                        No accounts required, no cloud sign-ins, and no hidden telemetry. Your checklists remain entirely private on your iPhone.
+                    <h3 class="text-xl font-bold text-appleText mb-2">100% On-Device Isolation</h3>
+                    <p class="text-appleSecText text-xs sm:text-sm leading-relaxed mb-4">
+                        No accounts required, no cloud sign-ins, and no hidden telemetry. Checklists remain entirely private on your iPhone.
                     </p>
 
-                    <div class="p-4 bg-white/90 backdrop-blur rounded-2xl border border-gray-200 text-xs text-gray-600 font-mono space-y-2">
-                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                    <div class="p-3.5 bg-white/90 backdrop-blur rounded-xl border border-gray-200 text-xs text-gray-600 font-mono space-y-2">
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-1.5">
                             <span class="text-gray-400">Storage Location</span>
                             <span class="font-semibold text-appleText">Documents Directory</span>
                         </div>
-                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-1.5">
                             <span class="text-gray-400">External Transmission</span>
                             <span class="font-semibold text-emerald-600">None (0 KB Sent)</span>
                         </div>
@@ -495,40 +395,40 @@
     </section>
 
     <!-- Technical Specification / Code Architecture Section -->
-    <section class="py-20 bg-appleDarkBg text-white">
+    <section class="py-12 sm:py-16 bg-appleDarkBg text-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div>
                     <span class="text-xs uppercase tracking-widest text-blue-400 font-semibold">Technical Architecture</span>
-                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight mt-2 mb-6">
+                    <h2 class="text-2xl sm:text-4xl font-bold tracking-tight mt-1 mb-3">
                         Designed for resilience and privacy.
                     </h2>
-                    <p class="text-gray-400 text-base leading-relaxed mb-6">
-                        EasyList avoids remote backend dependencies and cloud sync complexity. Data remains 100% locally isolated inside the iOS Application Documents Directory.
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                        EasyList avoids remote backend dependencies and cloud sync complexity. Data remains 100% locally isolated inside the iOS Documents Directory.
                     </p>
 
-                    <ul class="space-y-4 text-sm text-gray-300">
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="database" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                    <ul class="space-y-3 text-xs sm:text-sm text-gray-300">
+                        <li class="flex items-start space-x-2.5">
+                            <i data-lucide="database" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i>
                             <span><strong>JSON File Persistence:</strong> Maintained via <code>EasyListData.json</code> with automated pretty-printed encoding.</span>
                         </li>
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="refresh-cw" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                        <li class="flex items-start space-x-2.5">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i>
                             <span><strong>Atomic State Protection:</strong> Failed async operations trigger immediate state rollbacks to preserve list integrity.</span>
                         </li>
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="star" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i>
+                        <li class="flex items-start space-x-2.5">
+                            <i data-lucide="star" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i>
                             <span><strong>Local Rating Persistence:</strong> In-app ratings and feedback comments are preserved in <code>RatingFeedback.json</code>.</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Code Preview Card -->
-                <div class="bg-gray-900 border border-gray-800 rounded-3xl p-6 font-mono text-xs text-gray-300 shadow-2xl overflow-x-auto">
-                    <div class="flex items-center space-x-2 mb-4 pb-3 border-b border-gray-800">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-4 sm:p-5 font-mono text-xs text-gray-300 shadow-xl overflow-x-auto">
+                    <div class="flex items-center space-x-2 mb-3 pb-2 border-b border-gray-800">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
                         <span class="text-gray-500 ml-2 text-[11px]">ListDetailView.swift (Normalization Logic)</span>
                     </div>
                     <pre class="text-blue-300"><code>// Duplicate Prevention Normalization
@@ -552,42 +452,29 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-appleBg border-t border-gray-200/80 py-12 text-xs text-appleSecText">
+    <footer class="bg-appleBg border-t border-gray-200/80 py-8 text-xs text-appleSecText">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center space-x-2">
-                    <div style="display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #e9f5ee; color: #28774a;" aria-hidden="true">
-                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 14px; height: 14px;">
-                            <path
-                                d="M5 9L7 11L11 6M5 17L7 19L11 14M5 25L7 27L11 22"
-                                stroke="currentColor"
-                                stroke-width="2.2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M16 9H27M16 17H27M16 25H27"
-                                stroke="currentColor"
-                                stroke-width="2.2"
-                                stroke-linecap="round"
-                            />
+                    <div style="display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: #e9f5ee; color: #28774a;" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;">
+                            <path d="M5 9L7 11L11 6M5 17L7 19L11 14M5 25L7 27L11 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 9H27M16 17H27M16 25H27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <span class="font-semibold text-appleText">EasyList</span>
                     <span>— Simple, focused checklist app for iOS.</span>
                 </div>
 
-                <div class="flex items-center space-x-6 text-gray-500">
+                <div class="flex items-center space-x-4 text-gray-500">
                     <span class="hover:text-appleText transition-colors">SwiftUI & Swift</span>
                     <span class="hover:text-appleText transition-colors">Local-Only Data</span>
                     <span class="hover:text-appleText transition-colors">AVFoundation</span>
                 </div>
             </div>
-
         </div>
     </footer>
 
-    
     <script>
         lucide.createIcons();
     </script>
