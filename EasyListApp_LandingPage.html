@@ -101,8 +101,10 @@
             width: 36px;
             height: 36px;
             border-radius: 10px;
-            background: #e9f5ee;
-            color: #28774a;
+            background: #0b84ff;
+            color: #111111;
+            border: 3px solid #111111;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.28);
         }
 
         .app-icon-header svg {
@@ -119,8 +121,9 @@
             <div class="flex items-center space-x-2.5 font-semibold text-base sm:text-lg tracking-tight">
                 <div class="app-icon-header" aria-hidden="true">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 9L7 11L11 6M5 17L7 19L11 14M5 25L7 27L11 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M16 9H27M16 17H27M16 25H27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                        <rect x="8" y="6" width="16" height="20" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M12 12H20M12 17H20M12 22H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M21 9.5L23.5 12L28 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <span class="text-appleText font-bold">EasyList</span>
@@ -324,7 +327,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div>
-                    <div class="inline-flex items-center space-x-1.5 bg-orange-50 border border-orange-200 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                    <div class="inline-flex items-center space-x-1.5 bg-orange-50 border border-orange-200 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
                         <i data-lucide="shield-check" class="w-3.5 h-3.5 text-orange-600"></i>
                         <span>Privacy Policy</span>
                     </div>
@@ -457,10 +460,11 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center space-x-2">
-                    <div style="display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: #e9f5ee; color: #28774a;" aria-hidden="true">
+                    <div class="app-icon-header" style="width: 22px; height: 22px; border-radius: 6px; border-width: 2px;" aria-hidden="true">
                         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px;">
-                            <path d="M5 9L7 11L11 6M5 17L7 19L11 14M5 25L7 27L11 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M16 9H27M16 17H27M16 25H27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                            <rect x="8" y="6" width="16" height="20" rx="4" stroke="currentColor" stroke-width="2.2"/>
+                            <path d="M12 12H20M12 17H20M12 22H17" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                            <path d="M21 9.5L23.5 12L28 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <span class="font-semibold text-appleText">EasyList</span>
